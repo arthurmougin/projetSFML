@@ -6,3 +6,7 @@
 
 using namespace std;
 using namespace sf;
+
+int main(void) {
+
+}
