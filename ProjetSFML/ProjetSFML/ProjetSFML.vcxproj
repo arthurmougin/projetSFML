@@ -127,13 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ElementContainer.cpp" />
     <ClCompile Include="GameMaster.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ElementContainer.h" />
     <ClInclude Include="GameMaster.h" />
     <ClInclude Include="GameObject.h" />
   </ItemGroup>
