@@ -1,44 +1,23 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <vector>
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include "GameObject.h"
+#include "Map.h"
 
-
-using namespace std;
-using namespace sf;
-
-
-struct ElementContainer
+class GameMaster:public RenderWindow
 {
-	String type;
-	String Name;
-	GameObject gameObject;
-
-}; 
-
-
-
-
-class GameMaster
-{
-private:
-	float gravity;
-	int maxVie;
-	vector <ElementContainer> GameObjects;
+protected:
+	vector <Map> maps;
+	int selectedMapIndex;
+	RenderWindow window;
+	
 
 public:
 	GameMaster();
 	void run();
 
-	float getGravity();
-	void setGravity(float);
-	int getMaxVie();
-	void setMaxVie(int);
-	vector <ElementContainer> getGameObjects();
-	void setGameObjects(vector <ElementContainer>);
+	vector <Map> getMaps();
+	void setMaps(vector <Map>);
+	void addMap(Map);
+	void setSelectedMapIndex(int);
+	int getSelectedMapIndex();
 
 };
 

@@ -24,6 +24,30 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FocusableElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MobileEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OneWay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMaster.h">
@@ -32,5 +56,61 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FocusableElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MobileEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sprites\Global Sprite2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Global Sprites.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_left_animal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_left_block.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_left_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_left_rocher.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_right_animal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_right_block.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_right_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\Player_right_rocher.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -127,13 +127,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FocusableElement.cpp" />
+    <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameMaster.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MobileEntity.cpp" />
+    <ClCompile Include="Mur.cpp" />
+    <ClCompile Include="OneWay.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FocusableElement.h" />
+    <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameMaster.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="MobileEntity.h" />
+    <ClInclude Include="Mur.h" />
+    <ClInclude Include="OneWay.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="Scene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sprites\Global Sprite2.png" />
+    <Image Include="sprites\Global Sprites.png" />
+    <Image Include="sprites\Player_left_animal.png" />
+    <Image Include="sprites\Player_left_block.png" />
+    <Image Include="sprites\Player_left_normal.png" />
+    <Image Include="sprites\Player_left_rocher.png" />
+    <Image Include="sprites\Player_right_animal.png" />
+    <Image Include="sprites\Player_right_block.png" />
+    <Image Include="sprites\Player_right_normal.png" />
+    <Image Include="sprites\Player_right_rocher.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
