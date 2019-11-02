@@ -127,14 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="FocusableElement.cpp" />
     <ClCompile Include="GameEntity.cpp" />
-=======
-<<<<<<< HEAD
-    <ClCompile Include="Source.cpp" />
-=======
->>>>>>> bf8d0bfb388e6bae75bdf797d48ce00aff86618f
     <ClCompile Include="GameMaster.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -150,7 +144,6 @@
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameMaster.h" />
     <ClInclude Include="GameObject.h" />
-<<<<<<< HEAD
     <ClInclude Include="Map.h" />
     <ClInclude Include="MobileEntity.h" />
     <ClInclude Include="Mur.h" />
@@ -169,9 +162,6 @@
     <Image Include="sprites\Player_right_block.png" />
     <Image Include="sprites\Player_right_normal.png" />
     <Image Include="sprites\Player_right_rocher.png" />
-=======
->>>>>>> 2467b3017c4de594dd992649797bd37d79bcac8b
->>>>>>> bf8d0bfb388e6bae75bdf797d48ce00aff86618f
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
