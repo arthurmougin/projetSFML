@@ -9,9 +9,7 @@ protected:
 
 public:
 	FocusableElement();
-	FocusableElement(bool, bool);
-
-	void claimFocus();
+	FocusableElement(bool, bool, bool);
 
 	bool getFocused();
 	void setFocused(bool);

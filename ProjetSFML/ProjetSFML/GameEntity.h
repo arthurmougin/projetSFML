@@ -18,6 +18,5 @@ public:
 	virtual void interact(string) = 0;
 	virtual void ActOnCollide();
 
-
 };
 
