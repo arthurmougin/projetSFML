@@ -1,24 +1,8 @@
 #pragma once
 #include "GameObject.h"
-#include "Mur.h"
-#include "Player.h"
 
-enum ElementTypes {
-	VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
-	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
-	BOUTEILLE_COULEUR3, BLOC, BLOC_VIVANT, BLOC_COULEUR1, BLOC_COULEUR2, BLOC_COULEUR3, ANIMAL,
-	ANIMAL_COULEUR1, ANIMAL_COULEUR2, ANIMAL_COULEUR3, PLAYER, SPAWN
-};
 
-struct ElementContainer
-{
-	ElementTypes type;
-	String Name;
-	Mur mur;
-	Player player;
-};
 
-enum Direction {HAUT, BAS, GAUCHE, DROITE};
 
 class MobileEntity:public GameObject //désigne tout élément qui se déplace de manière autonome
 {
@@ -38,8 +22,7 @@ public:
 	MobileEntity(bool, float, bool, bool,bool);
 	MobileEntity(bool, float, Vector2f, Vector2f,bool, bool, bool, float);
 
-	bool testCollision(int, float, vector <ElementContainer>);
-	void moveTo(int, float , vector <ElementContainer>);
+	void moveTo(int);
 	void updatePos(float);//Gravity
 
 	bool getFlying();

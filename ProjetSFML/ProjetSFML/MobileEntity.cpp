@@ -32,89 +32,22 @@ MobileEntity::MobileEntity(bool fly, float myspeed, Vector2f myAcceleration, Vec
 	Hauteur = Hight;
 }
 
-bool MobileEntity::testCollision(int D, float G, vector <ElementContainer> es)
-{
-	Fantome.setPosition(this->getPosition());
-	float dx, dy;
-	dx = dy = 0;
-	switch (D)
-	{case HAUT:
-		dy = -1;
-		break;
-	case BAS:
-		dy = 1;
-		break;
-	case GAUCHE:
-		dx = -1;
-		break;
-	case DROITE:
-		dx = 1;
-		break;
-	default:
-		break;
-	}
-
-	if (Hauteur != 0) {
-		Fantome.move((dx * speed) + 0, (dy * speed) + acceleration.y - G);
-	}
-	else {
-		acceleration.y = 0;
-		Fantome.move((dx * speed) + 0, (dy * speed) + acceleration.y);
-	}
-
-	for (int i = 0; i < es.size(); i++)
-	{
-		switch (es.at(i).type) {
-		case MUR:
-			//si l'entité ne traverse pas les murs et que le fantome est en collision avec les murs
-			if (!TraverseMur && es.at(i).mur.getGlobalBounds().intersects(Fantome.getGlobalBounds()))
-				return true;
-			break;
-		case PLAYER:
-			break;
-		default:
-			cout << "type inconnu dans la collision" << endl;
-			break;
-		}
-	}
-
-
-
-	return false;
-}
-
-void MobileEntity::moveTo(int d, float G, vector <ElementContainer> es)
+void MobileEntity::moveTo(int d)
 {
 
 	switch (d) {
 	case HAUT:
-		if (testCollision(d,G, es))
-			direction.y = 0;
-		else
 			direction.y = -1;
 		break;
 	case BAS:
-		if (testCollision(d, G, es))
-		{
-			Hauteur = 0;
-			direction.y = 0;
-		}
-		else
-		{
 			Hauteur = 1;
 			direction.y = 1;
-		}
+		
 		break;
 	case GAUCHE:
-		if (testCollision(d, G, es))
-			direction.x = 0;
-		else
 			direction.x = -1;
 		break;
 	case DROITE:
-		if (testCollision(d, G, es))
-			direction.x = 0;
-		else
 			direction.x = 1;
 		break;
 	default:

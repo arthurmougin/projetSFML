@@ -1,72 +1,13 @@
 ﻿  GameMaster.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(17,1): error C2011: 'ElementContainer': 'struct' type redefinition
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
   Map.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(29,25): error C2079: 'Scene::player' uses undefined struct 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(17,1): error C2011: 'ElementContainer': 'struct' type redefinition
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(29,25): error C2079: 'Scene::player' uses undefined struct 'ElementContainer'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(7,15): warning C4305: '=': truncation from 'double' to 'float'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(19,15): warning C4305: '=': truncation from 'double' to 'float'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(30,15): warning C4305: '=': truncation from 'double' to 'float'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(79,126): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(79,127): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'Scene'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(79,127): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-  MobileEntity.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(87,19): error C2227: left of '->loadSave' must point to class/struct/union/generic type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(18,19): error C3646: 'type': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(18,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(21,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(21,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(5,1): error C2504: 'MobileEntity': base class undefined
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(14,1): error C2011: 'ElementContainer': 'struct' type redefinition
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(16): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(67,10): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(16): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(70,7): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(16): message : see declaration of 'ElementContainer'
   Player.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(129,18): warning C4552: '-': result of expression not used
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(17,1): error C2011: 'ElementContainer': 'struct' type redefinition
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(30,15): warning C4305: '=': truncation from 'double' to 'float'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(20,15): error C3646: 'player': unknown override specifier
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(20,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(78,1): error C2039: 'player': is not a member of 'ElementContainer'
   Scene.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(29,25): error C2079: 'Scene::player' uses undefined struct 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(17,1): error C2011: 'ElementContainer': 'struct' type redefinition
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(29,25): error C2079: 'Scene::player' uses undefined struct 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(21,1): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(25,11): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(94,1): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(99,1): error C2027: use of undefined type 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(103,30): error C2227: left of '->getSpawnPoint' must point to class/struct/union/generic type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(103,17): error C2143: syntax error: missing ';' before 'Scene::getSpawnPoint'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(103,30): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(104,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(104,1): error C2556: 'int Scene::getSpawnPoint(void)': overloaded function differs only by return type from 'sf::Vector2f Scene::getSpawnPoint(void)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(47): message : see declaration of 'Scene::getSpawnPoint'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(103,17): error C2371: 'Scene::getSpawnPoint': redefinition; different basic types
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(47): message : see declaration of 'Scene::getSpawnPoint'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(108,26): error C2227: left of '->setSpawnPoint' must point to class/struct/union/generic type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(108,36): error C2146: syntax error: missing ')' before identifier 's'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(109,1): error C2143: syntax error: missing ';' before '{'
   Source.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(109,1): error C2447: '{': missing function header (old-style formal list?)
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(18,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(17,1): error C2011: 'ElementContainer': 'struct' type redefinition
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.h(13): message : see declaration of 'ElementContainer'
   Generating Code...
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(29,25): error C2079: 'Scene::player' uses undefined struct 'ElementContainer'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(15): message : see declaration of 'ElementContainer'

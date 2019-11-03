@@ -4,7 +4,7 @@ Scene::Scene()
 {
 	score = 0;
 	player.Name = "player1";
-	player.type = "player";
+	player.type = PLAYER;
 	player.player = Player();
 }
 
@@ -12,7 +12,7 @@ Scene::Scene(int s, vector<vector<int>> m)
 {
 	score = s;
 	player.Name = "player1";
-	player.type = "player";
+	player.type = PLAYER;
 	player.player = Player();
 	generate(m);
 }
@@ -62,6 +62,17 @@ void Scene::draw(RenderWindow &e)
 		
 	}
 	/**/
+}
+
+bool Scene::testCollide(ElementContainer e , vector<ElementContainer> es)
+{
+	for (int i = 0; i < es.size(); i++)
+	{
+		if(e.getGlobalBounds().intersects(es.at(i).getGlobalBounds())){
+			return true;
+		}
+	}
+	return false;
 }
 
 void Scene::update()
