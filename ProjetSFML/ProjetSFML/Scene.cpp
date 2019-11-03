@@ -3,17 +3,17 @@
 Scene::Scene()
 {
 	score = 0;
-	player.Name = "player1";
-	player.type = PLAYER;
-	player.player = Player();
+	playerContainer.Name = "player1";
+	playerContainer.type = PLAYER;
+	playerContainer.player = Player();
 }
 
 Scene::Scene(int s, vector<vector<int>> m)
 {
 	score = s;
-	player.Name = "player1";
-	player.type = PLAYER;
-	player.player = Player();
+	playerContainer.Name = "player1";
+	playerContainer.type = PLAYER;
+	playerContainer.player = Player();
 	generate(m);
 }
 
@@ -22,7 +22,7 @@ Scene::Scene(int s, vector<ElementContainer> v, Vector2f sp, ElementContainer p)
 	score = s;
 	gameObjects = v;
 	spawnPoint = sp;
-	player = p;
+	playerContainer = p;
 }
 
 void Scene::generate(vector<vector<int>>myMatrice)
@@ -56,7 +56,7 @@ void Scene::draw(RenderWindow &e)
 {
 	cout << "scene drawn" << endl;
 	/**
-	player.player.draw(e);
+	playerContainer.player.draw(e);
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		
@@ -64,13 +64,78 @@ void Scene::draw(RenderWindow &e)
 	/**/
 }
 
-bool Scene::testCollide(ElementContainer e , vector<ElementContainer> es)
+bool Scene::testCollide(ElementContainer &e , vector<ElementContainer>& es, Direction D)
 {
+	FloatRect collisionBox;
+	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
+	switch (e.type)
+	{
+		/**
+	case ROCHER:
+		break;
+		/**/
+	case BLOC:
+		return false; // Le bloc n'a aucune collision avec l'environment
+		break;
+		/**
+	case BLOC_VIVANT:
+		break;
+	case ANIMAL:
+		break;/**/
+	case PLAYER:
+		collisionBox = e.player.getFantome().getGlobalBounds();
+		TraverseBlock = e.player.getTraverseBlock();
+		TraverseMur = e.player.getTraverseMur();
+		MarcheSurBlock = e.player.getMarcheSurBlock();
+		hauteur = e.player.getHauteur();
+		break;
+	default:
+		cout << "mauvais collisionneur" << endl;
+		break;
+	}
+
+
 	for (int i = 0; i < es.size(); i++)
 	{
-		if(e.getGlobalBounds().intersects(es.at(i).getGlobalBounds())){
-			return true;
+		switch (es.at(i).type)
+		{
+		case MUR:
+			//si l'élément ne traverse pas les murs et qu'il y a une collision
+			if (!TraverseMur && collisionBox.intersects(es.at(i).mur.getGlobalBounds()))
+				return true;
+			break;
+		case ONEWAY:
+			//si la direction de collision est celle bloquée par le OneWay et qu'il y a une collision
+			if (D == es.at(i).oneway.getBlockDirection() && collisionBox.intersects(es.at(i).oneway.getGlobalBounds()))
+				return true;
+			break;
+			/*
+		case PIQUE:
+			break;
+		case SWITCH:
+			break;
+		case GOAL:
+			break;
+		case ROCHER:
+			break;
+		case BOUTEILLE:
+			break;
+		case BOUTEILLE_VIVANTE:
+			break;
+		case BLOC:
+			break;
+		case BLOC_VIVANT:
+			break;
+		case ANIMAL:
+			break;/**/
+		default:
+			break;
 		}
+	}
+
+	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
+	if (e.type != PLAYER) {
+		collisionBox.intersects(playerContainer.player.getGlobalBounds());
 	}
 	return false;
 }
@@ -103,12 +168,12 @@ void Scene::setGameObjects(vector<ElementContainer> g)
 
 ElementContainer Scene::getPlayer()
 {
-	return player;
+	return playerContainer;
 }
 
 void Scene::setPlayer(ElementContainer p)
 {
-	player = p;
+	playerContainer = p;
 }
 
 Vector2f Scene::getSpawnPoint()

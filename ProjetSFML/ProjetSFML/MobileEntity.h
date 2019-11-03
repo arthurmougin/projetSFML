@@ -38,11 +38,17 @@ public:
 	bool getTraverseBlock();
 	void setTraverseBlock(bool);
 
+	bool getTraverseMur();
+	void setTraverseMur(bool);
+
 	bool getMarcheSurBlock();
 	void setMarcheSurBlock(bool);
 
 	float getHauteur();
 	void setHauteur(float);
+
+	Sprite getFantome();
+	void setFantome(Sprite);
 
 };
 

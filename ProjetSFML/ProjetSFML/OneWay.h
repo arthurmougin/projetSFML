@@ -9,7 +9,6 @@ public:
 	OneWay();
 	OneWay(Direction);
 
-
 	Direction getBlockDirection();
 	void setBlockDirection(Direction);
 

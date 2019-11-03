@@ -120,6 +120,17 @@ void MobileEntity::setTraverseBlock(bool t)
 	TraverseBlock = t;
 }
 
+bool MobileEntity::getTraverseMur()
+{
+	return TraverseMur;
+}
+
+void MobileEntity::setTraverseMur(bool t)
+{
+	TraverseMur = t;
+
+}
+
 bool MobileEntity::getMarcheSurBlock()
 {
 	return MarcheSurBlock;
@@ -138,4 +149,14 @@ float MobileEntity::getHauteur()
 void MobileEntity::setHauteur(float h)
 {
 	Hauteur = h;
+}
+
+Sprite MobileEntity::getFantome()
+{
+	return Fantome;
+}
+
+void MobileEntity::setFantome(Sprite f)
+{
+	Fantome = f;
 }

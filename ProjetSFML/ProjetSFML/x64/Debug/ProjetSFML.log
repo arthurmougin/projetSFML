@@ -1,13 +1,41 @@
 ﻿  GameMaster.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): error C2259: 'OneWay': cannot instantiate abstract class
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : due to following members:
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : 'void GameEntity::interact(std::string)': is abstract
   Map.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(18): message : see declaration of 'GameEntity::interact'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): error C2259: 'OneWay': cannot instantiate abstract class
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : due to following members:
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : 'void GameEntity::interact(std::string)': is abstract
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(18): message : see declaration of 'GameEntity::interact'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(7,15): warning C4305: '=': truncation from 'double' to 'float'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(19,15): warning C4305: '=': truncation from 'double' to 'float'
-  Player.cpp
+  MobileEntity.cpp
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(30,15): warning C4305: '=': truncation from 'double' to 'float'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(20,15): error C3646: 'player': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(20,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(78,1): error C2039: 'player': is not a member of 'ElementContainer'
+  Player.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,18): warning C4552: '-': result of expression not used
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(21,15): error C3646: 'player': unknown override specifier
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(21,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): error C2259: 'OneWay': cannot instantiate abstract class
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : due to following members:
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : 'void GameEntity::interact(std::string)': is abstract
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(18): message : see declaration of 'GameEntity::interact'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(82,1): error C2039: 'player': is not a member of 'ElementContainer'
   Scene.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(16): message : see declaration of 'ElementContainer'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): error C2259: 'OneWay': cannot instantiate abstract class
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : due to following members:
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : 'void GameEntity::interact(std::string)': is abstract
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(18): message : see declaration of 'GameEntity::interact'
   Source.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(137,27): error C2661: 'sf::Rect<float>::intersects': no overloaded function takes 0 arguments
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): error C2259: 'OneWay': cannot instantiate abstract class
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : due to following members:
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22): message : 'void GameEntity::interact(std::string)': is abstract
   Generating Code...
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(15): message : see declaration of 'ElementContainer'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(18): message : see declaration of 'GameEntity::interact'
