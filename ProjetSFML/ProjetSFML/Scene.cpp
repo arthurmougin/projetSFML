@@ -42,6 +42,19 @@ void Scene::generate(vector<vector<int>>myMatrice)
 				break;
 			case MUR:
 				cout << "wall at " << x << " x " << y << endl;
+				break;
+			case ONEWAY_HAUT:
+				cout << "OneWay Haut at " << x << " x " << y << endl;
+				break;
+			case ONEWAY_BAS:
+				cout << "OneWay Bas at " << x << " x " << y << endl;
+				break;
+			case ONEWAY_GAUCHE:
+				cout << "OneWay Gauche at " << x << " x " << y << endl;
+				break;
+			case ONEWAY_DROITE:
+				cout << "OneWay Droite at " << x << " x " << y << endl;
+				break;
 			default:
 				cout << "l'index " << myLine.at(x) << " n'est pas connu" << endl;
 			}

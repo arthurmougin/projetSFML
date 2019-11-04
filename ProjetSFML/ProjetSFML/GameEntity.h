@@ -15,7 +15,7 @@ public:
 	bool getTraversable();
 	void setTraversable(bool);
 
-	virtual void interact(string) =0;
+	virtual void interact();
 	virtual void ActOnCollide();
 
 };

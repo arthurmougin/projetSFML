@@ -14,6 +14,13 @@ enum ElementTypes {
 	ANIMAL_COULEUR1, ANIMAL_COULEUR2, ANIMAL_COULEUR3, PLAYER, SPAWN
 };
 
+
+enum GameColor {
+	NOCOLOR,ROUGE,BLEU,JAUNE
+};
+
+struct ElementContainer;
+
 class GameObject : public Sprite
 {
 public:

@@ -20,6 +20,12 @@ void GameEntity::setTraversable(bool t)
   traversable= t;
 }
 
+
+void GameEntity::interact()
+{
+	cout << "Interaction Yeah" << endl;
+}
+
 void GameEntity::ActOnCollide()
 {
 	cout << "Outch Collision" << endl;

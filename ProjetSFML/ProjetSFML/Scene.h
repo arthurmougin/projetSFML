@@ -93,8 +93,6 @@ struct ElementContainer
 
 
 
-
-
 class Scene
 {
 protected:
