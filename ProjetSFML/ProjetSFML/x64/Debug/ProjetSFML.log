@@ -1,15 +1,11 @@
-﻿  FocusableElement.cpp
-  GameEntity.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  GameMaster.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+﻿  GameMaster.cpp
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xutility(1762,1): error C2280: 'Scene &Scene::operator =(const Scene &)': attempting to reference a deleted function
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121): message : compiler has generated 'Scene::operator =' here
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121,1): message : 'Scene &Scene::operator =(const Scene &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'ElementContainer &ElementContainer::operator =(const ElementContainer &)'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(92,1): message : 'ElementContainer &ElementContainer::operator =(const ElementContainer &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'Player &Player::operator =(const Player &)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(13,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(7): message : see declaration of 'Player::bringElement'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(8): message : see declaration of 'Player::bringElement'
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message : see reference to function template instantiation '_OutIt *std::_Copy_unchecked<_Iter,Scene*>(_InIt,_InIt,_OutIt)' being compiled
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :         with
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :         [
@@ -51,7 +47,6 @@ D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.2810
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :         [
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :             _Ty=Scene
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :         ]
-  GameObject.cpp
   Map.cpp
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message : see reference to class template instantiation 'std::vector<Scene,std::allocator<_Ty>>' being compiled
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         with
@@ -66,8 +61,8 @@ D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.2810
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121): message : compiler has generated 'Scene::operator =' here
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121,1): message : 'Scene &Scene::operator =(const Scene &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'ElementContainer &ElementContainer::operator =(const ElementContainer &)'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(92,1): message : 'ElementContainer &ElementContainer::operator =(const ElementContainer &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'Player &Player::operator =(const Player &)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(13,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(7): message : see declaration of 'Player::bringElement'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(8): message : see declaration of 'Player::bringElement'
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message : see reference to function template instantiation '_OutIt *std::_Move_unchecked<Scene*,Scene*>(_InIt,_InIt,_OutIt)' being compiled
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :         with
 D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :         [
@@ -90,7 +85,6 @@ D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         with
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         [
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :             _Ty=Scene
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         ]
-  Mur.cpp
   OneWay.cpp
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,18): warning C4552: '-': result of expression not used
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -100,15 +94,13 @@ D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(34,1): error C2039: 'oneway': is
   Player.cpp
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(16): message : see declaration of 'ElementContainer'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(5,1): error C2530: 'Player::bringElement': references must be initialized
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(9,2): error C2146: syntax error: missing ';' before identifier 'bringElement'
   Scene.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(8,17): error C2059: syntax error: ';'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(5,1): error C2530: 'Player::bringElement': references must be initialized
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(8,1): error C2280: 'Player &Player::operator =(const Player &)': attempting to reference a deleted function
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(13): message : compiler has generated 'Player::operator =' here
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(13,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14): message : compiler has generated 'Player::operator =' here
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
   Source.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(7): message : see declaration of 'Player::bringElement'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(8): message : see declaration of 'Player::bringElement'
   Generating Code...
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline

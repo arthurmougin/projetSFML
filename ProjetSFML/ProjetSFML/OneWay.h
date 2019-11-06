@@ -1,6 +1,5 @@
 #pragma once
 #include "GameEntity.h"
-#include "Scene.h"
 class OneWay:public GameEntity
 {
 protected:

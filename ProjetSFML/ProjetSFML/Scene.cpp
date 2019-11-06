@@ -3,26 +3,20 @@
 Scene::Scene()
 {
 	score = 0;
-	playerContainer.Name = "player1";
-	playerContainer.type = PLAYER;
-	playerContainer.player = Player();
 }
 
 Scene::Scene(int s, vector<vector<int>> m)
 {
 	score = s;
-	playerContainer.Name = "player1";
-	playerContainer.type = PLAYER;
-	playerContainer.player = Player();
 	generate(m);
 }
 
-Scene::Scene(int s, vector<ElementContainer> v, Vector2f sp, ElementContainer p)
+Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 {
 	score = s;
 	gameObjects = v;
 	spawnPoint = sp;
-	playerContainer = p;
+	player = p;
 }
 
 void Scene::generate(vector<vector<int>>myMatrice)
@@ -65,51 +59,59 @@ void Scene::generate(vector<vector<int>>myMatrice)
 
 }
 
-void Scene::draw(RenderWindow &e)
+void Scene::draw(RenderWindow*e)
 {
 	cout << "scene drawn" << endl;
 	/**
 	playerContainer.player.draw(e);
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		
+
 	}
 	/**/
 }
 
-bool Scene::testCollide(ElementContainer &e , vector<ElementContainer>& es, Direction D)
+
+bool Scene::testCollide(GameObject*e , Direction D)
 {
 	FloatRect collisionBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
-	switch (e.type)
-	{
-		/**
-	case ROCHER:
-		break;
-		/**/
-	case BLOC:
-		return false; // Le bloc n'a aucune collision avec l'environment
-		break;
-		/**
-	case BLOC_VIVANT:
-		break;
-	case ANIMAL:
-		break;/**/
-	case PLAYER:
-		collisionBox = e.player.getFantome().getGlobalBounds();
-		TraverseBlock = e.player.getTraverseBlock();
-		TraverseMur = e.player.getTraverseMur();
-		MarcheSurBlock = e.player.getMarcheSurBlock();
-		hauteur = e.player.getHauteur();
-		break;
-	default:
-		cout << "mauvais collisionneur" << endl;
-		break;
+	Player* PlayerPointer;
+	
+	PlayerPointer = dynamic_cast<Player*>(e);
+	if (PlayerPointer) {
+		collisionBox = PlayerPointer->getFantome().getGlobalBounds();
+		TraverseBlock = PlayerPointer->getTraverseBlock();
+		TraverseMur = PlayerPointer->getTraverseMur();
+		MarcheSurBlock = PlayerPointer->getMarcheSurBlock();
+		hauteur = PlayerPointer->getHauteur();
+	}
+	// A CODER : ROCHER, BLOC, BLOC_VIVANT, ANIMAL
+	else {
+		cout << "Mauvais collisionneur " << endl;
 	}
 
 
-	for (int i = 0; i < es.size(); i++)
+
+	Mur* MurPointer;
+	OneWay* oneWayPtr;
+
+	for (int i = 0; i < gameObjects.size(); i++)
 	{
+		if (!TraverseMur) {
+			MurPointer = dynamic_cast<Mur*>(gameObjects.at(i));
+			if (MurPointer && collisionBox.intersects(MurPointer->getGlobalBounds())) {
+				return true;
+			}
+		}
+
+		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
+		if (oneWayPtr && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getGlobalBounds())) {
+			return true;
+		}
+
+
+		/*
 		switch (es.at(i).type)
 		{
 		case MUR:
@@ -140,15 +142,16 @@ bool Scene::testCollide(ElementContainer &e , vector<ElementContainer>& es, Dire
 		case BLOC_VIVANT:
 			break;
 		case ANIMAL:
-			break;/**/
+			break;/*
 		default:
 			break;
 		}
+		*/
 	}
 
 	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
-	if (e.type != PLAYER) {
-		collisionBox.intersects(playerContainer.player.getGlobalBounds());
+	if (PlayerPointer == NULL && collisionBox.intersects(player.getGlobalBounds())) {
+		return true;
 	}
 	return false;
 }
@@ -169,24 +172,24 @@ void Scene::setScore(int s)
 	score = s;
 }
 
-vector<ElementContainer> Scene::getGameObjects()
+vector <GameObject*> Scene::getGameObjects()
 {
 	return gameObjects;
 }
 
-void Scene::setGameObjects(vector<ElementContainer> g)
+void Scene::setGameObjects(vector <GameObject*> g)
 {
 	gameObjects = g;
 }
 
-ElementContainer Scene::getPlayer()
+Player Scene::getPlayer()
 {
-	return playerContainer;
+	return player;
 }
 
-void Scene::setPlayer(ElementContainer p)
+void Scene::setPlayer(Player p)
 {
-	playerContainer = p;
+	player = p;
 }
 
 Vector2f Scene::getSpawnPoint()
