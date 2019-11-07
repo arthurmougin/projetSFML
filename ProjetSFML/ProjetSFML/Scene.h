@@ -25,7 +25,7 @@ public:
 	Scene(int, vector <GameObject*>, Vector2f , Player);
 
 	void generate(vector <vector <int>>);
-	void draw(RenderWindow*);
+	void draw(RenderWindow&);
 	bool testCollide(GameObject*, Direction);
 	void update();
 

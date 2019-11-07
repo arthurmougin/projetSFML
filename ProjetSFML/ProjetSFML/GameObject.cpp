@@ -2,9 +2,10 @@
 
 GameObject::GameObject():Sprite()
 {
+
 }
 
-void GameObject::draw(RenderWindow &R)
+void GameObject::drawMe(RenderWindow &R)
 {
 	R.draw(*this);
 }

@@ -59,7 +59,7 @@ void Scene::generate(vector<vector<int>>myMatrice)
 
 }
 
-void Scene::draw(RenderWindow*e)
+void Scene::draw(RenderWindow&e)
 {
 	cout << "scene drawn" << endl;
 	/**
@@ -74,8 +74,9 @@ void Scene::draw(RenderWindow*e)
 
 bool Scene::testCollide(GameObject*e , Direction D)
 {
-	FloatRect collisionBox;
+	doubleRect collisionBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
+	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
 	Player* PlayerPointer;
 	
 	PlayerPointer = dynamic_cast<Player*>(e);

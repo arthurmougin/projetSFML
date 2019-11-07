@@ -1,106 +1,67 @@
-﻿  GameMaster.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xutility(1762,1): error C2280: 'Scene &Scene::operator =(const Scene &)': attempting to reference a deleted function
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121): message : compiler has generated 'Scene::operator =' here
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121,1): message : 'Scene &Scene::operator =(const Scene &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'ElementContainer &ElementContainer::operator =(const ElementContainer &)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(92,1): message : 'ElementContainer &ElementContainer::operator =(const ElementContainer &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'Player &Player::operator =(const Player &)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(8): message : see declaration of 'Player::bringElement'
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message : see reference to function template instantiation '_OutIt *std::_Copy_unchecked<_Iter,Scene*>(_InIt,_InIt,_OutIt)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :             _OutIt=Scene *,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :             _Iter=Scene *,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :             _InIt=Scene *
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1078): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message : see reference to function template instantiation 'void std::vector<Scene,std::allocator<_Ty>>::_Assign_range<_Ty*>(_Iter,_Iter,std::forward_iterator_tag)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :             _Ty=Scene,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :             _Iter=Scene *
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message : see reference to function template instantiation 'void std::vector<Scene,std::allocator<_Ty>>::_Assign_range<_Ty*>(_Iter,_Iter,std::forward_iterator_tag)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :             _Ty=Scene,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :             _Iter=Scene *
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1093): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message : see reference to function template instantiation 'void std::vector<Scene,std::allocator<_Ty>>::assign<Scene*,void>(_Iter,_Iter)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :             _Ty=Scene,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :             _Iter=Scene *
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message : see reference to function template instantiation 'void std::vector<Scene,std::allocator<_Ty>>::assign<Scene*,void>(_Iter,_Iter)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :             _Ty=Scene,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :             _Iter=Scene *
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1104): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1101): message : while compiling class template member function 'void std::vector<Scene,std::allocator<_Ty>>::_Copy_assign(const std::vector<_Ty,std::allocator<_Ty>> &,std::false_type)'
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1101): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1101): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1101): message :             _Ty=Scene
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1101): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message : see reference to function template instantiation 'void std::vector<Scene,std::allocator<_Ty>>::_Copy_assign(const std::vector<_Ty,std::allocator<_Ty>> &,std::false_type)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :             _Ty=Scene
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1120): message :         ]
+﻿  FocusableElement.cpp
+  GameEntity.cpp
+  GameMaster.cpp
   Map.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message : see reference to class template instantiation 'std::vector<Scene,std::allocator<_Ty>>' being compiled
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         with
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         [
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :             _Ty=Scene
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         ]
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(7,15): warning C4305: '=': truncation from 'double' to 'float'
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(19,15): warning C4305: '=': truncation from 'double' to 'float'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(30,15): warning C4305: '=': truncation from 'double' to 'float'
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xutility(2063,1): error C2280: 'Scene &Scene::operator =(const Scene &)': attempting to reference a deleted function
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121): message : compiler has generated 'Scene::operator =' here
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(121,1): message : 'Scene &Scene::operator =(const Scene &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'ElementContainer &ElementContainer::operator =(const ElementContainer &)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(92,1): message : 'ElementContainer &ElementContainer::operator =(const ElementContainer &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'Player &Player::operator =(const Player &)'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(8): message : see declaration of 'Player::bringElement'
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message : see reference to function template instantiation '_OutIt *std::_Move_unchecked<Scene*,Scene*>(_InIt,_InIt,_OutIt)' being compiled
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :             _OutIt=Scene *,
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :             _InIt=Scene *
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1304): message :         ]
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1292): message : while compiling class template member function 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> std::vector<_Ty,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)'
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1292): message :         with
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1292): message :         [
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1292): message :             _Ty=Scene
-D:\Installations\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\vector(1292): message :         ]
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(90): message : see reference to function template instantiation 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> std::vector<_Ty,std::allocator<_Ty>>::erase(std::_Vector_const_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>)' being compiled
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(90): message :         with
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(90): message :         [
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(90): message :             _Ty=Scene
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(90): message :         ]
   MobileEntity.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message : see reference to class template instantiation 'std::vector<Scene,std::allocator<_Ty>>' being compiled
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         with
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         [
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :             _Ty=Scene
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.h(17): message :         ]
   OneWay.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,18): warning C4552: '-': result of expression not used
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22,15): error C3646: 'oneway': unknown override specifier
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(22,15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(34,1): error C2039: 'oneway': is not a member of 'ElementContainer'
   Player.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.h(16): message : see declaration of 'ElementContainer'
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Scene.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(5,1): error C2530: 'Player::bringElement': references must be initialized
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(8,1): error C2280: 'Player &Player::operator =(const Player &)': attempting to reference a deleted function
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14): message : compiler has generated 'Player::operator =' here
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(14,1): message : 'Player &Player::operator =(const Player &)': function was implicitly deleted because 'Player' has a data member 'Player::bringElement' of reference type
   Source.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.h(8): message : see declaration of 'Player::bringElement'
   Generating Code...
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameEntity.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Map.cpp(30,15): warning C4305: '=': truncation from 'double' to 'float'
+Player.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+Scene.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+Map.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+MobileEntity.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+Mur.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+OneWay.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+FocusableElement.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+GameEntity.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+GameMaster.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+GameObject.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::Sprite::~Sprite(void)" (__imp_??1Sprite@sf@@UEAA@XZ)
+Player.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+Scene.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+Map.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+MobileEntity.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+Mur.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+OneWay.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+FocusableElement.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+GameEntity.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+GameMaster.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+GameObject.obj : error LNK2001: unresolved external symbol "private: virtual void __cdecl sf::Sprite::draw(class sf::RenderTarget &,class sf::RenderStates)const " (?draw@Sprite@sf@@EEBAXAEAVRenderTarget@2@VRenderStates@2@@Z)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) referenced in function "public: __cdecl GameMaster::GameMaster(void)" (??0GameMaster@@QEAA@XZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::~String(void)" (__imp_??1String@sf@@QEAA@XZ) referenced in function "public: __cdecl GameMaster::GameMaster(void)" (??0GameMaster@@QEAA@XZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QEAA@III@Z) referenced in function "public: __cdecl GameMaster::GameMaster(void)" (??0GameMaster@@QEAA@XZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QEBA_NXZ) referenced in function "public: void __cdecl GameMaster::run(void)" (?run@GameMaster@@QEAAXXZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RenderWindow::RenderWindow(void)" (__imp_??0RenderWindow@sf@@QEAA@XZ) referenced in function "public: __cdecl GameMaster::GameMaster(void)" (??0GameMaster@@QEAA@XZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QEAA@VVideoMode@1@AEBVString@1@IAEBUContextSettings@1@@Z) referenced in function "public: __cdecl GameMaster::GameMaster(void)" (??0GameMaster@@QEAA@XZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UEAA@XZ) referenced in function "int `public: __cdecl GameMaster::GameMaster(void)'::`1'::dtor$2" (?dtor$2@?0???0GameMaster@@QEAA@XZ@4HA)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UEAA@XZ)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(class sf::Sprite const &)" (__imp_??0Sprite@sf@@QEAA@AEBV01@@Z) referenced in function "public: __cdecl GameObject::GameObject(class GameObject const &)" (??0GameObject@@QEAA@AEBV0@@Z)
+Map.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(class sf::Sprite const &)" (__imp_??0Sprite@sf@@QEAA@AEBV01@@Z)
+MobileEntity.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(class sf::Sprite const &)" (__imp_??0Sprite@sf@@QEAA@AEBV01@@Z)
+Scene.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(class sf::Sprite const &)" (__imp_??0Sprite@sf@@QEAA@AEBV01@@Z)
+GameMaster.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Sprite & __cdecl sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QEAAAEAV01@AEBV01@@Z) referenced in function "public: class GameObject & __cdecl GameObject::operator=(class GameObject const &)" (??4GameObject@@QEAAAEAV0@AEBV0@@Z)
+Map.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class sf::Sprite & __cdecl sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QEAAAEAV01@AEBV01@@Z)
+MobileEntity.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class sf::Sprite & __cdecl sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QEAAAEAV01@AEBV01@@Z)
+Scene.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class sf::Sprite & __cdecl sf::Sprite::operator=(class sf::Sprite const &)" (__imp_??4Sprite@sf@@QEAAAEAV01@AEBV01@@Z)
+GameMaster.obj : error LNK2001: unresolved external symbol "public: virtual class sf::Vector2<unsigned int> __cdecl sf::RenderWindow::getSize(void)const " (?getSize@RenderWindow@sf@@UEBA?AV?$Vector2@I@2@XZ)
+GameMaster.obj : error LNK2001: unresolved external symbol "protected: virtual void __cdecl sf::RenderWindow::onCreate(void)" (?onCreate@RenderWindow@sf@@MEAAXXZ)
+GameMaster.obj : error LNK2001: unresolved external symbol "protected: virtual void __cdecl sf::RenderWindow::onResize(void)" (?onResize@RenderWindow@sf@@MEAAXXZ)
+GameMaster.obj : error LNK2001: unresolved external symbol "public: virtual bool __cdecl sf::RenderWindow::setActive(bool)" (?setActive@RenderWindow@sf@@UEAA_N_N@Z)
+GameObject.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QEAAXAEBVDrawable@2@AEBVRenderStates@2@@Z) referenced in function "public: void __cdecl GameObject::drawMe(class sf::RenderWindow &)" (?drawMe@GameObject@@QEAAXAEAVRenderWindow@sf@@@Z)
+GameObject.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(void)" (__imp_??0Sprite@sf@@QEAA@XZ) referenced in function "public: __cdecl GameObject::GameObject(void)" (??0GameObject@@QEAA@XZ)
+MobileEntity.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(void)" (__imp_??0Sprite@sf@@QEAA@XZ)
+GameObject.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B)
+Map.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Sprite::Sprite(class sf::Sprite &&)" (__imp_??0Sprite@sf@@QEAA@$$QEAV01@@Z) referenced in function "public: __cdecl GameObject::GameObject(class GameObject &&)" (??0GameObject@@QEAA@$$QEAV0@@Z)
+Map.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Sprite & __cdecl sf::Sprite::operator=(class sf::Sprite &&)" (__imp_??4Sprite@sf@@QEAAAEAV01@$$QEAV01@@Z) referenced in function "public: class GameObject & __cdecl GameObject::operator=(class GameObject &&)" (??4GameObject@@QEAAAEAV0@$$QEAV0@@Z)
+MobileEntity.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Transformable::move(float,float)" (__imp_?move@Transformable@sf@@QEAAXMM@Z) referenced in function "public: void __cdecl MobileEntity::updatePos(float)" (?updatePos@MobileEntity@@QEAAXM@Z)
+Mur.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Transformable::setPosition(class sf::Vector2<float> const &)" (__imp_?setPosition@Transformable@sf@@QEAAXAEBV?$Vector2@M@2@@Z) referenced in function "public: __cdecl Mur::Mur(class sf::Vector2<float>)" (??0Mur@@QEAA@V?$Vector2@M@sf@@@Z)
+Mur.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Texture::~Texture(void)" (__imp_??1Texture@sf@@QEAA@XZ) referenced in function "public: __cdecl Mur::Mur(class sf::Vector2<float>,class sf::Texture,class sf::Rect<int>)" (??0Mur@@QEAA@V?$Vector2@M@sf@@VTexture@2@V?$Rect@H@2@@Z)
+Mur.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Sprite::setTexture(class sf::Texture const &,bool)" (__imp_?setTexture@Sprite@sf@@QEAAXAEBVTexture@2@_N@Z) referenced in function "public: __cdecl Mur::Mur(class sf::Vector2<float>,class sf::Texture,class sf::Rect<int>)" (??0Mur@@QEAA@V?$Vector2@M@sf@@VTexture@2@V?$Rect@H@2@@Z)
+Mur.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Sprite::setTextureRect(class sf::Rect<int> const &)" (__imp_?setTextureRect@Sprite@sf@@QEAAXAEBV?$Rect@H@2@@Z) referenced in function "public: __cdecl Mur::Mur(class sf::Vector2<float>,class sf::Texture,class sf::Rect<int>)" (??0Mur@@QEAA@V?$Vector2@M@sf@@VTexture@2@V?$Rect@H@2@@Z)
+Scene.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: class sf::Rect<float> __cdecl sf::Sprite::getGlobalBounds(void)const " (__imp_?getGlobalBounds@Sprite@sf@@QEBA?AV?$Rect@M@2@XZ) referenced in function "public: bool __cdecl Scene::testCollide(class GameObject *,enum Direction)" (?testCollide@Scene@@QEAA_NPEAVGameObject@@W4Direction@@@Z)
+D:\GIT\projetSFML\ProjetSFML\x64\Debug\ProjetSFML.exe : fatal error LNK1120: 26 unresolved externals

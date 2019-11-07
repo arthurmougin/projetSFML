@@ -6,7 +6,7 @@ class Player:public MobileEntity
 protected:
 	bool bringSomething;
 	GameObject* bringElement;
-	GameColor bringColor;
+	enum GameColor bringColor;
 
 public:
 	Player();

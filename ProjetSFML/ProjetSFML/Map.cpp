@@ -34,7 +34,7 @@ Map::Map(int i, vector<vector<int>> M)
 
 }
 
-Map::Map(int i, float g, vector<vector<int>> M,  vector<Scene> sv)
+Map::Map(int i, double g, vector<vector<int>> M,  vector<Scene> sv)
 {
 	initialScore = i;
 	highScore = 0;
@@ -115,12 +115,12 @@ void Map::setInitialScore(int i)
 	initialScore = i;
 }
 
-float Map::getGravity()
+double Map::getGravity()
 {
 	return gravity;
 }
 
-void Map::setGravity(float g)
+void Map::setGravity(double g)
 {
 	gravity = g;
 }

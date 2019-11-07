@@ -9,7 +9,7 @@ MobileEntity::MobileEntity():GameObject()
 	Hauteur = 0;
 }
 
-MobileEntity::MobileEntity(bool fly, float Speed, bool TraverseB, bool TraverseM, bool MarcheSurB):GameObject()
+MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB):GameObject()
 {
 	flying = fly;
 	TraverseBlock = TraverseB;
@@ -20,7 +20,7 @@ MobileEntity::MobileEntity(bool fly, float Speed, bool TraverseB, bool TraverseM
 	Hauteur = 0;
 }
 
-MobileEntity::MobileEntity(bool fly, float myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, float Hight):GameObject()
+MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight):GameObject()
 {
 	flying = fly;
 	speed = myspeed;
@@ -32,34 +32,34 @@ MobileEntity::MobileEntity(bool fly, float myspeed, Vector2f myAcceleration, Vec
 	Hauteur = Hight;
 }
 
-void MobileEntity::moveTo(int d)
+void MobileEntity::moveTo(Direction d)
 {
 
 	switch (d) {
-	case HAUT:
+	case Direction::HAUT:
 			direction.y = -1;
 		break;
-	case BAS:
+	case Direction::BAS:
 			Hauteur = 1;
 			direction.y = 1;
 		
 		break;
-	case GAUCHE:
+	case Direction::GAUCHE:
 			direction.x = -1;
 		break;
-	case DROITE:
+	case Direction::DROITE:
 			direction.x = 1;
 		break;
 	default:
-		cout << "direction inconnue : " << d << endl;
+		cout << "direction inconnue" <<endl;
 		break;
 	}
 }
 
-void MobileEntity::updatePos(float G)
+void MobileEntity::updatePos(double G)
 {
 	if (Hauteur != 0) {
-		acceleration.y - G;
+		acceleration.y -= G;
 	}
 	else {
 		acceleration.y = 0;
@@ -80,12 +80,12 @@ void MobileEntity::setFlying(bool f)
 	flying = f;
 }
 
-float MobileEntity::getSpeed()
+double MobileEntity::getSpeed()
 {
 	return speed;
 }
 
-void MobileEntity::setSpeed(float s)
+void MobileEntity::setSpeed(double s)
 {
 	speed = s;
 }
@@ -141,12 +141,12 @@ void MobileEntity::setMarcheSurBlock(bool m)
 	MarcheSurBlock = m;
 }
 
-float MobileEntity::getHauteur()
+double MobileEntity::getHauteur()
 {
 	return Hauteur;
 }
 
-void MobileEntity::setHauteur(float h)
+void MobileEntity::setHauteur(double h)
 {
 	Hauteur = h;
 }

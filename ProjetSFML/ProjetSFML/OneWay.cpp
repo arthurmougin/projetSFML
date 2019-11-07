@@ -2,7 +2,7 @@
 
 OneWay::OneWay():GameEntity()
 {
-	blockDirection = HAUT;
+	blockDirection = Direction::HAUT;
 }
 
 OneWay::OneWay(Direction d):GameEntity()

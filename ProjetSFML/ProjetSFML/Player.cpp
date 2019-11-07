@@ -4,7 +4,8 @@
 Player::Player() :MobileEntity()
 {
 	bringSomething = false;
-	bringColor = NOCOLOR;
+	bringElement = NULL;
+	bringColor = GameColor::NOCOLOR;
 }
 
 void Player::update()

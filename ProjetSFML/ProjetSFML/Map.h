@@ -6,7 +6,7 @@ class Map
 protected:
 	int initialScore;
 	int highScore;
-	float gravity; //à diviser par l'ecart de temps
+	double gravity; //à diviser par l'ecart de temps
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
 	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
@@ -21,7 +21,7 @@ public:
 	Map();
 	Map(vector <vector<int>>);
 	Map(int, vector <vector<int>>);
-	Map(int, float, vector <vector<int>>, vector <Scene>);
+	Map(int, double, vector <vector<int>>, vector <Scene>);
 
 	void finish();
 	Scene generate();
@@ -32,8 +32,8 @@ public:
 
 	int getInitialScore();
 	void setInitialScore(int);
-	float getGravity();
-	void setGravity(float);
+	double getGravity();
+	void setGravity(double);
 	vector <vector<int>> getMatrice();
 	void setMatrice(vector <vector<int>>);
 	vector <Scene> getSauvegardes();
