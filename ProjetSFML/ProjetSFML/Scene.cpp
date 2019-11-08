@@ -74,7 +74,7 @@ void Scene::draw(RenderWindow&e)
 
 bool Scene::testCollide(GameObject*e , Direction D)
 {
-	doubleRect collisionBox;
+	FloatRect collisionBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
 	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
 	Player* PlayerPointer;

@@ -1,0 +1,27 @@
+﻿  FocusableElement.cpp
+  GameEntity.cpp
+  GameMaster.cpp
+  GameObject.cpp
+  Map.cpp
+  MobileEntity.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameMaster.cpp(44,8): warning C4018: '>=': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,22): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,22): warning C4244:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,22): warning C4244:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,22): warning C4244:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(62,22): warning C4244:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(68,69): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Mur.cpp
+  OneWay.cpp
+  Player.cpp
+  Scene.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(68,29): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(30,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(32,21): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(100,20): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 391 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Release\ProjetSFML.exe

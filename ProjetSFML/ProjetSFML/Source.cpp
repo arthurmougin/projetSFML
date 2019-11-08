@@ -22,7 +22,7 @@ int main(void) {
 
 		{VIDE,	VIDE,	VIDE,	VIDE,	VIDE},
 
-		{VIDE,	MUR,	MUR,	MUR,	VIDE},//je taime, ta chérie
+		{VIDE,	MUR,	MUR,	MUR,	VIDE},
 
 		{VIDE,	MUR,	MUR,	MUR,	VIDE},
 

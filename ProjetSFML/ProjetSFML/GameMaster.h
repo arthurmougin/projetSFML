@@ -1,5 +1,13 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <vector>
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 #include "Map.h"
+using namespace std;
+using namespace sf;
+
 
 class GameMaster:public RenderWindow
 {
