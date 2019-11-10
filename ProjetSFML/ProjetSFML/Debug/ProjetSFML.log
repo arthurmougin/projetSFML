@@ -1,0 +1,7 @@
+﻿  Scene.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(41,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(43,21): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(45,17): warning C4101: 'GMOPtr': unreferenced local variable
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(49,11): warning C4930: 'Mur mur(void)': prototyped function not called (was a variable definition intended?)
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(110,20): warning C4018: '<': signed/unsigned mismatch
+  ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

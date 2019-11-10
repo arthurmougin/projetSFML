@@ -21,6 +21,17 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 
 void Scene::generate(vector<vector<int>>myMatrice)
 {
+	Texture nonPlayerTex;
+	if (!nonPlayerTex.loadFromFile("NonPlayer.png"))
+	{
+		cout << "failToLoad nonPlayerTex" << endl;
+	}
+	Texture PlayerTex;
+	if (!PlayerTex.loadFromFile("Player.png"))
+	{
+		cout << "failToLoad PlayerTex" << endl;
+	}
+
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
 	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
@@ -30,29 +41,29 @@ void Scene::generate(vector<vector<int>>myMatrice)
 	for (int y = 0; y < myMatrice.size(); y++) {
 		vector <int> myLine = myMatrice.at(y);
 		for (int x = 0; x < myLine.size(); x++) {
-
-			switch (myLine.at(x)) {
-			case VIDE:
-				break;
-			case MUR:
-				cout << "wall at " << x << " x " << y << endl;
-				break;
-			case ONEWAY_HAUT:
-				cout << "OneWay Haut at " << x << " x " << y << endl;
-				break;
-			case ONEWAY_BAS:
-				cout << "OneWay Bas at " << x << " x " << y << endl;
-				break;
-			case ONEWAY_GAUCHE:
-				cout << "OneWay Gauche at " << x << " x " << y << endl;
-				break;
-			case ONEWAY_DROITE:
-				cout << "OneWay Droite at " << x << " x " << y << endl;
-				break;
-			default:
-				cout << "l'index " << myLine.at(x) << " n'est pas connu" << endl;
+			if (myLine.at(x) != VIDE) {
+				GameObject* GMOPtr;
+				switch (myLine.at(x)) {
+					case MUR:
+						cout << "wall at " << x << " x " << y << endl;
+						Mur mur();
+						break;
+					case ONEWAY_HAUT:
+						cout << "OneWay Haut at " << x << " x " << y << endl;
+						break;
+					case ONEWAY_BAS:
+						cout << "OneWay Bas at " << x << " x " << y << endl;
+						break;
+					case ONEWAY_GAUCHE:
+						cout << "OneWay Gauche at " << x << " x " << y << endl;
+						break;
+					case ONEWAY_DROITE:
+						cout << "OneWay Droite at " << x << " x " << y << endl;
+						break;
+					default:
+						cout << "l'index " << myLine.at(x) << " n'est pas connu" << endl;
+				}
 			}
-
 		}
 	}
 
@@ -70,7 +81,6 @@ void Scene::draw(RenderWindow&e)
 	}
 	/**/
 }
-
 
 bool Scene::testCollide(GameObject*e , Direction D)
 {

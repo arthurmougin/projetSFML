@@ -97,7 +97,7 @@ void Map::loadSave()
 void Map::update()
 {
 	sauvegardes[0].update();
-	isPlaying = false;
+	//isPlaying = false;
 }
 
 void Map::draw(RenderWindow&R)
@@ -134,7 +134,6 @@ void Map::setMatrice(vector<vector<int>> m)
 {
 	matrice = m;
 }
-
 
 vector<Scene> Map::getSauvegardes()
 {

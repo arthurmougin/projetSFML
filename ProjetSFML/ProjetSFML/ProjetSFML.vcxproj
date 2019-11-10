@@ -156,6 +156,8 @@
   <ItemGroup>
     <Image Include="sprites\Global Sprite2.png" />
     <Image Include="sprites\Global Sprites.png" />
+    <Image Include="sprites\NonPlayer.png" />
+    <Image Include="sprites\Player.png" />
     <Image Include="sprites\Player_left_animal.png" />
     <Image Include="sprites\Player_left_block.png" />
     <Image Include="sprites\Player_left_normal.png" />

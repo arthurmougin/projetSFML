@@ -1,25 +1,37 @@
 #include "GameMaster.h"
 
-GameMaster::GameMaster():RenderWindow(VideoMode(800, 700), "SFML works!")
+GameMaster::GameMaster():RenderWindow(VideoMode(1200, 1000), "Sutte Hakkun by Arthur Mougin")
 {
 	selectedMapIndex = 0;
+	framerate = 60;
+	MainClock.restart();
 }
 
 void GameMaster::run()
 {
+	
 	Map mainMap = maps.at(selectedMapIndex);
 	
+
 	while (isOpen()) {
-		//si la map est en cours de jeu
-		if (mainMap.getIsPlaying()) {
-			mainMap.update();
-			mainMap.draw(window);
-		}
-		else {
-			//si la map viens d'etre finis, on la réinitialise et on passe à la map suivante
-			mainMap.setIsPlaying(true);
-			selectedMapIndex++;
-			mainMap = maps.at(selectedMapIndex);
+
+		if (MainClock.getElapsedTime().asSeconds() > (1 / 60))
+		{
+			//si la map est en cours de jeu
+			if (mainMap.getIsPlaying()) {
+				mainMap.update();
+				mainMap.draw(window);
+			}
+			else {
+				//si la map viens d'etre finis, on la réinitialise et on passe à la map suivante
+				cout << "switch map" << endl;
+				mainMap.setIsPlaying(true);
+				selectedMapIndex = (selectedMapIndex + 1) % maps.size();
+
+				mainMap = maps.at(selectedMapIndex);
+			}
+
+			MainClock.restart();
 		}
 	}
 }

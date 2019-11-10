@@ -32,5 +32,5 @@ int main(void) {
 
 	}));
 
-	MJ.run();
+	//MJ.run();
 }

@@ -15,7 +15,8 @@ protected:
 	vector <Map> maps;
 	int selectedMapIndex;
 	RenderWindow window;
-	
+	double framerate;
+	Clock MainClock;
 
 public:
 	GameMaster();
