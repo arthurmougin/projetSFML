@@ -21,10 +21,10 @@ protected:
 	Vector2f spawnPoint;
 public:
 	Scene();
-	Scene(int, vector <vector <int>>);
+	Scene(int, vector <vector <enum ElementTypes>>);
 	Scene(int, vector <GameObject*>, Vector2f , Player);
 
-	void generate(vector <vector <int>>);
+	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);
 	bool testCollide(GameObject*, Direction);
 	void update();

@@ -6,13 +6,13 @@ Map::Map()
 	highScore = 0;
 	gravity = 9.8;
 	matrice = {
-		{0}
+		{VIDE}
 	};
 	sauvegardes.push_back(generate());
 	isPlaying = true;
 }
 
-Map::Map(vector<vector<int>> M)
+Map::Map(vector<vector<enum ElementTypes>> M)
 {
 	initialScore = 1000;
 	highScore = 0;
@@ -23,7 +23,7 @@ Map::Map(vector<vector<int>> M)
 
 }
 
-Map::Map(int i, vector<vector<int>> M)
+Map::Map(int i, vector<vector<enum ElementTypes>> M)
 {
 	initialScore = i;
 	highScore = 0;
@@ -34,7 +34,7 @@ Map::Map(int i, vector<vector<int>> M)
 
 }
 
-Map::Map(int i, double g, vector<vector<int>> M,  vector<Scene> sv)
+Map::Map(int i, double g, vector<vector<enum ElementTypes>> M,  vector<Scene> sv)
 {
 	initialScore = i;
 	highScore = 0;
@@ -125,12 +125,12 @@ void Map::setGravity(double g)
 	gravity = g;
 }
 
-vector<vector<int>> Map::getMatrice()
+vector<vector<enum ElementTypes>> Map::getMatrice()
 {
 	return matrice;
 }
 
-void Map::setMatrice(vector<vector<int>> m)
+void Map::setMatrice(vector<vector<enum ElementTypes>> m)
 {
 	matrice = m;
 }

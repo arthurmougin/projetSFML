@@ -13,15 +13,15 @@ protected:
 	BOUTEILLE_COULEUR3, BLOC, BLOC_VIVANT, BLOC_COULEUR1, BLOC_COULEUR2, BLOC_COULEUR3, ANIMAL,
 	ANIMAL_COULEUR1, ANIMAL_COULEUR2, ANIMAL_COULEUR3, PLAYER, SPAWN};
 	*/
-	vector <vector<int>> matrice;
+	vector <vector<enum ElementTypes>> matrice;
 	vector <Scene> sauvegardes;
 	bool isPlaying;
 
 public:
 	Map();
-	Map(vector <vector<int>>);
-	Map(int, vector <vector<int>>);
-	Map(int, double, vector <vector<int>>, vector <Scene>);
+	Map(vector <vector<enum ElementTypes>>);
+	Map(int, vector <vector<enum ElementTypes>>);
+	Map(int, double, vector <vector<enum ElementTypes>>, vector <Scene>);
 
 	void finish();
 	Scene generate();
@@ -34,8 +34,8 @@ public:
 	void setInitialScore(int);
 	double getGravity();
 	void setGravity(double);
-	vector <vector<int>> getMatrice();
-	void setMatrice(vector <vector<int>>);
+	vector <vector<enum ElementTypes>> getMatrice();
+	void setMatrice(vector <vector<enum ElementTypes>>);
 	vector <Scene> getSauvegardes();
 	void setSauvegardes(vector <Scene>);
 	bool getIsPlaying();

@@ -5,7 +5,7 @@ Scene::Scene()
 	score = 0;
 }
 
-Scene::Scene(int s, vector<vector<int>> m)
+Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
 	score = s;
 	generate(m);
@@ -19,33 +19,94 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 	player = p;
 }
 
-void Scene::generate(vector<vector<int>>myMatrice)
+void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 {
 	Texture nonPlayerTex;
-	if (!nonPlayerTex.loadFromFile("NonPlayer.png"))
+	if (!nonPlayerTex.loadFromFile("sprites/NonPlayer.png"))
 	{
 		cout << "failToLoad nonPlayerTex" << endl;
 	}
 	Texture PlayerTex;
-	if (!PlayerTex.loadFromFile("Player.png"))
+	if (!PlayerTex.loadFromFile("sprites/Player.png"))
 	{
 		cout << "failToLoad PlayerTex" << endl;
 	}
+	IntRect MyEntityTextRect, MyPlayerTextRect;
+	MyEntityTextRect.width = MyEntityTextRect.height = 8;
+	MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
+	Vector2f MyPosition;
+
 
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
 	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
 	BOUTEILLE_COULEUR3, BLOC, BLOC_VIVANT, BLOC_COULEUR1, BLOC_COULEUR2, BLOC_COULEUR3, ANIMAL,
 	ANIMAL_COULEUR1, ANIMAL_COULEUR2, ANIMAL_COULEUR3, PLAYER, SPAWN };
+
+
+
+
 	*/
+
 	for (int y = 0; y < myMatrice.size(); y++) {
-		vector <int> myLine = myMatrice.at(y);
+		vector <enum ElementTypes> myLine = myMatrice.at(y);
 		for (int x = 0; x < myLine.size(); x++) {
 			if (myLine.at(x) != VIDE) {
-				GameObject* GMOPtr;
+				GameObject* GameObjectPtr;
+				
 				switch (myLine.at(x)) {
 					case MUR:
-						cout << "wall at " << x << " x " << y << endl;
+						cout << "wall at " << x << " x " << y << " : ";
+						//si Haut != mur
+						if (y-1 >= 0 && myMatrice[y-1][x] != MUR)
+						{
+							// si Droite != Mur
+							if (x + 1 >= myLine.size() && myMatrice[y][x + 1] != MUR) {
+								//si Gauche != Mur 
+								if (x - 1 <= 0 && (myMatrice[y][x - 1] != MUR)) {
+									cout << "Haut";
+								}
+								else {
+									cout << "Haut Droite";
+								}
+							}
+							else {
+								//si Gauche != Mur 
+								if (x - 1 <= 0 && myMatrice[y][x - 1] != MUR) {
+									cout << "Haut Gauche";
+								}
+								else {
+									cout << "Haut";
+								}
+							}
+
+						} //si Haut = Mur && Bas = Mur
+						else if (y + 1 >= myMatrice.size() || myMatrice[y + 1][x] == MUR){
+							cout << "interrieur";
+						} //sinon (Haut = Mur)
+						else {
+							// si Droite != Mur
+							if (x + 1 >= myLine.size() && myMatrice[y][x + 1] != MUR) {
+								//si Gauche != Mur 
+								if (x - 1 <= 0 && myMatrice[y][x - 1] != MUR) {
+									cout << "Bas";
+								}
+								else {
+									cout << "Bas Droite";
+								}
+							}
+							else {
+								//si Gauche != Mur 
+								if (x - 1 <= 0 && myMatrice[y][x - 1] != MUR) {
+									cout << "Bas Gauche";
+								}
+								else {
+									cout << "Bas";
+								}
+							}
+						}
+						cout << "(" << MUR<< ")" << endl;
+
 						Mur mur();
 						break;
 					case ONEWAY_HAUT:
