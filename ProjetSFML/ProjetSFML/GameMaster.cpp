@@ -9,7 +9,7 @@ GameMaster::GameMaster():RenderWindow(VideoMode(1200, 1000), "Sutte Hakkun by Ar
 
 void GameMaster::run()
 {
-	
+	cout << "Run" << endl;
 	Map mainMap = maps.at(selectedMapIndex);
 	
 
@@ -19,8 +19,9 @@ void GameMaster::run()
 		{
 			//si la map est en cours de jeu
 			if (mainMap.getIsPlaying()) {
-				mainMap.update();
-				mainMap.draw(window);
+				
+				//mainMap.update();
+				mainMap.draw(*this);
 			}
 			else {
 				//si la map viens d'etre finis, on la réinitialise et on passe à la map suivante

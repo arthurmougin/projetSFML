@@ -32,9 +32,9 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 		cout << "failToLoad PlayerTex" << endl;
 	}
 	IntRect MyEntityTextRect, MyPlayerTextRect;
-	MyEntityTextRect.width = MyEntityTextRect.height = 8;
-	MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
-	Vector2f MyPosition;
+	//EntityScale = ratio de proportion des entitées;
+	//ArenaScale = Dimension de la case occupée par un élément
+	Vector2f EntityScale(20,20), PlayerScale(10, 10),ArenaScale(160,160), MyPosition;
 
 
 	/*
@@ -43,87 +43,134 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 	BOUTEILLE_COULEUR3, BLOC, BLOC_VIVANT, BLOC_COULEUR1, BLOC_COULEUR2, BLOC_COULEUR3, ANIMAL,
 	ANIMAL_COULEUR1, ANIMAL_COULEUR2, ANIMAL_COULEUR3, PLAYER, SPAWN };
 
-
-
-
 	*/
-
 	for (int y = 0; y < myMatrice.size(); y++) {
 		vector <enum ElementTypes> myLine = myMatrice.at(y);
 		for (int x = 0; x < myLine.size(); x++) {
 			if (myLine.at(x) != VIDE) {
 				GameObject* GameObjectPtr;
+				MyEntityTextRect.width = MyEntityTextRect.height = 8;
+				
+				MyPosition = ArenaScale;
 				
 				switch (myLine.at(x)) {
 					case MUR:
-						cout << "wall at " << x << " x " << y << " : ";
-						//si Haut != mur
-						if (y-1 >= 0 && myMatrice[y-1][x] != MUR)
-						{
-							// si Droite != Mur
-							if (x + 1 >= myLine.size() && myMatrice[y][x + 1] != MUR) {
-								//si Gauche != Mur 
-								if (x - 1 <= 0 && (myMatrice[y][x - 1] != MUR)) {
+#pragma region MUR
+						cout << "wall at " << x << "x - " << y << "y : ";
+
+						// CHOIX DE TEXTURE
+						if (y-1 >= 0 && myMatrice[y-1][x] != MUR){
+
+							if (((x + 1) < myLine.size()) && myMatrice[y][x + 1] != MUR) {
+
+							if ((x - 1 >= 0) && (myMatrice[y][x - 1] != MUR)) {
 									cout << "Haut";
-								}
-								else {
+									MyEntityTextRect.left = MyEntityTextRect.width * 0;
+									MyEntityTextRect.top = MyEntityTextRect.height * 3;
+								} else {
+
 									cout << "Haut Droite";
-								}
-							}
-							else {
-								//si Gauche != Mur 
-								if (x - 1 <= 0 && myMatrice[y][x - 1] != MUR) {
+									MyEntityTextRect.left = MyEntityTextRect.width * 3;
+									MyEntityTextRect.top = MyEntityTextRect.height * 3;
+
+							}} else {
+								if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
+
 									cout << "Haut Gauche";
-								}
-								else {
+									MyEntityTextRect.left = MyEntityTextRect.width * 1;
+									MyEntityTextRect.top = MyEntityTextRect.height * 3;
+
+								} else {
+
 									cout << "Haut";
-								}
-							}
+									MyEntityTextRect.left = MyEntityTextRect.width * 0;
+									MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
-						} //si Haut = Mur && Bas = Mur
+						}}} 
 						else if (y + 1 >= myMatrice.size() || myMatrice[y + 1][x] == MUR){
-							cout << "interrieur";
-						} //sinon (Haut = Mur)
-						else {
-							// si Droite != Mur
-							if (x + 1 >= myLine.size() && myMatrice[y][x + 1] != MUR) {
-								//si Gauche != Mur 
-								if (x - 1 <= 0 && myMatrice[y][x - 1] != MUR) {
-									cout << "Bas";
-								}
-								else {
-									cout << "Bas Droite";
-								}
-							}
-							else {
-								//si Gauche != Mur 
-								if (x - 1 <= 0 && myMatrice[y][x - 1] != MUR) {
-									cout << "Bas Gauche";
-								}
-								else {
-									cout << "Bas";
-								}
-							}
-						}
-						cout << "(" << MUR<< ")" << endl;
 
-						Mur mur();
+							cout << "interrieur";
+							MyEntityTextRect.left = MyEntityTextRect.width * 2;
+							MyEntityTextRect.top = MyEntityTextRect.height * 3;
+						}  
+						else {
+							if ((x + 1 < myLine.size()) && myMatrice[y][x + 1] != MUR) {
+								if ((x - 1 >= 0) && myMatrice[y][x - 1] != MUR) {
+
+									cout << "Bas";
+									MyEntityTextRect.left = MyEntityTextRect.width * 0;
+									MyEntityTextRect.top = MyEntityTextRect.height * 4;
+									MyEntityTextRect.height *= -1;
+								} else {
+
+									cout << "Bas Droite";
+									MyEntityTextRect.left = MyEntityTextRect.width * 3;
+									MyEntityTextRect.top = MyEntityTextRect.height * 4;
+									MyEntityTextRect.height *= -1;
+
+							}} else {
+								if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
+
+									cout << "Bas Gauche";
+									MyEntityTextRect.left = MyEntityTextRect.width * 1;
+									MyEntityTextRect.top = MyEntityTextRect.height * 4;
+									MyEntityTextRect.height *= -1;
+
+								}
+								else {
+
+									cout << "Bas";
+									MyEntityTextRect.left = MyEntityTextRect.width * 0;
+									MyEntityTextRect.top = MyEntityTextRect.height * 4;
+									MyEntityTextRect.height *= -1;
+						}}}
+						cout << endl;
+
+						//On applique les coordonnées
+						MyPosition.x *= x;
+						MyPosition.y *= y;
+
+						GameObjectPtr = new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);
+						GameObjectPtr->setScale(EntityScale);
+						gameObjects.push_back(GameObjectPtr);
 						break;
+#pragma endregion
 					case ONEWAY_HAUT:
-						cout << "OneWay Haut at " << x << " x " << y << endl;
+						cout << "OneWay Haut at " << x << "x - " << y << "y : "<< endl;
 						break;
 					case ONEWAY_BAS:
-						cout << "OneWay Bas at " << x << " x " << y << endl;
+						cout << "OneWay Bas at " << x << "x - " << y << "y : "<< endl;
 						break;
 					case ONEWAY_GAUCHE:
-						cout << "OneWay Gauche at " << x << " x " << y << endl;
+						cout << "OneWay Gauche at " << x << "x - " << y << "y : " << endl;
 						break;
 					case ONEWAY_DROITE:
-						cout << "OneWay Droite at " << x << " x " << y << endl;
+						cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
+						break;
+					case SPAWN:
+						cout << "SpawnPoint at " << x << "x - " << y << "y : ";
+						if (x+1 < myLine.size() && myLine.at(x+1) == VIDE && y + 1 < myMatrice.size() && myMatrice.at(x).at(y+1) == VIDE && myMatrice.at(x+1).at(y + 1) == VIDE) {
+							cout << "VALIDE" << endl;
+						}
+						else {
+							cout << "INVALIDE" << endl;
+						}
+						MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
+						MyPlayerTextRect.left = MyPlayerTextRect.width * 0;
+						MyPlayerTextRect.top = MyPlayerTextRect.height * 0;
+
+						spawnPoint.x = MyPosition.x * x;
+						spawnPoint.y = MyPosition.y * y;
+						player.setTexture(PlayerTex);
+						player.setTextureRect(MyPlayerTextRect);
+						player.setPosition(spawnPoint);
+						player.setScale(PlayerScale);
 						break;
 					default:
 						cout << "l'index " << myLine.at(x) << " n'est pas connu" << endl;
 				}
+
+				
 			}
 		}
 	}
@@ -133,14 +180,16 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 
 void Scene::draw(RenderWindow&e)
 {
-	cout << "scene drawn" << endl;
-	/**
-	playerContainer.player.draw(e);
+	e.clear(Color(0,0,0,255));
+
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-
+		gameObjects.at(i)->drawMe(e);
 	}
-	/**/
+
+	player.drawMe(e);
+
+	e.display();
 }
 
 bool Scene::testCollide(GameObject*e , Direction D)
