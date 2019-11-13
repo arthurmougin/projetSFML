@@ -19,6 +19,9 @@ protected:
 	vector <GameObject *> gameObjects;
 	Player player;
 	Vector2f spawnPoint;
+	Texture nonPlayerTex;
+	Texture PlayerTex;
+
 public:
 	Scene();
 	Scene(int, vector <vector <enum ElementTypes>>);

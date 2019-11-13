@@ -50,6 +50,7 @@ void GameMaster::setMaps(vector<Map>m)
 void GameMaster::addMap(Map m)
 {
 	maps.push_back(m);
+
 }
 
 void GameMaster::setSelectedMapIndex(int i)

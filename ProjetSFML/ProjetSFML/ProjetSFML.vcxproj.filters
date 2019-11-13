@@ -82,40 +82,64 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="sprites\Global Sprite2.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Global Sprites.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_left_animal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_left_block.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_left_normal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_left_rocher.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_right_animal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_right_block.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_right_normal.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="sprites\Player_right_rocher.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="sprites\Player.png">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="sprites\NonPlayer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\NonPlayerBleu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="sprites\PlayerBleu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Global Sprite2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Global Sprites.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\NonPlayer.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\NonPlayerBleu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_left_animal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_left_block.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_left_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_left_rocher.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_right_animal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_right_block.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_right_normal.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\Player_right_rocher.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\PlayerBleu.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\test.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="img\test2.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

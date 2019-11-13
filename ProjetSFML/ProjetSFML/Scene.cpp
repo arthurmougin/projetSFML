@@ -3,11 +3,34 @@
 Scene::Scene()
 {
 	score = 0;
+	if (!nonPlayerTex.loadFromFile("img/test2.png"))//NonPlayerBleu
+	{
+		cout << "failToLoad nonPlayerTex" << endl;
+	}
+	else
+		cout << nonPlayerTex.getSize().x << " " << nonPlayerTex.getSize().y << endl;
+	if (!PlayerTex.loadFromFile("img/PlayerBleu.png"))
+	{
+		cout << "failToLoad PlayerTex" << endl;
+	}
+
 }
 
 Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
 	score = s;
+	
+	if (!nonPlayerTex.loadFromFile("img/test2.png"))
+	{
+		cout << "failToLoad nonPlayerTex" << endl;
+	}
+	else
+		cout << nonPlayerTex.getSize().x << " " << nonPlayerTex.getSize().y << endl;
+	if (!PlayerTex.loadFromFile("img/PlayerBleu.png"))
+	{
+		cout << "failToLoad PlayerTex" << endl;
+	}
+
 	generate(m);
 }
 
@@ -17,26 +40,28 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 	gameObjects = v;
 	spawnPoint = sp;
 	player = p;
+	if (!nonPlayerTex.loadFromFile("img/test2.png"))
+	{
+		cout << "failToLoad nonPlayerTex" << endl;
+	}
+	else
+		cout << nonPlayerTex.getSize().x << " " << nonPlayerTex.getSize().y << endl;
+	if (!PlayerTex.loadFromFile("img/PlayerBleu.png"))
+	{
+		cout << "failToLoad PlayerTex" << endl;
+	}
+
 }
 
 void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 {
-	Texture nonPlayerTex;
-	if (!nonPlayerTex.loadFromFile("sprites/NonPlayer.png"))
-	{
-		cout << "failToLoad nonPlayerTex" << endl;
-	}
-	Texture PlayerTex;
-	if (!PlayerTex.loadFromFile("sprites/Player.png"))
-	{
-		cout << "failToLoad PlayerTex" << endl;
-	}
+
 	IntRect MyEntityTextRect, MyPlayerTextRect;
 	//EntityScale = ratio de proportion des entitées;
 	//ArenaScale = Dimension de la case occupée par un élément
 	Vector2f EntityScale(20,20), PlayerScale(10, 10),ArenaScale(160,160), MyPosition;
 
-
+	cout << " NonPlayerTex   x:" << nonPlayerTex.getSize().x << "  y:" << nonPlayerTex.getSize().y << endl;
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
 	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
@@ -56,83 +81,89 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 				switch (myLine.at(x)) {
 					case MUR:
 #pragma region MUR
-						cout << "wall at " << x << "x - " << y << "y : ";
+						try {
+							cout << endl <<"wall at " << x << "x - " << y << "y : ";
 
-						// CHOIX DE TEXTURE
-						if (y-1 >= 0 && myMatrice[y-1][x] != MUR){
+							// CHOIX DE TEXTURE
+							if (y-1 >= 0 && myMatrice[y-1][x] != MUR){
 
-							if (((x + 1) < myLine.size()) && myMatrice[y][x + 1] != MUR) {
+								if (((x + 1) < myLine.size()) && myMatrice[y][x + 1] != MUR) {
 
-							if ((x - 1 >= 0) && (myMatrice[y][x - 1] != MUR)) {
-									cout << "Haut";
-									MyEntityTextRect.left = MyEntityTextRect.width * 0;
-									MyEntityTextRect.top = MyEntityTextRect.height * 3;
-								} else {
+								if ((x - 1 >= 0) && (myMatrice[y][x - 1] != MUR)) {
+										cout << "Haut";
+										MyEntityTextRect.left = MyEntityTextRect.width * 0;
+										MyEntityTextRect.top = MyEntityTextRect.height * 3;
+									} else {
 
-									cout << "Haut Droite";
-									MyEntityTextRect.left = MyEntityTextRect.width * 3;
-									MyEntityTextRect.top = MyEntityTextRect.height * 3;
+										cout << "Haut Droite";
+										MyEntityTextRect.left = MyEntityTextRect.width * 3;
+										MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
-							}} else {
-								if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
+								}} else {
+									if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
 
-									cout << "Haut Gauche";
-									MyEntityTextRect.left = MyEntityTextRect.width * 1;
-									MyEntityTextRect.top = MyEntityTextRect.height * 3;
+										cout << "Haut Gauche";
+										MyEntityTextRect.left = MyEntityTextRect.width * 1;
+										MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
-								} else {
+									} else {
 
-									cout << "Haut";
-									MyEntityTextRect.left = MyEntityTextRect.width * 0;
-									MyEntityTextRect.top = MyEntityTextRect.height * 3;
+										cout << "Haut";
+										MyEntityTextRect.left = MyEntityTextRect.width * 0;
+										MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
-						}}} 
-						else if (y + 1 >= myMatrice.size() || myMatrice[y + 1][x] == MUR){
+							}}} 
+							else if (y + 1 >= myMatrice.size() || myMatrice[y + 1][x] == MUR){
 
-							cout << "interrieur";
-							MyEntityTextRect.left = MyEntityTextRect.width * 2;
-							MyEntityTextRect.top = MyEntityTextRect.height * 3;
-						}  
-						else {
-							if ((x + 1 < myLine.size()) && myMatrice[y][x + 1] != MUR) {
-								if ((x - 1 >= 0) && myMatrice[y][x - 1] != MUR) {
+								cout << "interrieur";
+								MyEntityTextRect.left = MyEntityTextRect.width * 2;
+								MyEntityTextRect.top = MyEntityTextRect.height * 3;
+							}  
+							else {
+								if ((x + 1 < myLine.size()) && myMatrice[y][x + 1] != MUR) {
+									if ((x - 1 >= 0) && myMatrice[y][x - 1] != MUR) {
 
-									cout << "Bas";
-									MyEntityTextRect.left = MyEntityTextRect.width * 0;
-									MyEntityTextRect.top = MyEntityTextRect.height * 4;
-									MyEntityTextRect.height *= -1;
-								} else {
+										cout << "Bas";
+										MyEntityTextRect.left = MyEntityTextRect.width * 0;
+										MyEntityTextRect.top = MyEntityTextRect.height * 4;
+										MyEntityTextRect.height *= -1;
+									} else {
 
-									cout << "Bas Droite";
-									MyEntityTextRect.left = MyEntityTextRect.width * 3;
-									MyEntityTextRect.top = MyEntityTextRect.height * 4;
-									MyEntityTextRect.height *= -1;
+										cout << "Bas Droite";
+										MyEntityTextRect.left = MyEntityTextRect.width * 3;
+										MyEntityTextRect.top = MyEntityTextRect.height * 4;
+										MyEntityTextRect.height *= -1;
 
-							}} else {
-								if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
+								}} else {
+									if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
 
-									cout << "Bas Gauche";
-									MyEntityTextRect.left = MyEntityTextRect.width * 1;
-									MyEntityTextRect.top = MyEntityTextRect.height * 4;
-									MyEntityTextRect.height *= -1;
+										cout << "Bas Gauche";
+										MyEntityTextRect.left = MyEntityTextRect.width * 1;
+										MyEntityTextRect.top = MyEntityTextRect.height * 4;
+										MyEntityTextRect.height *= -1;
 
-								}
-								else {
+									}
+									else {
 
-									cout << "Bas";
-									MyEntityTextRect.left = MyEntityTextRect.width * 0;
-									MyEntityTextRect.top = MyEntityTextRect.height * 4;
-									MyEntityTextRect.height *= -1;
-						}}}
-						cout << endl;
+										cout << "Bas";
+										MyEntityTextRect.left = MyEntityTextRect.width * 0;
+										MyEntityTextRect.top = MyEntityTextRect.height * 4;
+										MyEntityTextRect.height *= -1;
+							}}}
 
-						//On applique les coordonnées
-						MyPosition.x *= x;
-						MyPosition.y *= y;
+							cout << endl;
+							cout << "Rectangle : x:" << MyEntityTextRect.left << " y:" << MyEntityTextRect.top << " width:" << MyEntityTextRect.width << " height:" << MyEntityTextRect.height << endl;
 
-						GameObjectPtr = new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);
-						GameObjectPtr->setScale(EntityScale);
-						gameObjects.push_back(GameObjectPtr);
+							//On applique les coordonnées
+							MyPosition.x *= x;
+							MyPosition.y *= y;
+
+
+							GameObjectPtr = dynamic_cast<GameObject*>( new Mur(MyPosition, nonPlayerTex, MyEntityTextRect));
+							GameObjectPtr->setScale(EntityScale);
+							gameObjects.push_back(GameObjectPtr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 #pragma endregion
 					case ONEWAY_HAUT:
@@ -148,7 +179,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
 						break;
 					case SPAWN:
-						cout << "SpawnPoint at " << x << "x - " << y << "y : ";
+						cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
 						if (x+1 < myLine.size() && myLine.at(x+1) == VIDE && y + 1 < myMatrice.size() && myMatrice.at(x).at(y+1) == VIDE && myMatrice.at(x+1).at(y + 1) == VIDE) {
 							cout << "VALIDE" << endl;
 						}
@@ -181,12 +212,16 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 void Scene::draw(RenderWindow&e)
 {
 	e.clear(Color(0,0,0,255));
-
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		gameObjects.at(i)->drawMe(e);
-	}
 
+		Mur *m = dynamic_cast<Mur*>(gameObjects.at(i));
+		if (m != NULL) {
+			e.draw(*m);
+			cout << " Draw ";
+		}
+	}
+	cout << endl;
 	player.drawMe(e);
 
 	e.display();
