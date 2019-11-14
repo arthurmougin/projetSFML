@@ -11,7 +11,6 @@
 using namespace std;
 using namespace sf;
 
-
 class Scene
 {
 protected:

@@ -9,6 +9,8 @@ using namespace std;
 using namespace sf;
 
 int main(void) {
+
+
 	GameMaster MJ;
 	/*
 	VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, 

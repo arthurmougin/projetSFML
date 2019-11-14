@@ -211,19 +211,21 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 
 void Scene::draw(RenderWindow&e)
 {
-	e.clear(Color(0,0,0,255));
+	e.clear();
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 
-		Mur *m = dynamic_cast<Mur*>(gameObjects.at(i));
+		Mur *m = dynamic_cast<Mur*>(gameObjects[i]);
 		if (m != NULL) {
+			cout << " Non Player TEXTURE ->  x:" << m->getTexture()->getSize().x << "  y:" << m->getTexture()->getSize().y << endl;
+
 			e.draw(*m);
-			cout << " Draw ";
 		}
 	}
-	cout << endl;
+	
 	player.drawMe(e);
-
+	cout << " player TEXTURE ->  x:" << player.getTexture()->getSize().x << "  y:" << player.getTexture()->getSize().y << endl;
+	cout << endl;
 	e.display();
 }
 

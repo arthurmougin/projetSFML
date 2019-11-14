@@ -19,6 +19,7 @@ enum class GameColor {
 };
 
 
+
 class GameObject : public Sprite
 {
 public:
