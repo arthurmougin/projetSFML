@@ -11,7 +11,6 @@ void GameMaster::run()
 {
 	cout << "Run" << endl;
 	Map mainMap = maps.at(selectedMapIndex);
-	
 
 	while (isOpen()) {
 
@@ -19,7 +18,6 @@ void GameMaster::run()
 		{
 			//si la map est en cours de jeu
 			if (mainMap.getIsPlaying()) {
-				
 				//mainMap.update();
 				mainMap.draw(*this);
 			}

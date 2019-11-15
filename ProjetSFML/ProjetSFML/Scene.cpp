@@ -72,8 +72,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 	for (int y = 0; y < myMatrice.size(); y++) {
 		vector <enum ElementTypes> myLine = myMatrice.at(y);
 		for (int x = 0; x < myLine.size(); x++) {
-			if (myLine.at(x) != VIDE) {
-				GameObject* GameObjectPtr;
+			if (myLine.at(x) != VIDE) {				
 				MyEntityTextRect.width = MyEntityTextRect.height = 8;
 				
 				MyPosition = ArenaScale;
@@ -155,13 +154,14 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							cout << "Rectangle : x:" << MyEntityTextRect.left << " y:" << MyEntityTextRect.top << " width:" << MyEntityTextRect.width << " height:" << MyEntityTextRect.height << endl;
 
 							//On applique les coordonnées
-							MyPosition.x *= x;
+							MyPosition.x *= x;							
 							MyPosition.y *= y;
-
-
-							GameObjectPtr = dynamic_cast<GameObject*>( new Mur(MyPosition, nonPlayerTex, MyEntityTextRect));
+							
+							Mur* GameObjectPtr =  new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);							
 							GameObjectPtr->setScale(EntityScale);
-							gameObjects.push_back(GameObjectPtr);
+							/*gameObjects.push_back(GameObjectPtr);*/
+
+							murs.push_back(GameObjectPtr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -212,15 +212,18 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 void Scene::draw(RenderWindow&e)
 {
 	e.clear();
-	for (int i = 0; i < gameObjects.size(); i++)
+	for (int i = 0; i < murs.size(); i++)
 	{
+		murs[i]->drawMe(e);
+		cout << " Non Player TEXTURE ->  x:" << murs[i]->getTexture()->getSize().x << "  y:" << murs[i]->getTexture()->getSize().y << endl;
 
-		Mur *m = dynamic_cast<Mur*>(gameObjects[i]);
-		if (m != NULL) {
+		/*Mur *m = dynamic_cast<Mur*>(gameObjects[i]);
+		if (m != 0) {
 			cout << " Non Player TEXTURE ->  x:" << m->getTexture()->getSize().x << "  y:" << m->getTexture()->getSize().y << endl;
 
-			e.draw(*m);
-		}
+			//e.draw(*m);
+			m->drawMe(e);
+		}*/
 	}
 	
 	player.drawMe(e);

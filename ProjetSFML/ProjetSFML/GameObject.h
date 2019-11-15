@@ -24,6 +24,7 @@ class GameObject : public Sprite
 {
 public:
 	GameObject();
+	GameObject(Vector2f, Texture, IntRect);
 	void drawMe(RenderWindow&);
 	virtual void update();
 };

@@ -16,6 +16,7 @@ class Scene
 protected:
 	int score;
 	vector <GameObject *> gameObjects;
+	vector <Mur*> murs;
 	Player player;
 	Vector2f spawnPoint;
 	Texture nonPlayerTex;
