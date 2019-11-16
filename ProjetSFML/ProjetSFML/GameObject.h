@@ -20,12 +20,24 @@ enum class GameColor {
 
 
 
-class GameObject : public Sprite
+class GameObject
 {
+protected:
+	Sprite sprite;
+	IntRect textureRect;
+	Texture texture;
 public:
 	GameObject();
 	GameObject(Vector2f, Texture, IntRect);
 	void drawMe(RenderWindow&);
 	virtual void update();
+
+
+	Sprite* getSprite();
+	void setSprite(Sprite);
+	IntRect* getTextureRect();
+	void setTextureRect(IntRect);
+	Texture* getTexture();
+	void setTexture(Texture);
 };
 

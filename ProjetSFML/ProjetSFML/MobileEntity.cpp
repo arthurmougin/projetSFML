@@ -65,7 +65,7 @@ void MobileEntity::updatePos(double G)
 		acceleration.y = 0;
 	}
 
-	move((direction.x * speed) + acceleration.x, (direction.y * speed) + acceleration.y);
+	sprite.move((direction.x * speed) + acceleration.x, (direction.y * speed) + acceleration.y);
 
 	direction = Vector2f(0, 0);
 }

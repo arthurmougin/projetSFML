@@ -3,16 +3,7 @@
 Scene::Scene()
 {
 	score = 0;
-	if (!nonPlayerTex.loadFromFile("img/test2.png"))//NonPlayerBleu
-	{
-		cout << "failToLoad nonPlayerTex" << endl;
-	}
-	else
-		cout << nonPlayerTex.getSize().x << " " << nonPlayerTex.getSize().y << endl;
-	if (!PlayerTex.loadFromFile("img/PlayerBleu.png"))
-	{
-		cout << "failToLoad PlayerTex" << endl;
-	}
+
 
 }
 
@@ -20,16 +11,7 @@ Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
 	score = s;
 	
-	if (!nonPlayerTex.loadFromFile("img/test2.png"))
-	{
-		cout << "failToLoad nonPlayerTex" << endl;
-	}
-	else
-		cout << nonPlayerTex.getSize().x << " " << nonPlayerTex.getSize().y << endl;
-	if (!PlayerTex.loadFromFile("img/PlayerBleu.png"))
-	{
-		cout << "failToLoad PlayerTex" << endl;
-	}
+
 
 	generate(m);
 }
@@ -40,7 +22,16 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 	gameObjects = v;
 	spawnPoint = sp;
 	player = p;
-	if (!nonPlayerTex.loadFromFile("img/test2.png"))
+
+
+}
+
+void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
+{
+
+	Texture nonPlayerTex;
+	Texture PlayerTex;
+	if (!nonPlayerTex.loadFromFile("img/NonPlayerBleu.png"))
 	{
 		cout << "failToLoad nonPlayerTex" << endl;
 	}
@@ -50,12 +41,6 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 	{
 		cout << "failToLoad PlayerTex" << endl;
 	}
-
-}
-
-void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
-{
-
 	IntRect MyEntityTextRect, MyPlayerTextRect;
 	//EntityScale = ratio de proportion des entitées;
 	//ArenaScale = Dimension de la case occupée par un élément
@@ -158,7 +143,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							MyPosition.y *= y;
 							
 							Mur* GameObjectPtr =  new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);							
-							GameObjectPtr->setScale(EntityScale);
+							GameObjectPtr->getSprite()->setScale(EntityScale);
 							/*gameObjects.push_back(GameObjectPtr);*/
 
 							murs.push_back(GameObjectPtr);
@@ -194,18 +179,16 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						spawnPoint.y = MyPosition.y * y;
 						player.setTexture(PlayerTex);
 						player.setTextureRect(MyPlayerTextRect);
-						player.setPosition(spawnPoint);
-						player.setScale(PlayerScale);
+						player.getSprite()->setPosition(spawnPoint);
+						player.getSprite()->setScale(PlayerScale);
 						break;
 					default:
 						cout << "l'index " << myLine.at(x) << " n'est pas connu" << endl;
 				}
 
-				
 			}
 		}
 	}
-
 
 }
 
@@ -214,10 +197,8 @@ void Scene::draw(RenderWindow&e)
 	e.clear();
 	for (int i = 0; i < murs.size(); i++)
 	{
-		cout << " Non Player TEXTURE ->  x:" << murs[i]->getTexture()->getSize().x << "  y:" << murs[i]->getTexture()->getSize().y << endl;
-
+		//cout << " Non Player TEXTURE ->  x:" << murs[i]->getTexture()->getSize().x << "  y:" << murs[i]->getTexture()->getSize().y << endl;
 		murs[i]->drawMe(e);
-
 		/*Mur *m = dynamic_cast<Mur*>(gameObjects[i]);
 		if (m != 0) {
 			cout << " Non Player TEXTURE ->  x:" << m->getTexture()->getSize().x << "  y:" << m->getTexture()->getSize().y << endl;
@@ -262,13 +243,13 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	{
 		if (!TraverseMur) {
 			MurPointer = dynamic_cast<Mur*>(gameObjects.at(i));
-			if (MurPointer && collisionBox.intersects(MurPointer->getGlobalBounds())) {
+			if (MurPointer && collisionBox.intersects(MurPointer->getSprite()->getGlobalBounds())) {
 				return true;
 			}
 		}
 
 		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
-		if (oneWayPtr && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getGlobalBounds())) {
+		if (oneWayPtr && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
 			return true;
 		}
 
@@ -312,7 +293,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	}
 
 	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
-	if (PlayerPointer == NULL && collisionBox.intersects(player.getGlobalBounds())) {
+	if (PlayerPointer == NULL && collisionBox.intersects(player.getSprite()->getGlobalBounds())) {
 		return true;
 	}
 	return false;

@@ -19,8 +19,7 @@ protected:
 	vector <Mur*> murs;
 	Player player;
 	Vector2f spawnPoint;
-	Texture nonPlayerTex;
-	Texture PlayerTex;
+
 
 public:
 	Scene();
