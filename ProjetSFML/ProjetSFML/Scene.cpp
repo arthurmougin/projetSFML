@@ -214,8 +214,9 @@ void Scene::draw(RenderWindow&e)
 	e.clear();
 	for (int i = 0; i < murs.size(); i++)
 	{
-		murs[i]->drawMe(e);
 		cout << " Non Player TEXTURE ->  x:" << murs[i]->getTexture()->getSize().x << "  y:" << murs[i]->getTexture()->getSize().y << endl;
+
+		murs[i]->drawMe(e);
 
 		/*Mur *m = dynamic_cast<Mur*>(gameObjects[i]);
 		if (m != 0) {
