@@ -27,7 +27,7 @@ public:
 	Scene generate();
 	void quickSave();
 	void loadSave();
-	void update();
+	void update(RenderWindow&);
 	void draw(RenderWindow &);
 
 	int getInitialScore();

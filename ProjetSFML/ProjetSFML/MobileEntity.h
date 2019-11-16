@@ -17,11 +17,16 @@ protected:
 
 public:
 	MobileEntity();
+	MobileEntity(Vector2f, Texture, IntRect);
 	MobileEntity(bool, double, bool, bool,bool);
-	MobileEntity(bool, double, Vector2f, Vector2f,bool, bool, bool, double);
+	MobileEntity(bool, double, bool, bool, bool, Vector2f, Texture, IntRect);
+	MobileEntity(bool, double, Vector2f, Vector2f, bool, bool, bool, double);
+	MobileEntity(bool, double, Vector2f, Vector2f,bool, bool, bool, double, Vector2f, Texture, IntRect);
 
 	void moveTo(Direction);
 	void updatePos(double);//Gravity
+
+	Sprite getUpdatedFantome(Direction);
 
 	bool getFlying();
 	void setFlying(bool);

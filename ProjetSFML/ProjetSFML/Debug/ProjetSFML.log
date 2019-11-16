@@ -1,11 +1,32 @@
-﻿  Scene.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(59,21): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(74,22): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(100,23): warning C4018: '>=': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(107,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(168,15): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(168,66): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(198,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(242,20): warning C4018: '<': signed/unsigned mismatch
+﻿  GameMaster.cpp
+  Map.cpp
+  MobileEntity.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameMaster.cpp(56,8): warning C4018: '>=': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(102,22): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(102,22): warning C4244:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(102,22): warning C4244:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(102,22): warning C4244:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(102,22): warning C4244:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(108,76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(108,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(147,26): warning C4305: '-=': truncation from 'double' to 'T'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(147,26): warning C4305:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(147,26): warning C4305:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(147,26): warning C4305:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(147,26): warning C4305:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(153,83): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Player.cpp
+  Scene.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(153,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(52,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(54,21): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(69,22): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(95,23): warning C4018: '>=': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(102,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(164,18): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(164,71): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(206,20): warning C4018: '<': signed/unsigned mismatch
+  Source.cpp
+  Generating Code...
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(244,20): warning C4018: '<': signed/unsigned mismatch
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

@@ -10,6 +10,7 @@ protected:
 
 public:
 	Player();
+	Player(Vector2f, Texture, IntRect);
 	void update();
 
 

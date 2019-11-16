@@ -94,9 +94,9 @@ void Map::loadSave()
 	}
 }
 
-void Map::update()
+void Map::update(RenderWindow& window)
 {
-	sauvegardes[0].update();
+	sauvegardes[0].update(window);
 	//isPlaying = false;
 }
 

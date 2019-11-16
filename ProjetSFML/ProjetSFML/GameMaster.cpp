@@ -14,11 +14,11 @@ void GameMaster::run()
 
 	while (isOpen()) {
 
-		if (MainClock.getElapsedTime().asSeconds() > (1 / 60))
+		if (MainClock.getElapsedTime().asSeconds() > float(1 / 60))
 		{
 			//si la map est en cours de jeu
 			if (mainMap.getIsPlaying()) {
-				//mainMap.update();
+				mainMap.update(*this);
 				mainMap.draw(*this);
 			}
 			else {

@@ -3,16 +3,11 @@
 Scene::Scene()
 {
 	score = 0;
-
-
 }
 
 Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
 	score = s;
-	
-
-
 	generate(m);
 }
 
@@ -21,7 +16,7 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 	score = s;
 	gameObjects = v;
 	spawnPoint = sp;
-	player = p;
+	player = &p;
 
 
 }
@@ -31,22 +26,22 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 
 	Texture nonPlayerTex;
 	Texture PlayerTex;
-	if (!nonPlayerTex.loadFromFile("img/NonPlayerBleu.png"))
+	if (!nonPlayerTex.loadFromFile("img/NonPlayer.png"))
 	{
 		cout << "failToLoad nonPlayerTex" << endl;
 	}
-	else
-		cout << nonPlayerTex.getSize().x << " " << nonPlayerTex.getSize().y << endl;
-	if (!PlayerTex.loadFromFile("img/PlayerBleu.png"))
+	
+	if (!PlayerTex.loadFromFile("img/Player.png"))
 	{
 		cout << "failToLoad PlayerTex" << endl;
 	}
+	else
+		cout << PlayerTex.getSize().x << " " << PlayerTex.getSize().y << endl;
 	IntRect MyEntityTextRect, MyPlayerTextRect;
 	//EntityScale = ratio de proportion des entitées;
 	//ArenaScale = Dimension de la case occupée par un élément
 	Vector2f EntityScale(20,20), PlayerScale(10, 10),ArenaScale(160,160), MyPosition;
 
-	cout << " NonPlayerTex   x:" << nonPlayerTex.getSize().x << "  y:" << nonPlayerTex.getSize().y << endl;
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
 	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
@@ -66,40 +61,40 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 					case MUR:
 #pragma region MUR
 						try {
-							cout << endl <<"wall at " << x << "x - " << y << "y : ";
+							//cout << endl <<"wall at " << x << "x - " << y << "y : ";
 
 							// CHOIX DE TEXTURE
 							if (y-1 >= 0 && myMatrice[y-1][x] != MUR){
 
 								if (((x + 1) < myLine.size()) && myMatrice[y][x + 1] != MUR) {
 
-								if ((x - 1 >= 0) && (myMatrice[y][x - 1] != MUR)) {
-										cout << "Haut";
-										MyEntityTextRect.left = MyEntityTextRect.width * 0;
-										MyEntityTextRect.top = MyEntityTextRect.height * 3;
-									} else {
+									if ((x - 1 >= 0) && (myMatrice[y][x - 1] != MUR)) {
+											//cout << "Haut";
+											MyEntityTextRect.left = MyEntityTextRect.width * 0;
+											MyEntityTextRect.top = MyEntityTextRect.height * 3;
+										} else {
 
-										cout << "Haut Droite";
-										MyEntityTextRect.left = MyEntityTextRect.width * 3;
-										MyEntityTextRect.top = MyEntityTextRect.height * 3;
+											//cout << "Haut Droite";
+											MyEntityTextRect.left = MyEntityTextRect.width * 3;
+											MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
-								}} else {
-									if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
+									}} else {
+										if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
 
-										cout << "Haut Gauche";
-										MyEntityTextRect.left = MyEntityTextRect.width * 1;
-										MyEntityTextRect.top = MyEntityTextRect.height * 3;
+											//cout << "Haut Gauche";
+											MyEntityTextRect.left = MyEntityTextRect.width * 1;
+											MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
-									} else {
+										} else {
 
-										cout << "Haut";
-										MyEntityTextRect.left = MyEntityTextRect.width * 0;
-										MyEntityTextRect.top = MyEntityTextRect.height * 3;
+											//cout << "Haut";
+											MyEntityTextRect.left = MyEntityTextRect.width * 0;
+											MyEntityTextRect.top = MyEntityTextRect.height * 3;
 
 							}}} 
 							else if (y + 1 >= myMatrice.size() || myMatrice[y + 1][x] == MUR){
 
-								cout << "interrieur";
+								//cout << "interrieur";
 								MyEntityTextRect.left = MyEntityTextRect.width * 2;
 								MyEntityTextRect.top = MyEntityTextRect.height * 3;
 							}  
@@ -107,13 +102,13 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 								if ((x + 1 < myLine.size()) && myMatrice[y][x + 1] != MUR) {
 									if ((x - 1 >= 0) && myMatrice[y][x - 1] != MUR) {
 
-										cout << "Bas";
+										//cout << "Bas";
 										MyEntityTextRect.left = MyEntityTextRect.width * 0;
 										MyEntityTextRect.top = MyEntityTextRect.height * 4;
 										MyEntityTextRect.height *= -1;
 									} else {
 
-										cout << "Bas Droite";
+										//cout << "Bas Droite";
 										MyEntityTextRect.left = MyEntityTextRect.width * 3;
 										MyEntityTextRect.top = MyEntityTextRect.height * 4;
 										MyEntityTextRect.height *= -1;
@@ -121,7 +116,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 								}} else {
 									if (x - 1 >= 0 && myMatrice[y][x - 1] != MUR) {
 
-										cout << "Bas Gauche";
+										//cout << "Bas Gauche";
 										MyEntityTextRect.left = MyEntityTextRect.width * 1;
 										MyEntityTextRect.top = MyEntityTextRect.height * 4;
 										MyEntityTextRect.height *= -1;
@@ -129,14 +124,14 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 									}
 									else {
 
-										cout << "Bas";
+										//cout << "Bas";
 										MyEntityTextRect.left = MyEntityTextRect.width * 0;
 										MyEntityTextRect.top = MyEntityTextRect.height * 4;
 										MyEntityTextRect.height *= -1;
 							}}}
 
-							cout << endl;
-							cout << "Rectangle : x:" << MyEntityTextRect.left << " y:" << MyEntityTextRect.top << " width:" << MyEntityTextRect.width << " height:" << MyEntityTextRect.height << endl;
+							//cout << endl;
+							//cout << "Rectangle : x:" << MyEntityTextRect.left << " y:" << MyEntityTextRect.top << " width:" << MyEntityTextRect.width << " height:" << MyEntityTextRect.height << endl;
 
 							//On applique les coordonnées
 							MyPosition.x *= x;							
@@ -145,8 +140,8 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Mur* GameObjectPtr =  new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);							
 							GameObjectPtr->getSprite()->setScale(EntityScale);
 							/*gameObjects.push_back(GameObjectPtr);*/
-
 							murs.push_back(GameObjectPtr);
+							gameObjects.push_back(GameObjectPtr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -164,66 +159,73 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
 						break;
 					case SPAWN:
-						cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
-						if (x+1 < myLine.size() && myLine.at(x+1) == VIDE && y + 1 < myMatrice.size() && myMatrice.at(x).at(y+1) == VIDE && myMatrice.at(x+1).at(y + 1) == VIDE) {
-							cout << "VALIDE" << endl;
-						}
-						else {
-							cout << "INVALIDE" << endl;
-						}
-						MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
-						MyPlayerTextRect.left = MyPlayerTextRect.width * 0;
-						MyPlayerTextRect.top = MyPlayerTextRect.height * 0;
+						try {
+							cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
+							if (x + 1 < myLine.size() && myLine.at(x + 1) == VIDE && y + 1 < myMatrice.size() && myMatrice.at(x).at(y + 1) == VIDE && myMatrice.at(x + 1).at(y + 1) == VIDE) {
+								cout << "VALIDE" << endl;
+							}
+							else {
+								cout << "INVALIDE" << endl;
+							}
+							MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
+							MyPlayerTextRect.left = MyPlayerTextRect.width * 0;
+							MyPlayerTextRect.top = MyPlayerTextRect.height * 0;
 
-						spawnPoint.x = MyPosition.x * x;
-						spawnPoint.y = MyPosition.y * y;
-						player.setTexture(PlayerTex);
-						player.setTextureRect(MyPlayerTextRect);
-						player.getSprite()->setPosition(spawnPoint);
-						player.getSprite()->setScale(PlayerScale);
+							cout << "Rectangle : x:" << MyPlayerTextRect.left << " y:" << MyPlayerTextRect.top << " width:" << MyPlayerTextRect.width << " height:" << MyPlayerTextRect.height << endl;
+
+							spawnPoint.x = MyPosition.x * x;
+							spawnPoint.y = MyPosition.y * y;
+							;
+
+							/**
+							player.setTexture(PlayerTex);
+							player.setTextureRect(MyPlayerTextRect);
+							player.getSprite()->setPosition(spawnPoint);/**/
+
+							Player* pptr = new Player(spawnPoint, PlayerTex, MyPlayerTextRect);
+							pptr->getSprite()->setScale(PlayerScale);
+							player = pptr;
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 					default:
 						cout << "l'index " << myLine.at(x) << " n'est pas connu" << endl;
 				}
-
 			}
 		}
 	}
-
 }
 
 void Scene::draw(RenderWindow&e)
 {
-	e.clear();
-	for (int i = 0; i < murs.size(); i++)
-	{
-		//cout << " Non Player TEXTURE ->  x:" << murs[i]->getTexture()->getSize().x << "  y:" << murs[i]->getTexture()->getSize().y << endl;
-		murs[i]->drawMe(e);
-		/*Mur *m = dynamic_cast<Mur*>(gameObjects[i]);
-		if (m != 0) {
-			cout << " Non Player TEXTURE ->  x:" << m->getTexture()->getSize().x << "  y:" << m->getTexture()->getSize().y << endl;
 
-			//e.draw(*m);
-			m->drawMe(e);
-		}*/
+	e.clear();
+	//cout << " player TEXTURE ->  x:" << player->getTexture()->getSize().x << "  y:" << player->getTexture()->getSize().y << endl;
+	player->drawMe(e);
+	
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		gameObjects[i]->drawMe(e);
 	}
 	
-	player.drawMe(e);
-	cout << " player TEXTURE ->  x:" << player.getTexture()->getSize().x << "  y:" << player.getTexture()->getSize().y << endl;
-	cout << endl;
+
+	//cout << endl;
 	e.display();
+
 }
 
 bool Scene::testCollide(GameObject*e , Direction D)
 {
+	cout << "TestColliding" << endl;
 	FloatRect collisionBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
 	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
+
 	Player* PlayerPointer;
-	
 	PlayerPointer = dynamic_cast<Player*>(e);
 	if (PlayerPointer) {
-		collisionBox = PlayerPointer->getFantome().getGlobalBounds();
+		cout << "This is a player" << endl;
+		collisionBox = PlayerPointer->getUpdatedFantome(D).getGlobalBounds();
 		TraverseBlock = PlayerPointer->getTraverseBlock();
 		TraverseMur = PlayerPointer->getTraverseMur();
 		MarcheSurBlock = PlayerPointer->getMarcheSurBlock();
@@ -244,12 +246,15 @@ bool Scene::testCollide(GameObject*e , Direction D)
 		if (!TraverseMur) {
 			MurPointer = dynamic_cast<Mur*>(gameObjects.at(i));
 			if (MurPointer && collisionBox.intersects(MurPointer->getSprite()->getGlobalBounds())) {
+				cout << "Colliding\n";
 				return true;
 			}
 		}
 
 		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
 		if (oneWayPtr && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
+			cout << "Colliding\n";
+
 			return true;
 		}
 
@@ -293,16 +298,58 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	}
 
 	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
-	if (PlayerPointer == NULL && collisionBox.intersects(player.getSprite()->getGlobalBounds())) {
+	if (PlayerPointer == NULL && collisionBox.intersects(player->getSprite()->getGlobalBounds())) {
+		cout << "Colliding\n";
+
 		return true;
 	}
+	cout << "Not Colliding\n";
+
 	return false;
 }
 
-void Scene::update()
+void Scene::update(RenderWindow& GM)
 {
-	cout << "scene updated" << endl;
+	Event event;
+	while (GM.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case Event::Closed:
+			GM.close();
+			break;
+		default:
+			break;
+		}
+	}
 
+#pragma region playerMove
+	if (Keyboard::isKeyPressed(Keyboard::Up) && !testCollide(player, Direction::HAUT)) {
+		cout << "Up" << endl;
+		player->moveTo(Direction::HAUT);
+	}
+		
+	if (Keyboard::isKeyPressed(Keyboard::Down) && !testCollide(player, Direction::BAS)) {
+		cout << "Down" << endl;
+
+		player->moveTo(Direction::BAS);
+	}
+		
+	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
+		cout << "Left" << endl;
+		player->moveTo(Direction::GAUCHE);
+	}
+		
+	if (Keyboard::isKeyPressed(Keyboard::Right) && !testCollide(player, Direction::DROITE))
+	{
+		cout << "Right" << endl;
+		player->moveTo(Direction::DROITE);
+	}
+
+	player->updatePos(9.8);
+#pragma endregion
+
+	cout << endl;
 }
 
 int Scene::getScore()
@@ -327,12 +374,12 @@ void Scene::setGameObjects(vector <GameObject*> g)
 
 Player Scene::getPlayer()
 {
-	return player;
+	return *player;
 }
 
 void Scene::setPlayer(Player p)
 {
-	player = p;
+	player = &p;
 }
 
 Vector2f Scene::getSpawnPoint()

@@ -17,7 +17,7 @@ protected:
 	int score;
 	vector <GameObject *> gameObjects;
 	vector <Mur*> murs;
-	Player player;
+	Player *player;
 	Vector2f spawnPoint;
 
 
@@ -29,7 +29,7 @@ public:
 	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);
 	bool testCollide(GameObject*, Direction);
-	void update();
+	void update(RenderWindow&);
 
 	int getScore();
 	void setScore(int);

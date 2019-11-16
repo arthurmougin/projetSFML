@@ -3,10 +3,21 @@
 MobileEntity::MobileEntity():GameObject()
 {
 	flying = TraverseBlock = false;
-	speed = 1;
+	speed = 10;
 	acceleration = direction = Vector2f(0, 0);
 	MarcheSurBlock = TraverseMur = false;
 	Hauteur = 0;
+}
+
+MobileEntity::MobileEntity(Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+{
+	flying = TraverseBlock = false;
+	speed = 10;
+	acceleration = direction = Vector2f(0, 0);
+	MarcheSurBlock = TraverseMur = false;
+	Hauteur = 0;
+	Fantome.setTexture(tex);
+	Fantome.setTextureRect(rect);
 }
 
 MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB):GameObject()
@@ -18,6 +29,20 @@ MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool Traverse
 	MarcheSurBlock = MarcheSurB;
 	TraverseMur = TraverseM;
 	Hauteur = 0;
+
+}
+
+MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB, Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+{
+	flying = fly;
+	TraverseBlock = TraverseB;
+	speed = Speed;
+	acceleration = direction = Vector2f(0, 0);
+	MarcheSurBlock = MarcheSurB;
+	TraverseMur = TraverseM;
+	Hauteur = 0;
+	Fantome.setTexture(tex);
+	Fantome.setTextureRect(rect);
 }
 
 MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight):GameObject()
@@ -32,17 +57,32 @@ MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Ve
 	Hauteur = Hight;
 }
 
+MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight, Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+{
+	flying = fly;
+	speed = myspeed;
+	acceleration = myAcceleration;
+	direction = myDirection;
+	TraverseBlock = TravB;
+	TraverseMur = TravM;
+	MarcheSurBlock = MarchB;
+	Hauteur = Hight;
+	Fantome.setTexture(tex);
+	Fantome.setTextureRect(rect);
+}
+
 void MobileEntity::moveTo(Direction d)
 {
-
 	switch (d) {
 	case Direction::HAUT:
+		if (Hauteur == 0) {
+			Hauteur = 1;
 			direction.y = -1;
+		}
 		break;
 	case Direction::BAS:
-			Hauteur = 1;
+			
 			direction.y = 1;
-		
 		break;
 	case Direction::GAUCHE:
 			direction.x = -1;
@@ -68,6 +108,52 @@ void MobileEntity::updatePos(double G)
 	sprite.move((direction.x * speed) + acceleration.x, (direction.y * speed) + acceleration.y);
 
 	direction = Vector2f(0, 0);
+}
+
+Sprite MobileEntity::getUpdatedFantome(Direction d)
+{
+	double myHauteur = Hauteur;
+	Vector2f myDirection(direction), myAcceleration(acceleration);
+	Fantome.setPosition(sprite.getPosition());
+	Fantome.setScale(sprite.getScale());
+	Fantome.setTextureRect(sprite.getTextureRect());
+
+#pragma region moveto
+	switch (d) {
+	case Direction::HAUT:
+		if (myHauteur == 0) {
+			myHauteur = 1;
+			myDirection.y = -1;
+		}
+		break;
+	case Direction::BAS:
+
+		myDirection.y = 1;
+		break;
+	case Direction::GAUCHE:
+		myDirection.x = -1;
+		break;
+	case Direction::DROITE:
+		myDirection.x = 1;
+		break;
+	default:
+		cout << "direction inconnue" << endl;
+		break;
+	}
+#pragma endregion
+
+#pragma region updatepos
+	if (myHauteur != 0) {
+		myAcceleration.y -= 9.8;
+	}
+	else {
+		myAcceleration.y = 0;
+	}
+
+	Fantome.move((myDirection.x * speed) + myAcceleration.x, (myDirection.y * speed) + myAcceleration.y);
+#pragma endregion
+
+	return Fantome;
 }
 
 bool MobileEntity::getFlying()
@@ -153,6 +239,9 @@ void MobileEntity::setHauteur(double h)
 
 Sprite MobileEntity::getFantome()
 {
+	Fantome.setPosition(sprite.getPosition());
+	Fantome.setScale(sprite.getScale());
+	Fantome.setTextureRect(sprite.getTextureRect());
 	return Fantome;
 }
 

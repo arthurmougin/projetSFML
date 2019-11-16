@@ -14,6 +14,7 @@ GameObject::GameObject(Vector2f vect, Texture tex, IntRect rect)
 
 void GameObject::drawMe(RenderWindow &R)
 {
+	//cout << "DrawMe\n";
 	R.draw(sprite);
 }
 
