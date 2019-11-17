@@ -236,8 +236,12 @@ bool Scene::testCollide(GameObject*e , Direction D)
 		cout << "Mauvais collisionneur " << endl;
 	}
 
+#pragma region boundery_collision
 
 
+#pragma endregion
+
+#pragma region entity_collision
 	Mur* MurPointer;
 	OneWay* oneWayPtr;
 
@@ -304,6 +308,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 		return true;
 	}
 	cout << "Not Colliding\n";
+#pragma endregion 
 
 	return false;
 }
@@ -324,26 +329,39 @@ void Scene::update(RenderWindow& GM)
 	}
 
 #pragma region playerMove
+	//Input dans les 4 directions
 	if (Keyboard::isKeyPressed(Keyboard::Up) && !testCollide(player, Direction::HAUT)) {
 		cout << "Up" << endl;
 		player->moveTo(Direction::HAUT);
+	}	
+	if ((Keyboard::isKeyPressed(Keyboard::Down) || player->getHauteur() != 0) && !testCollide(player, Direction::BAS)) {
+		if (player->getHauteur() != 0)
+		{
+			player->setHauteur(0);
+		}
+		else {
+			cout << "Down" << endl;
+			player->moveTo(Direction::BAS);
+		}
 	}
-		
-	if (Keyboard::isKeyPressed(Keyboard::Down) && !testCollide(player, Direction::BAS)) {
-		cout << "Down" << endl;
-
-		player->moveTo(Direction::BAS);
-	}
-		
 	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
 		cout << "Left" << endl;
 		player->moveTo(Direction::GAUCHE);
 	}
-		
 	if (Keyboard::isKeyPressed(Keyboard::Right) && !testCollide(player, Direction::DROITE))
 	{
 		cout << "Right" << endl;
 		player->moveTo(Direction::DROITE);
+	}
+
+	//si la hauteur du personnage est superieur à 0, on vérifie s'il ne s'est pas cogné la tete
+	if (player->getHauteur() != 0 && testCollide(player, Direction::HAUT)) {
+		player->setAcceleration(Vector2f(0, 0));
+	}
+
+	//si la hauteur du personnage est superieur à 0, on vérifie s'il a aterri
+	if (player->getHauteur() != 0 && testCollide(player, Direction::BAS)) {
+		player->setHauteur(0);
 	}
 
 	player->updatePos(9.8);

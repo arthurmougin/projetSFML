@@ -77,11 +77,11 @@ void MobileEntity::moveTo(Direction d)
 	case Direction::HAUT:
 		if (Hauteur == 0) {
 			Hauteur = 1;
+			acceleration.y = -100;
 			direction.y = -1;
 		}
 		break;
 	case Direction::BAS:
-			
 			direction.y = 1;
 		break;
 	case Direction::GAUCHE:
@@ -98,13 +98,15 @@ void MobileEntity::moveTo(Direction d)
 
 void MobileEntity::updatePos(double G)
 {
+
 	if (Hauteur != 0) {
-		acceleration.y -= G;
+		acceleration.y += G;
 	}
 	else {
 		acceleration.y = 0;
 	}
-
+	cout << "x:" << sprite.getPosition().x << " y:" << sprite.getPosition().y;
+	cout << "dy:" << direction.y << " ay:" << acceleration.y << "tot:" << (direction.y * speed) + acceleration.y << "h" << Hauteur << endl;
 	sprite.move((direction.x * speed) + acceleration.x, (direction.y * speed) + acceleration.y);
 
 	direction = Vector2f(0, 0);
@@ -124,6 +126,8 @@ Sprite MobileEntity::getUpdatedFantome(Direction d)
 		if (myHauteur == 0) {
 			myHauteur = 1;
 			myDirection.y = -1;
+			myAcceleration.y = -100;
+
 		}
 		break;
 	case Direction::BAS:
