@@ -330,19 +330,52 @@ void Scene::update(RenderWindow& GM)
 
 #pragma region playerMove
 	//Input dans les 4 directions
-	if (Keyboard::isKeyPressed(Keyboard::Up) && !testCollide(player, Direction::HAUT)) {
+	bool testcollhaut,testcollbas;
+	testcollhaut = testCollide(player, Direction::HAUT);
+	if (Keyboard::isKeyPressed(Keyboard::Up) && !testcollhaut) {
 		cout << "Up" << endl;
 		player->moveTo(Direction::HAUT);
 	}	
-	if ((Keyboard::isKeyPressed(Keyboard::Down) || player->getHauteur() != 0) && !testCollide(player, Direction::BAS)) {
-		if (player->getHauteur() != 0)
-		{
-			player->setHauteur(0);
+	//si la hauteur du personnage est superieur à 0, on vérifie s'il ne s'est pas cogné la tete
+	if (player->getHauteur() != 0 && testcollhaut) {
+		player->setAcceleration(Vector2f(0, 0));
+		float localY = player->getSprite()->getPosition().y, LocalDelta;
+		localY = (int(localY) % 160) + localY - int(localY);
+		cout << "localy : " << localY << endl;
+		if (localY < 80) {
+			localY = -localY;
 		}
 		else {
+			localY = 160 - localY;
+		}
+		player->getSprite()->move(Vector2f(0, localY));
+	}
+	testcollbas = testCollide(player, Direction::BAS);
+	if (testcollbas) {
+		if (player->getHauteur() != 0) {
+			player->setHauteur(0);
+			float localY = player->getSprite()->getPosition().y,LocalDelta;
+			localY = (int(localY) % 160)+ localY- int(localY);
+			cout << "localy : " << localY << endl;
+			if (localY < 80) {
+				localY = -localY;
+			}
+			else {
+				localY = 160 - localY;
+			}
+			player->getSprite()->move(Vector2f(0, localY));
+		}
+			
+	}
+	else {
+		if (Keyboard::isKeyPressed(Keyboard::Down)) {
 			cout << "Down" << endl;
 			player->moveTo(Direction::BAS);
 		}
+		if (player->getHauteur() == 0) {
+			//player->setHauteur(1);
+		}
+			
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
 		cout << "Left" << endl;
@@ -354,15 +387,9 @@ void Scene::update(RenderWindow& GM)
 		player->moveTo(Direction::DROITE);
 	}
 
-	//si la hauteur du personnage est superieur à 0, on vérifie s'il ne s'est pas cogné la tete
-	if (player->getHauteur() != 0 && testCollide(player, Direction::HAUT)) {
-		player->setAcceleration(Vector2f(0, 0));
-	}
 
-	//si la hauteur du personnage est superieur à 0, on vérifie s'il a aterri
-	if (player->getHauteur() != 0 && testCollide(player, Direction::BAS)) {
-		player->setHauteur(0);
-	}
+
+
 
 	player->updatePos(9.8);
 #pragma endregion

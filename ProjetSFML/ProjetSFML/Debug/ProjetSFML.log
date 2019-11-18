@@ -8,4 +8,6 @@ D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(164,18): warning C4018: '<': s
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(164,71): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(206,20): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(248,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(342,56): warning C4101: 'LocalDelta': unreferenced local variable
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(357,56): warning C4101: 'LocalDelta': unreferenced local variable
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

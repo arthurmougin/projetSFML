@@ -24,7 +24,7 @@ int main(void) {
 
 		{MUR,	MUR,	VIDE,	VIDE,	MUR,	MUR},
 
-		{VIDE,	VIDE,	VIDE,	VIDE,	VIDE,	VIDE},
+		{VIDE,	MUR,	VIDE,	VIDE,	VIDE,	VIDE},
 
 		{VIDE,	VIDE,	SPAWN,	VIDE,	VIDE,	VIDE},
 
