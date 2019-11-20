@@ -98,16 +98,12 @@ void Map::update(RenderWindow& window)
 {
 
 	/*
-	enum sceneOutput {RienASignaler,
-	Walking,
-	Dying,
-	Exhale,
-	Jumping,
-	Switch,
-	QuickSave,
-	Reload,
-	Exit,
-	WalkAndJump};
+	enum sceneOutput {RienASignaler = -1,
+		QuickSave = -2,
+		ReloadPrevious = -3,
+		Exit = -4,
+		Restart = -5
+	};
 	*/
 	int output;
 	output = sauvegardes[0].update(window);

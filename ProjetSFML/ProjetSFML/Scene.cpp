@@ -331,6 +331,58 @@ int Scene::update(RenderWindow& GM)
 		case Event::Closed:
 			GM.close();
 			break;
+		case Event::KeyPressed:
+			/* Format d'inputs
+			Left = arrow left
+			right = arrow right
+			discard = arraw down
+			jump = arrow up
+
+			inhale/exhale = crtl right
+
+			Select = s ou num1
+			Lock = L ou num4
+			cancel = N ou num3
+			confirm = O ou num6
+			reload = R ou num5
+			Quicksave = Q ou num2
+			Exit = E ou Echape
+			Restart = T ou num8
+			
+			*/
+			if (event.key.code == Keyboard::Down) {
+				cout << "discard" << endl;
+			}
+			if (event.key.code == Keyboard::RControl) {
+				cout << "Inhale/Hexale" << endl;
+			}
+			if (event.key.code == Keyboard::S || event.key.code == Keyboard::Num1) {
+				cout << "Select" << endl;
+			}
+			if (event.key.code == Keyboard::L || event.key.code == Keyboard::Num4) {
+				cout << "Lock" << endl;
+			}
+			if (event.key.code == Keyboard::N || event.key.code == Keyboard::Num3) {
+				cout << "cancel" << endl;
+			}
+			if (event.key.code == Keyboard::O || event.key.code == Keyboard::Num6) {
+				cout << "confirm" << endl;
+			}
+			if (event.key.code == Keyboard::R || event.key.code == Keyboard::Num5) {
+				cout << "Reload" << endl;
+			}
+			if (event.key.code == Keyboard::Q || event.key.code == Keyboard::Num2) {
+				cout << "QuickSave" << endl;
+			}
+			if (event.key.code == Keyboard::T || event.key.code == Keyboard::Num8) {
+				cout << "Restart" << endl;
+			}
+			if (event.key.code == Keyboard::E || event.key.code == Keyboard::Escape) {
+				cout << "Exit" << endl;
+				GM.close();
+			}
+
+			break;
 		default:
 			break;
 		}
@@ -368,6 +420,7 @@ int Scene::update(RenderWindow& GM)
 	testcollhaut = testCollide(player, Direction::HAUT);
 	if (Keyboard::isKeyPressed(Keyboard::Up) && !testcollhaut) {
 		cout << "Up" << endl;
+		score -= 3;
 		player->moveTo(Direction::HAUT);
 	}	
 	//si la hauteur du personnage est superieur à 0, on vérifie s'il ne s'est pas cogné la tete
@@ -401,23 +454,20 @@ int Scene::update(RenderWindow& GM)
 			player->getSprite()->move(Vector2f(0, localY));
 		}
 	}
-	else {
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			cout << "Down" << endl;
-			player->moveTo(Direction::BAS);
-		}
-		if (player->getHauteur() == 0) {
-			player->setHauteur(1);
-		}
+	else if (player->getHauteur() == 0) {
+		player->setHauteur(1);
+		
 		//if(player->getSprite()->getPosition().x)
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
+		score -= 1;
 		cout << "Left" << endl;
 		player->moveTo(Direction::GAUCHE);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Right) && !testCollide(player, Direction::DROITE))
 	{
+		score -= 1;
 		cout << "Right" << endl;
 		player->moveTo(Direction::DROITE);
 	}
@@ -430,6 +480,8 @@ int Scene::update(RenderWindow& GM)
 #pragma endregion
 
 	cout << endl;
+	if (score <= 0)
+		retour = sceneOutput::Restart;
 	return retour;
 }
 
@@ -472,3 +524,4 @@ void Scene::setSpawnPoint(Vector2f s)
 {
 	spawnPoint = s;
 }
+
