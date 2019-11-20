@@ -11,6 +11,13 @@
 using namespace std;
 using namespace sf;
 
+enum sceneOutput {RienASignaler = -1,
+	QuickSave = -2,
+	ReloadPrevious = -3,
+	Exit = -4,
+	Restart = -5
+};
+
 class Scene
 {
 protected:
@@ -29,7 +36,7 @@ public:
 	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);
 	bool testCollide(GameObject*, Direction);
-	void update(RenderWindow&);
+	int update(RenderWindow&);
 
 	int getScore();
 	void setScore(int);

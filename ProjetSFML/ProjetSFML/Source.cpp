@@ -22,17 +22,17 @@ int main(void) {
 	*/
 	MJ.addMap(Map({
 
-		{MUR,	MUR,	VIDE,	VIDE,	MUR,	MUR},
-
-		{VIDE,	MUR,	VIDE,	VIDE,	VIDE,	VIDE},
-
-		{VIDE,	VIDE,	SPAWN,	VIDE,	VIDE,	VIDE},
-
 		{VIDE,	VIDE,	VIDE,	VIDE,	VIDE,	VIDE},
 
-		{VIDE,	VIDE,	MUR,	MUR,	VIDE,	VIDE},
+		{MUR,	VIDE,	VIDE,	VIDE,	VIDE,	VIDE},
 
-		{VIDE,	VIDE,	MUR,	MUR,	VIDE,	VIDE},
+		{VIDE,	VIDE,	VIDE,	MUR,	VIDE,	VIDE},
+
+		{SPAWN,	VIDE,	VIDE,	MUR,	VIDE,	VIDE},
+
+		{VIDE,	VIDE,	VIDE,	MUR,	VIDE,	VIDE},
+
+		{MUR,	MUR,	MUR,	MUR,	VIDE,	VIDE},
 
 	}));
 

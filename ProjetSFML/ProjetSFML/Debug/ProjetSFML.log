@@ -1,4 +1,23 @@
-﻿  Scene.cpp
+﻿  GameMaster.cpp
+  Map.cpp
+  MobileEntity.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameMaster.cpp(56,8): warning C4018: '>=': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(103,22): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(103,22): warning C4244:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(103,22): warning C4244:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(103,22): warning C4244:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(103,22): warning C4244:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(110,76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(110,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(150,29): warning C4305: '-=': truncation from 'double' to 'T'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(150,29): warning C4305:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(150,29): warning C4305:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(150,29): warning C4305:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(150,29): warning C4305:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(156,83): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Player.cpp
+  Scene.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(156,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(52,20): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(54,21): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(69,22): warning C4018: '<': signed/unsigned mismatch
@@ -7,7 +26,9 @@ D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(102,20): warning C4018: '<': s
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(164,18): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(164,71): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(206,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(248,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(342,56): warning C4101: 'LocalDelta': unreferenced local variable
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(357,56): warning C4101: 'LocalDelta': unreferenced local variable
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(246,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(367,56): warning C4101: 'LocalDelta': unreferenced local variable
+  Source.cpp
+  Generating Code...
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(383,56): warning C4101: 'LocalDelta': unreferenced local variable
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

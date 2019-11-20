@@ -96,8 +96,46 @@ void Map::loadSave()
 
 void Map::update(RenderWindow& window)
 {
-	sauvegardes[0].update(window);
-	//isPlaying = false;
+
+	/*
+	enum sceneOutput {RienASignaler,
+	Walking,
+	Dying,
+	Exhale,
+	Jumping,
+	Switch,
+	QuickSave,
+	Reload,
+	Exit,
+	WalkAndJump};
+	*/
+	int output;
+	output = sauvegardes[0].update(window);
+
+	switch (output)
+	{
+	case sceneOutput::RienASignaler:
+		break;
+	case sceneOutput::QuickSave:
+		cout << "QuickSave" << endl;
+		break;
+	case sceneOutput::ReloadPrevious:
+		cout << "ReloadPrevious" << endl;
+		break;
+	case sceneOutput::Exit:
+		cout << "Exit" << endl;
+		break;
+	case sceneOutput::Restart:
+		cout << "Restart" << endl;
+		break;
+	default:
+		cout << "score = " << output << endl;
+		break;
+	}
+	
+	
+	
+
 }
 
 void Map::draw(RenderWindow&R)

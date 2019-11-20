@@ -216,7 +216,6 @@ void Scene::draw(RenderWindow&e)
 
 bool Scene::testCollide(GameObject*e , Direction D)
 {
-	cout << "TestColliding" << endl;
 	FloatRect collisionBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
 	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
@@ -224,7 +223,6 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	Player* PlayerPointer;
 	PlayerPointer = dynamic_cast<Player*>(e);
 	if (PlayerPointer) {
-		cout << "This is a player" << endl;
 		collisionBox = PlayerPointer->getUpdatedFantome(D).getGlobalBounds();
 		TraverseBlock = PlayerPointer->getTraverseBlock();
 		TraverseMur = PlayerPointer->getTraverseMur();
@@ -250,14 +248,14 @@ bool Scene::testCollide(GameObject*e , Direction D)
 		if (!TraverseMur) {
 			MurPointer = dynamic_cast<Mur*>(gameObjects.at(i));
 			if (MurPointer && collisionBox.intersects(MurPointer->getSprite()->getGlobalBounds())) {
-				cout << "Colliding\n";
+				//cout << "Colliding\n";
 				return true;
 			}
 		}
 
 		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
 		if (oneWayPtr && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
-			cout << "Colliding\n";
+			//cout << "Colliding\n";
 
 			return true;
 		}
@@ -303,18 +301,28 @@ bool Scene::testCollide(GameObject*e , Direction D)
 
 	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
 	if (PlayerPointer == NULL && collisionBox.intersects(player->getSprite()->getGlobalBounds())) {
-		cout << "Colliding\n";
+		//cout << "Colliding\n";
 
 		return true;
 	}
-	cout << "Not Colliding\n";
+	//cout << "Not Colliding\n";
 #pragma endregion 
 
 	return false;
 }
 
-void Scene::update(RenderWindow& GM)
+int Scene::update(RenderWindow& GM)
 {
+	/*
+	enum sceneOutput {RienASignaler = -1,
+		QuickSave = -2,
+		ReloadPrevious = -3,
+		Exit = -4,
+		Restart = -5
+	};
+	0 -> +  = score
+	*/
+	int retour = sceneOutput::RienASignaler;
 	Event event;
 	while (GM.pollEvent(event))
 	{
@@ -329,6 +337,32 @@ void Scene::update(RenderWindow& GM)
 	}
 
 #pragma region playerMove
+	//cout << endl;
+	/*
+	setup original :
+		--
+			if keyboard Haut && !TestCollide Haut 
+				moveto Up
+
+			if keyboard Bas && !TestCollide Bas 
+				moveto Down
+
+			if playerhauteur!=0 &&é && TestCollide Haut
+				Kill velocity
+
+			if playerhauteur!=0 && TestCollide Bas
+				Faire attérir le personnage
+
+			if playerhauteur==0 && !TestCollide Bas
+				Faire tomber le personnage
+		--
+		avantages = propreté
+		defaut = TestCollide est Très gourmand
+
+		La nouvelle architecture peut paraitre bordellique, mais elle a l'avantage de limiter les calls de TestCollide
+	
+	*/
+
 	//Input dans les 4 directions
 	bool testcollhaut,testcollbas;
 	testcollhaut = testCollide(player, Direction::HAUT);
@@ -351,6 +385,7 @@ void Scene::update(RenderWindow& GM)
 		player->getSprite()->move(Vector2f(0, localY));
 	}
 	testcollbas = testCollide(player, Direction::BAS);
+
 	if (testcollbas) {
 		if (player->getHauteur() != 0) {
 			player->setHauteur(0);
@@ -365,7 +400,6 @@ void Scene::update(RenderWindow& GM)
 			}
 			player->getSprite()->move(Vector2f(0, localY));
 		}
-			
 	}
 	else {
 		if (Keyboard::isKeyPressed(Keyboard::Down)) {
@@ -373,10 +407,11 @@ void Scene::update(RenderWindow& GM)
 			player->moveTo(Direction::BAS);
 		}
 		if (player->getHauteur() == 0) {
-			//player->setHauteur(1);
+			player->setHauteur(1);
 		}
-			
+		//if(player->getSprite()->getPosition().x)
 	}
+
 	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
 		cout << "Left" << endl;
 		player->moveTo(Direction::GAUCHE);
@@ -391,10 +426,11 @@ void Scene::update(RenderWindow& GM)
 
 
 
-	player->updatePos(9.8);
+	player->updatePos(9.8/30);
 #pragma endregion
 
 	cout << endl;
+	return retour;
 }
 
 int Scene::getScore()
