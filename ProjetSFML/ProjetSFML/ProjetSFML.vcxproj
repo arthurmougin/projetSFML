@@ -170,7 +170,6 @@
     <Image Include="img\Player_right_rocher.png" />
     <Image Include="img\test.png" />
     <Image Include="img\test2.png" />
-    <Image Include="sprites\NonPlayer.png" />
     <Image Include="sprites\NonPlayerBleu.png" />
     <Image Include="sprites\Player.png" />
     <Image Include="sprites\PlayerBleu.png" />

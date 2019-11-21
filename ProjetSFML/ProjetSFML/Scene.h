@@ -25,7 +25,7 @@ protected:
 	int score;
 	vector <GameObject *> gameObjects;
 	vector <Mur*> murs;
-	vector <Mur*> oneWays;
+	vector <OneWay*> oneWays;
 	Player *player;
 	Vector2f spawnPoint;
 

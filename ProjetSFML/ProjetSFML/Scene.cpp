@@ -155,18 +155,91 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 #pragma endregion
+					case ONEWAY:
+
+						try {
+							cout << "OneWay (defaut  = Haut) at " << x << "x - " << y << "y : " << endl;
+
+							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
+							/*
+							Le sens Bloqué est l'opposé du sens affiché
+							*/
+							OneWay* owptr = new OneWay(Direction::BAS, MyPosition, nonPlayerTex, MyEntityTextRect);
+							owptr->getSprite()->setScale(EntityScale);
+							oneWays.push_back(owptr);
+							gameObjects.push_back(owptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
 					case ONEWAY_HAUT:
-						cout << "OneWay Haut at " << x << "x - " << y << "y : "<< endl;
+
+						try {
+							cout << "OneWay Haut at " << x << "x - " << y << "y : "<< endl;
+						
+							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
+							/*
+							Le sens Bloqué est l'opposé du sens affiché
+							*/
+							OneWay* owptr = new OneWay(Direction::BAS, MyPosition, nonPlayerTex, MyEntityTextRect);
+							owptr->getSprite()->setScale(EntityScale);
+							oneWays.push_back(owptr);
+							gameObjects.push_back(owptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 					case ONEWAY_BAS:
-						cout << "OneWay Bas at " << x << "x - " << y << "y : "<< endl;
+						try {
+							cout << "OneWay Bas at " << x << "x - " << y << "y : "<< endl;
+
+							MyEntityTextRect.top = 3 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
+							MyEntityTextRect.height = -MyEntityTextRect.height;
+							/*
+							Le sens Bloqué est l'opposé du sens affiché
+							*/
+							OneWay* owptr = new OneWay(Direction::HAUT, MyPosition, nonPlayerTex, MyEntityTextRect);
+							owptr->getSprite()->setScale(EntityScale);
+							oneWays.push_back(owptr);
+							gameObjects.push_back(owptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 					case ONEWAY_GAUCHE:
-						cout << "OneWay Gauche at " << x << "x - " << y << "y : " << endl;
+						try {
+							cout << "OneWay Gauche at " << x << "x - " << y << "y : " << endl;
+
+							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
+							MyEntityTextRect.width = -MyEntityTextRect.width;
+							/*
+							Le sens Bloqué est l'opposé du sens affiché
+							*/
+							OneWay* owptr = new OneWay(Direction::DROITE, MyPosition, nonPlayerTex, MyEntityTextRect);
+							owptr->getSprite()->setScale(EntityScale);
+							oneWays.push_back(owptr);
+							gameObjects.push_back(owptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 					case ONEWAY_DROITE:
-						cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
+						try {
+							cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
+
+							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 1 * MyEntityTextRect.width;
+							/*
+							Le sens Bloqué est l'opposé du sens affiché
+							*/
+							OneWay* owptr = new OneWay(Direction::GAUCHE, MyPosition, nonPlayerTex, MyEntityTextRect);
+							owptr->getSprite()->setScale(EntityScale);
+							oneWays.push_back(owptr);
+							gameObjects.push_back(owptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
+
 					case SPAWN:
 						try {
 							cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
@@ -230,7 +303,7 @@ void Scene::draw(RenderWindow&e)
 
 bool Scene::testCollide(GameObject*e , Direction D)
 {
-	FloatRect collisionBox;
+	FloatRect collisionBox,ActualBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
 	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
 
@@ -238,6 +311,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	PlayerPointer = dynamic_cast<Player*>(e);
 	if (PlayerPointer) {
 		collisionBox = PlayerPointer->getUpdatedFantome(D).getGlobalBounds();
+		ActualBox = PlayerPointer->getSprite()->getGlobalBounds();
 		TraverseBlock = PlayerPointer->getTraverseBlock();
 		TraverseMur = PlayerPointer->getTraverseMur();
 		MarcheSurBlock = PlayerPointer->getMarcheSurBlock();
@@ -249,7 +323,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	}
 
 #pragma region boundery_collision
-
+	/* TODO */
 
 #pragma endregion
 
@@ -268,12 +342,33 @@ bool Scene::testCollide(GameObject*e , Direction D)
 		}
 
 		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
-		if (oneWayPtr && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
-			//cout << "Colliding\n";
+		if(oneWayPtr)
+		{ 
+			/*if (D == Direction::DROITE)
+				cout << "DROITE : \n";
+			if (D == Direction::HAUT)
+				cout << "HAUT : \n";
+			if (D == Direction::BAS)
+				cout << "BAS : \n";
+			if (D == Direction::GAUCHE)
+				cout << "GAUCHE : \n";
+			cout << "sprite Collide = " << (ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()));
+			cout << "fantome Collide = " << collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds());
+			cout << "blocdirection = direction : " << (D == oneWayPtr->getBlockDirection()) << "true:" << true << endl;*/
+			if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
+				/*
+				Conditions : 
+					1 = C'est un OneWay
+					2 = l'entité n'est pas actuellement dans la zone de colision
+					3 = la direction est la bonne
+					4 = le fantome est dans la zone de colision
+			
+				*/
+				cout << "Colliding\n";
 
-			return true;
+				return true;
+			}
 		}
-
 
 		/*
 		switch (es.at(i).type)

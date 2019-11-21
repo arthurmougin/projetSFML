@@ -1,19 +1,13 @@
-﻿  GameMaster.cpp
-  Map.cpp
-  Player.cpp
-  Scene.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\GameMaster.cpp(59,8): warning C4018: '>=': signed/unsigned mismatch
+﻿  Scene.cpp
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(60,20): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(62,21): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(77,22): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(103,23): warning C4018: '>=': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(110,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(172,18): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(172,71): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(220,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(260,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(448,56): warning C4101: 'LocalDelta': unreferenced local variable
-  Source.cpp
-  Generating Code...
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(464,56): warning C4101: 'LocalDelta': unreferenced local variable
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(79,22): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(105,23): warning C4018: '>=': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(112,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(246,18): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(246,71): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(293,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(334,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(543,56): warning C4101: 'LocalDelta': unreferenced local variable
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(559,56): warning C4101: 'LocalDelta': unreferenced local variable
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

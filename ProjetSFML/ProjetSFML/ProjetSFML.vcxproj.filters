@@ -85,9 +85,6 @@
     <Image Include="sprites\Player.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="sprites\NonPlayer.png">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="sprites\NonPlayerBleu.png">
       <Filter>Resource Files</Filter>
     </Image>

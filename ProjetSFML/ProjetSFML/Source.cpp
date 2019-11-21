@@ -34,7 +34,7 @@ int main(void) {
 
 		{MUR,	VIDE,	ONEWAY_HAUT,	VIDE,	SPAWN,		VIDE,			VIDE,			VIDE,	VIDE,	MUR},
 
-		{MUR,	VIDE,	VIDE,			VIDE,	VIDE,		VIDE,			MUR,			VIDE,	VIDE,	MUR},
+		{MUR,	VIDE,	VIDE,			VIDE,	VIDE,		VIDE,			VIDE,			VIDE,	VIDE,	MUR},
 
 		{MUR,	MUR,	MUR,			MUR,	MUR,		MUR,			MUR,			MUR,	MUR,	MUR},
 
