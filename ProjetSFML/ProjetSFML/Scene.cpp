@@ -21,6 +21,14 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 
 }
 
+Scene::Scene(Scene*S2)
+{
+	score = S2->getScore();
+	gameObjects = S2->getGameObjects();
+	player = &S2->getPlayer();
+	spawnPoint = S2->getSpawnPoint();
+}
+
 void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 {
 
@@ -56,6 +64,8 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 				MyEntityTextRect.width = MyEntityTextRect.height = 8;
 				
 				MyPosition = ArenaScale;
+				MyPosition.x *= x;
+				MyPosition.y *= y;
 				
 				switch (myLine.at(x)) {
 					case MUR:
@@ -134,14 +144,13 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							//cout << "Rectangle : x:" << MyEntityTextRect.left << " y:" << MyEntityTextRect.top << " width:" << MyEntityTextRect.width << " height:" << MyEntityTextRect.height << endl;
 
 							//On applique les coordonnées
-							MyPosition.x *= x;							
-							MyPosition.y *= y;
 							
-							Mur* GameObjectPtr =  new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);							
-							GameObjectPtr->getSprite()->setScale(EntityScale);
+							
+							Mur* Murptr =  new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);							
+							Murptr->getSprite()->setScale(EntityScale);
 							/*gameObjects.push_back(GameObjectPtr);*/
-							murs.push_back(GameObjectPtr);
-							gameObjects.push_back(GameObjectPtr);
+							murs.push_back(Murptr);
+							gameObjects.push_back(Murptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -173,9 +182,8 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 
 							cout << "Rectangle : x:" << MyPlayerTextRect.left << " y:" << MyPlayerTextRect.top << " width:" << MyPlayerTextRect.width << " height:" << MyPlayerTextRect.height << endl;
 
-							spawnPoint.x = MyPosition.x * x;
-							spawnPoint.y = MyPosition.y * y;
-							;
+							spawnPoint.x = MyPosition.x;
+							spawnPoint.y = MyPosition.y;
 
 							/**
 							player.setTexture(PlayerTex);
@@ -198,7 +206,13 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 
 void Scene::draw(RenderWindow&e)
 {
-
+	View v = e.getView();
+	FloatRect centerBox = player->getSprite()->getGlobalBounds();
+	Vector2f centre;
+	centre.y = centerBox.top + (centerBox.height / 2);
+	centre.x = centerBox.left + (centerBox.width / 2);
+	v.setCenter(centre);
+	e.setView(v);
 	e.clear();
 	//cout << " player TEXTURE ->  x:" << player->getTexture()->getSize().x << "  y:" << player->getTexture()->getSize().y << endl;
 	player->drawMe(e);
@@ -356,32 +370,37 @@ int Scene::update(RenderWindow& GM)
 			if (event.key.code == Keyboard::RControl) {
 				cout << "Inhale/Hexale" << endl;
 			}
-			if (event.key.code == Keyboard::S || event.key.code == Keyboard::Num1) {
+			if (event.key.code == Keyboard::S || event.key.code == Keyboard::Numpad1) {
 				cout << "Select" << endl;
 			}
-			if (event.key.code == Keyboard::L || event.key.code == Keyboard::Num4) {
+			if (event.key.code == Keyboard::L || event.key.code == Keyboard::Numpad4) {
 				cout << "Lock" << endl;
 			}
-			if (event.key.code == Keyboard::N || event.key.code == Keyboard::Num3) {
+			if (event.key.code == Keyboard::N || event.key.code == Keyboard::Numpad3) {
 				cout << "cancel" << endl;
 			}
-			if (event.key.code == Keyboard::O || event.key.code == Keyboard::Num6) {
+			if (event.key.code == Keyboard::O || event.key.code == Keyboard::Numpad6) {
 				cout << "confirm" << endl;
 			}
-			if (event.key.code == Keyboard::R || event.key.code == Keyboard::Num5) {
+			if (event.key.code == Keyboard::R || event.key.code == Keyboard::Numpad5) {
 				cout << "Reload" << endl;
+				retour = sceneOutput::ReloadPrevious;
+				return retour;
 			}
-			if (event.key.code == Keyboard::Q || event.key.code == Keyboard::Num2) {
+			if (event.key.code == Keyboard::Q || event.key.code == Keyboard::Numpad2) {
 				cout << "QuickSave" << endl;
+				retour = sceneOutput::QuickSave;
+				return retour;
 			}
-			if (event.key.code == Keyboard::T || event.key.code == Keyboard::Num8) {
+			if (event.key.code == Keyboard::T || event.key.code == Keyboard::Numpad8) {
 				cout << "Restart" << endl;
+				retour = sceneOutput::Restart;
+				return retour;
 			}
 			if (event.key.code == Keyboard::E || event.key.code == Keyboard::Escape) {
 				cout << "Exit" << endl;
 				GM.close();
 			}
-
 			break;
 		default:
 			break;
@@ -418,7 +437,7 @@ int Scene::update(RenderWindow& GM)
 	//Input dans les 4 directions
 	bool testcollhaut,testcollbas;
 	testcollhaut = testCollide(player, Direction::HAUT);
-	if (Keyboard::isKeyPressed(Keyboard::Up) && !testcollhaut) {
+	if (player->getHauteur() == 0 && Keyboard::isKeyPressed(Keyboard::Up) && !testcollhaut) {
 		cout << "Up" << endl;
 		score -= 3;
 		player->moveTo(Direction::HAUT);
@@ -479,7 +498,7 @@ int Scene::update(RenderWindow& GM)
 	player->updatePos(9.8/30);
 #pragma endregion
 
-	cout << endl;
+	//cout << endl;
 	if (score <= 0)
 		retour = sceneOutput::Restart;
 	return retour;

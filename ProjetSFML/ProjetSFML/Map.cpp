@@ -86,8 +86,10 @@ void Map::quickSave()
 
 void Map::loadSave()
 {
-	if (sauvegardes.size() > 0) {
+	if (sauvegardes.size() > 1) {
 		sauvegardes.erase(sauvegardes.begin());
+		sauvegardes.shrink_to_fit();
+		cout << "sauvegarde size = " << sauvegardes.size();
 	}
 	else {
 		cout << "Pas assez de sauvegardes" << endl;
@@ -107,22 +109,30 @@ void Map::update(RenderWindow& window)
 	*/
 	int output;
 	output = sauvegardes[0].update(window);
-
+	/**/
 	switch (output)
 	{
 	case sceneOutput::RienASignaler:
 		break;
 	case sceneOutput::QuickSave:
-		cout << "QuickSave" << endl;
+		cout << "QuickSave (not working)" << endl;
+		// ajoute une sauvegarde une 
+		// sauvegardes.push_back(Scene(sauvegardes[0]));
+		
 		break;
 	case sceneOutput::ReloadPrevious:
-		cout << "ReloadPrevious" << endl;
+		cout << "ReloadPrevious (not working)" << endl;
+		// loadSave();
+
 		break;
 	case sceneOutput::Exit:
 		cout << "Exit" << endl;
 		break;
 	case sceneOutput::Restart:
 		cout << "Restart" << endl;
+		sauvegardes.push_back(generate());
+		loadSave();
+
 		break;
 	default:
 		cout << "score = " << output << endl;
@@ -130,8 +140,6 @@ void Map::update(RenderWindow& window)
 	}
 	
 	
-	
-
 }
 
 void Map::draw(RenderWindow&R)

@@ -11,7 +11,8 @@
 using namespace std;
 using namespace sf;
 
-enum sceneOutput {RienASignaler = -1,
+enum sceneOutput {
+	RienASignaler = -1,
 	QuickSave = -2,
 	ReloadPrevious = -3,
 	Exit = -4,
@@ -24,6 +25,7 @@ protected:
 	int score;
 	vector <GameObject *> gameObjects;
 	vector <Mur*> murs;
+	vector <Mur*> oneWays;
 	Player *player;
 	Vector2f spawnPoint;
 
@@ -32,6 +34,7 @@ public:
 	Scene();
 	Scene(int, vector <vector <enum ElementTypes>>);
 	Scene(int, vector <GameObject*>, Vector2f , Player);
+	Scene(Scene*);
 
 	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);

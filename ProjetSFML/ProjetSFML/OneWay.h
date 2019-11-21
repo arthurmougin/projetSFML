@@ -8,6 +8,7 @@ protected:
 public:
 	OneWay();
 	OneWay(Direction);
+	OneWay(Direction,Vector2f, Texture, IntRect);
 
 	Direction getBlockDirection();
 	void setBlockDirection(Direction);
