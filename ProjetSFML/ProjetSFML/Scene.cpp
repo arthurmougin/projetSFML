@@ -1,14 +1,26 @@
 #include "Scene.h"
 
+
+
 Scene::Scene()
 {
 	score = 0;
+	ScoreString.setString(to_string(score));
+	ScoreString.setCharacterSize(60);
+	ScoreString.setStyle(Text::Regular);
+	ScoreString.setOutlineThickness(20);
+
 }
 
 Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
 	score = s;
 	generate(m);
+	ScoreString.setString(to_string(score));
+	ScoreString.setCharacterSize(60);
+	ScoreString.setStyle(Text::Regular);
+	ScoreString.setOutlineThickness(20);
+
 }
 
 Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
@@ -17,7 +29,10 @@ Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
 	gameObjects = v;
 	spawnPoint = sp;
 	player = &p;
-
+	ScoreString.setString(to_string(score));
+	ScoreString.setCharacterSize(60);
+	ScoreString.setStyle(Text::Regular);
+	ScoreString.setOutlineThickness(20);
 
 }
 
@@ -27,6 +42,11 @@ Scene::Scene(Scene*S2)
 	gameObjects = S2->getGameObjects();
 	player = &S2->getPlayer();
 	spawnPoint = S2->getSpawnPoint();
+	ScoreString.setString(to_string(score));
+	ScoreString.setCharacterSize(60);
+	ScoreString.setStyle(Text::Regular);
+	ScoreString.setOutlineThickness(20);
+
 }
 
 void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
@@ -286,6 +306,9 @@ void Scene::draw(RenderWindow&e)
 	centre.x = centerBox.left + (centerBox.width / 2);
 	v.setCenter(centre);
 	e.setView(v);
+	centre.x -= 550;
+	centre.y -= 450;
+
 	e.clear();
 	//cout << " player TEXTURE ->  x:" << player->getTexture()->getSize().x << "  y:" << player->getTexture()->getSize().y << endl;
 	player->drawMe(e);
@@ -295,6 +318,9 @@ void Scene::draw(RenderWindow&e)
 		gameObjects[i]->drawMe(e);
 	}
 	
+
+	ScoreString.setPosition(centre);
+	e.draw(ScoreString);
 
 	//cout << endl;
 	e.display();
@@ -533,7 +559,7 @@ int Scene::update(RenderWindow& GM)
 	bool testcollhaut,testcollbas;
 	testcollhaut = testCollide(player, Direction::HAUT);
 	if (player->getHauteur() == 0 && Keyboard::isKeyPressed(Keyboard::Up) && !testcollhaut) {
-		cout << "Up" << endl;
+		//cout << "Up" << endl;
 		score -= 3;
 		player->moveTo(Direction::HAUT);
 	}	
@@ -542,7 +568,7 @@ int Scene::update(RenderWindow& GM)
 		player->setAcceleration(Vector2f(0, 0));
 		float localY = player->getSprite()->getPosition().y, LocalDelta;
 		localY = (int(localY) % 160) + localY - int(localY);
-		cout << "localy : " << localY << endl;
+		//cout << "localy : " << localY << endl;
 		if (localY < 80) {
 			localY = -localY;
 		}
@@ -576,13 +602,13 @@ int Scene::update(RenderWindow& GM)
 
 	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
 		score -= 1;
-		cout << "Left" << endl;
+		//cout << "Left" << endl;
 		player->moveTo(Direction::GAUCHE);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Right) && !testCollide(player, Direction::DROITE))
 	{
 		score -= 1;
-		cout << "Right" << endl;
+		//cout << "Right" << endl;
 		player->moveTo(Direction::DROITE);
 	}
 
@@ -590,12 +616,14 @@ int Scene::update(RenderWindow& GM)
 
 
 
-	player->updatePos(9.8/30);
+	player->updatePos(9.8/12);
 #pragma endregion
 
 	//cout << endl;
 	if (score <= 0)
 		retour = sceneOutput::Restart;
+
+	ScoreString.setString(to_string(score));
 	return retour;
 }
 
@@ -607,6 +635,16 @@ int Scene::getScore()
 void Scene::setScore(int s)
 {
 	score = s;
+}
+
+Text Scene::getScoreString()
+{
+	return ScoreString;
+}
+
+void Scene::setScoreString(Text t)
+{
+	ScoreString = t;
 }
 
 vector <GameObject*> Scene::getGameObjects()

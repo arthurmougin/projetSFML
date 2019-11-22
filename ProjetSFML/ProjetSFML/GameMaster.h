@@ -15,6 +15,7 @@ protected:
 	vector <Map> maps;
 	int selectedMapIndex;
 	//RenderWindow window;
+	Font *font;
 	double framerate;
 	Clock MainClock;
 
@@ -27,6 +28,7 @@ public:
 	void addMap(Map);
 	void setSelectedMapIndex(int);
 	int getSelectedMapIndex();
-
+	Font* getFont();
+	void setFont(Font*);
 };
 

@@ -17,8 +17,9 @@ void GameMaster::run()
 
 	while (isOpen()) {
 
-		if (MainClock.getElapsedTime().asSeconds() > float(1 / 25))
+		if (float(MainClock.getElapsedTime().asSeconds()) >= 0.016)//1 / 60 = 0.016
 		{
+			//cout << float(MainClock.getElapsedTime().asSeconds()) << " " << float(1 / 25)  << endl;
 			//si la map est en cours de jeu
 			if (mainMap.getIsPlaying()) {
 				mainMap.update(*this);
@@ -50,6 +51,16 @@ void GameMaster::setMaps(vector<Map>m)
 
 void GameMaster::addMap(Map m)
 {
+	vector <Scene> saves = m.getSauvegardes();
+	Text t;
+	for (int i = 0; i < saves.size(); i++)
+	{
+		t = saves.at(i).getScoreString();
+		t.setFont(*font);
+		saves.at(i).setScoreString(t);
+	}
+	m.setSauvegardes(saves);
+
 	maps.push_back(m);
 
 }
@@ -64,4 +75,14 @@ void GameMaster::setSelectedMapIndex(int i)
 int GameMaster::getSelectedMapIndex()
 {
 	return selectedMapIndex;
+}
+
+Font* GameMaster::getFont()
+{
+	return font;
+}
+
+void GameMaster::setFont(Font*f)
+{
+	font = f;
 }

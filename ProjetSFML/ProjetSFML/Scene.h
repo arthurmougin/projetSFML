@@ -23,6 +23,7 @@ class Scene
 {
 protected:
 	int score;
+	Text ScoreString;
 	vector <GameObject *> gameObjects;
 	vector <Mur*> murs;
 	vector <OneWay*> oneWays;
@@ -43,6 +44,8 @@ public:
 
 	int getScore();
 	void setScore(int);
+	Text getScoreString();
+	void setScoreString(Text);
 	vector <GameObject*> getGameObjects();
 	void setGameObjects(vector <GameObject*>);
 	Player getPlayer();

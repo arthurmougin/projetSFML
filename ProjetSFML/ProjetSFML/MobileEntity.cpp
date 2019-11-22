@@ -3,7 +3,7 @@
 MobileEntity::MobileEntity():GameObject()
 {
 	flying = TraverseBlock = false;
-	speed = 10;
+	speed = 15;
 	acceleration = direction = Vector2f(0, 0);
 	MarcheSurBlock = TraverseMur = false;
 	Hauteur = 0;
@@ -12,7 +12,7 @@ MobileEntity::MobileEntity():GameObject()
 MobileEntity::MobileEntity(Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
 {
 	flying = TraverseBlock = false;
-	speed = 10;
+	speed = 15;
 	acceleration = direction = Vector2f(0, 0);
 	MarcheSurBlock = TraverseMur = false;
 	Hauteur = 0;
@@ -77,7 +77,7 @@ void MobileEntity::moveTo(Direction d)
 	case Direction::HAUT:
 		if (Hauteur == 0) {
 			Hauteur = 1;
-			acceleration.y = -19;
+			acceleration.y = -30;
 			direction.y = -1;
 		}
 		break;
@@ -125,7 +125,7 @@ Sprite MobileEntity::getUpdatedFantome(Direction d)
 		if (myHauteur == 0) {
 			myHauteur = 1;
 			myDirection.y = -1;
-			myAcceleration.y = -19;
+			myAcceleration.y = -30;
 
 		}
 		break;
@@ -147,7 +147,7 @@ Sprite MobileEntity::getUpdatedFantome(Direction d)
 
 #pragma region updatepos
 	if (myHauteur != 0) {
-		myAcceleration.y -= 9.8/30;
+		myAcceleration.y -= 9.8 / 12;
 	}
 	else {
 		myAcceleration.y = 0;
