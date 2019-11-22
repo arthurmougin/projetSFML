@@ -140,6 +140,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="spike.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FocusableElement.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="OneWay.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="spike.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\Global Sprite2.png" />

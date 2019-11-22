@@ -9,8 +9,8 @@ GameMaster::GameMaster():RenderWindow(VideoMode(1200, 1000), "Sutte Hakkun by Ar
 
 void GameMaster::run()
 {
-	View v (FloatRect(0, 0, 2400, 2000));
-	v.zoom(0.5f);
+	View v (FloatRect(0, 0, 4800, 4000));
+	v.zoom(0.25f);
 	this->setView(v);
 	cout << "Run" << endl;
 	Map mainMap = maps.at(selectedMapIndex);

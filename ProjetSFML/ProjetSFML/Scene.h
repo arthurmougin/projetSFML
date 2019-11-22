@@ -7,6 +7,7 @@
 #include "Mur.h"
 #include "Player.h"
 #include "OneWay.h"
+#include "spike.h"
 
 using namespace std;
 using namespace sf;
@@ -27,6 +28,7 @@ protected:
 	vector <GameObject *> gameObjects;
 	vector <Mur*> murs;
 	vector <OneWay*> oneWays;
+	vector <spike*> spikes;
 	Player *player;
 	Vector2f spawnPoint;
 

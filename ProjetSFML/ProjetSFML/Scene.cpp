@@ -177,7 +177,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 #pragma endregion
 					case ONEWAY:
-
 						try {
 							cout << "OneWay (defaut  = Haut) at " << x << "x - " << y << "y : " << endl;
 
@@ -194,7 +193,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 					case ONEWAY_HAUT:
-
 						try {
 							cout << "OneWay Haut at " << x << "x - " << y << "y : "<< endl;
 						
@@ -260,7 +258,22 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
+					case PIQUE:
+						try {
+							cout << "spike at " << x << "x - " << y << "y : " << endl;
+							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
+							/*
+							Le sens Bloqué est l'opposé du sens affiché
+							*/
+							spike* spptr = new spike( MyPosition, nonPlayerTex, MyEntityTextRect);
+							spptr->getSprite()->setScale(EntityScale);
+							spikes.push_back(spptr);
+							gameObjects.push_back(spptr);
 
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
 					case SPAWN:
 						try {
 							cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
@@ -355,15 +368,20 @@ bool Scene::testCollide(GameObject*e , Direction D)
 #pragma region entity_collision
 	Mur* MurPointer;
 	OneWay* oneWayPtr;
+	spike* spikePtr;
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		if (!TraverseMur) {
 			MurPointer = dynamic_cast<Mur*>(gameObjects.at(i));
-			if (MurPointer && collisionBox.intersects(MurPointer->getSprite()->getGlobalBounds())) {
-				//cout << "Colliding\n";
-				return true;
+			if (MurPointer) {
+				if (collisionBox.intersects(MurPointer->getSprite()->getGlobalBounds())) {
+					//cout << "Colliding\n";
+					return true;
+				}
+				continue;
 			}
+			
 		}
 
 		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
@@ -393,22 +411,19 @@ bool Scene::testCollide(GameObject*e , Direction D)
 
 				return true;
 			}
+			
+			continue;
 		}
 
+		spikePtr = dynamic_cast<spike*>(gameObjects.at(i));
+		if (spikePtr) {
+			if (PlayerPointer && ActualBox.intersects(spikePtr->getSprite()->getGlobalBounds())) {
+				// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
+				score = 0;
+			}
+			continue;
+		}
 		/*
-		switch (es.at(i).type)
-		{
-		case MUR:
-			//si l'élément ne traverse pas les murs et qu'il y a une collision
-			if (!TraverseMur && collisionBox.intersects(es.at(i).mur.getGlobalBounds()))
-				return true;
-			break;
-		case ONEWAY:
-			//si la direction de collision est celle bloquée par le OneWay et qu'il y a une collision
-			if (D == es.at(i).oneway.getBlockDirection() && collisionBox.intersects(es.at(i).oneway.getGlobalBounds()))
-				return true;
-			break;
-			/*
 		case PIQUE:
 			break;
 		case SWITCH:

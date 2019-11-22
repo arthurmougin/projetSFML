@@ -12,6 +12,11 @@ FocusableElement::FocusableElement(bool f, bool l, bool t):GameEntity()
 	traversable = t;
 }
 
+FocusableElement::FocusableElement( bool trav, Vector2f pos, Texture tex, IntRect rect) : GameEntity(trav, pos, tex, rect)
+{
+	focused = locked = false;
+}
+
 bool FocusableElement::getFocused()
 {
 	return focused;

@@ -10,6 +10,7 @@ protected:
 public:
 	FocusableElement();
 	FocusableElement(bool, bool, bool);
+	FocusableElement(bool, Vector2f, Texture, IntRect);
 
 	bool getFocused();
 	void setFocused(bool);
