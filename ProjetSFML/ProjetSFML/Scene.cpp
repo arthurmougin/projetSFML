@@ -14,6 +14,7 @@ Scene::Scene()
 
 Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
+	cout << "Generation" << endl;
 	score = s;
 	generate(m);
 	ScoreString.setString(to_string(score));
@@ -318,11 +319,9 @@ void Scene::draw(RenderWindow&e)
 		gameObjects[i]->drawMe(e);
 	}
 	
-
 	ScoreString.setPosition(centre);
 	e.draw(ScoreString);
 
-	//cout << endl;
 	e.display();
 
 }
@@ -623,6 +622,7 @@ int Scene::update(RenderWindow& GM)
 	if (score <= 0)
 		retour = sceneOutput::Restart;
 
+	cout << to_string(score) << endl;
 	ScoreString.setString(to_string(score));
 	return retour;
 }

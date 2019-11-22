@@ -87,8 +87,11 @@ void Map::quickSave()
 void Map::loadSave()
 {
 	if (sauvegardes.size() > 1) {
+		//Transfert du texte
+		sauvegardes.at(1).setScoreString(sauvegardes.at(0).getScoreString());
 		sauvegardes.erase(sauvegardes.begin());
 		sauvegardes.shrink_to_fit();
+		
 		cout << "sauvegarde size = " << sauvegardes.size();
 	}
 	else {
