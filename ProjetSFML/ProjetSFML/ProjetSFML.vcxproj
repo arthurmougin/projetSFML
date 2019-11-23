@@ -135,6 +135,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MobileEntity.cpp" />
+    <ClCompile Include="MobileGameplayElement.cpp" />
     <ClCompile Include="Mur.cpp" />
     <ClCompile Include="OneWay.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MobileEntity.h" />
+    <ClInclude Include="MobileGameplayElement.h" />
     <ClInclude Include="Mur.h" />
     <ClInclude Include="OneWay.h" />
     <ClInclude Include="Player.h" />
