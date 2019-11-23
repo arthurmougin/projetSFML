@@ -9,6 +9,7 @@ protected:
 
 public:
 	FocusableElement();
+	FocusableElement(bool);
 	FocusableElement(bool, bool, bool);
 	FocusableElement(bool, Vector2f, Texture, IntRect);
 

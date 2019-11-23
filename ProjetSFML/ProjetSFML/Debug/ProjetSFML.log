@@ -1,2 +1,16 @@
-﻿  Source.cpp
+﻿  MobileEntity.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(106,22): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(106,22): warning C4244:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(106,22): warning C4244:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(106,22): warning C4244:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(106,22): warning C4244:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(113,76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(113,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(154,31): warning C4305: '-=': truncation from 'double' to 'T'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(154,31): warning C4305:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(154,31): warning C4305:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(154,31): warning C4305:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(154,31): warning C4305:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(160,83): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileEntity.cpp(160,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

@@ -5,7 +5,7 @@
 using namespace std;
 using namespace sf;
 
-enum class Direction { HAUT, BAS, GAUCHE, DROITE };
+enum Direction { HAUT, BAS, GAUCHE, DROITE };
 
 enum ElementTypes {
 	VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
@@ -14,7 +14,7 @@ enum ElementTypes {
 	ANIMAL_COULEUR1, ANIMAL_COULEUR2, ANIMAL_COULEUR3, PLAYER, SPAWN
 };
 
-enum class GameColor {
+enum GameColor {
 	NOCOLOR,ROUGE,BLEU,JAUNE
 };
 
