@@ -51,6 +51,12 @@
     <ClCompile Include="spike.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MobileGameplayElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PaintableElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMaster.h">
@@ -84,6 +90,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spike.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MobileGameplayElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintableElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
