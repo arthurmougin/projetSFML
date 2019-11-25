@@ -53,3 +53,41 @@ void GameObject::setTexture(Texture t)
 	texture = t;
 	sprite.setTexture(texture);
 }
+
+
+Color getColorFromEnum(GameColor gc) {
+	switch (gc)
+	{
+	case GameColor::NOCOLOR:
+		return Color::White;
+		break;
+	case GameColor::ROUGE:
+		return Color::Red;
+		break;
+	case GameColor::BLEU:
+		return Color::Blue;
+		break;
+	case GameColor::JAUNE:
+		return Color::Yellow;
+		break;
+	default:
+		return Color::White;
+		break;
+	}
+
+}
+
+GameColor getEnumFromColor(Color C) {
+	if (C == Color::Red) {
+		return GameColor::ROUGE;
+	}
+	else if (C == Color::Blue) {
+		return GameColor::BLEU;
+	}
+	else if (C == Color::Yellow) {
+		return GameColor::JAUNE;
+	}
+	else {
+		return GameColor::NOCOLOR;
+	}
+}

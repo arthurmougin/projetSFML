@@ -4,8 +4,8 @@
 class FocusableElement:public GameEntity
 {
 protected:
-	bool focused;
-	bool locked;
+	bool focused = false;
+	bool locked = false;
 
 public:
 	FocusableElement();
