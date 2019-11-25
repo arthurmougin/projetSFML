@@ -21,6 +21,18 @@ MobileEntity::MobileEntity(Vector2f pos, Texture tex, IntRect rect) :GameObject(
 	Fantome.setTextureRect(rect);
 }
 
+MobileEntity::MobileEntity(int intervalframe, Vector2f pos, Texture tex, IntRect rect) :GameObject(intervalframe, pos, tex, rect)
+{
+	flying = TraverseBlock = false;
+	speed = 15;
+	acceleration = direction = Vector2f(0, 0);
+	MarcheSurBlock = true;
+	TraverseMur = false;
+	Hauteur = 0;
+	Fantome.setTexture(tex);
+	Fantome.setTextureRect(rect);
+}
+
 MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB):GameObject()
 {
 	flying = fly;
@@ -46,6 +58,19 @@ MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool Traverse
 	Fantome.setTextureRect(rect);
 }
 
+MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB, int intervalFrame, Vector2f pos, Texture tex, IntRect rect) :GameObject(intervalFrame, pos, tex, rect)
+{
+	flying = fly;
+	TraverseBlock = TraverseB;
+	speed = Speed;
+	acceleration = direction = Vector2f(0, 0);
+	MarcheSurBlock = MarcheSurB;
+	TraverseMur = TraverseM;
+	Hauteur = 0;
+	Fantome.setTexture(tex);
+	Fantome.setTextureRect(rect);
+}
+
 MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight):GameObject()
 {
 	flying = fly;
@@ -59,6 +84,20 @@ MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Ve
 }
 
 MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight, Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+{
+	flying = fly;
+	speed = myspeed;
+	acceleration = myAcceleration;
+	direction = myDirection;
+	TraverseBlock = TravB;
+	TraverseMur = TravM;
+	MarcheSurBlock = MarchB;
+	Hauteur = Hight;
+	Fantome.setTexture(tex);
+	Fantome.setTextureRect(rect);
+}
+
+MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight, int intervalFrame, Vector2f pos, Texture tex, IntRect rect) :GameObject(intervalFrame, pos, tex, rect)
 {
 	flying = fly;
 	speed = myspeed;

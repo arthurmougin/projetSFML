@@ -21,6 +21,13 @@ MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, 
 	heavy = heavii;
 }
 
+MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, int intervalframe, Vector2f position, Texture texture, IntRect textrect) :MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, intervalframe, position, texture, textrect), FocusableElement(traversable)
+{
+	MovingState = IDLE;
+	HateWalls = hateW;
+	heavy = heavii;
+}
+
 enum movingState MobileGameplayElement::getMovingState()
 {
 	return MovingState;

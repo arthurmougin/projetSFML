@@ -16,6 +16,12 @@ PaintableElement::PaintableElement(bool paintbl, bool inhalabl, bool trav, Vecto
 	inhalable = inhalabl;
 }
 
+PaintableElement::PaintableElement(bool paintbl, bool inhalabl, bool trav, int intervalFramce, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, intervalFramce, pos, tex, rect)
+{
+	paintable = paintbl;
+	inhalable = inhalabl;
+}
+
 PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor)
 {
 	paintable = paintbl;
@@ -24,6 +30,13 @@ PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor
 }
 
 PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor, bool trav, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, pos, tex, rect)
+{
+	paintable = paintbl;
+	inhalable = inhalabl;
+	setColor(gcolor);
+}
+
+PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor, bool trav, int intervalFramce, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, intervalFramce, pos, tex, rect)
 {
 	paintable = paintbl;
 	inhalable = inhalabl;

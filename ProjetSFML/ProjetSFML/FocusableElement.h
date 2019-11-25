@@ -12,6 +12,7 @@ public:
 	FocusableElement(bool);
 	FocusableElement(bool, bool, bool);
 	FocusableElement(bool, Vector2f, Texture, IntRect);
+	FocusableElement(bool, int, Vector2f, Texture, IntRect);
 
 	bool getFocused();
 	void setFocused(bool);

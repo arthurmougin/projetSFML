@@ -11,8 +11,10 @@ public:
 	PaintableElement();
 	PaintableElement(bool, bool);
 	PaintableElement(bool, bool, bool, Vector2f, Texture, IntRect);
+	PaintableElement(bool, bool, bool, int, Vector2f, Texture, IntRect);
 	PaintableElement(bool, bool, GameColor);
 	PaintableElement(bool, bool, GameColor, bool, Vector2f, Texture, IntRect);
+	PaintableElement(bool, bool, GameColor, bool, int, Vector2f, Texture, IntRect);
 
 	bool getPaintable();
 	void setPaintable(bool);

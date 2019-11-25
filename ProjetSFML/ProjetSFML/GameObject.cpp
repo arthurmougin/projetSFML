@@ -12,9 +12,26 @@ GameObject::GameObject(Vector2f vect, Texture tex, IntRect rect)
 	setTextureRect(rect);
 }
 
+GameObject::GameObject(int anim, Vector2f vect, Texture tex, IntRect rect)
+{
+	animationframes = anim;
+	sprite.setPosition(vect);
+	setTexture(tex);
+	setTextureRect(rect);
+}
+
 void GameObject::drawMe(RenderWindow &R)
 {
 	//cout << "DrawMe\n";
+	if (animationframes >= 2 && innerAnnimationClock.getElapsedTime().asSeconds() >= frequence) {
+
+		animationStep++;
+		animationStep = (animationStep % animationframes) ; 
+		IntRect tr = sprite.getTextureRect();
+		tr.left = textureRect.left + (animationStep * tr.width);
+		sprite.setTextureRect(tr);
+		innerAnnimationClock.restart();
+	}
 	R.draw(sprite);
 }
 
@@ -54,6 +71,15 @@ void GameObject::setTexture(Texture t)
 	sprite.setTexture(texture);
 }
 
+int GameObject::getAnimationframes()
+{
+	return animationframes;
+}
+
+void GameObject::setAnimationframes(int i)
+{
+	animationframes = i;
+}
 
 Color getColorFromEnum(GameColor gc) {
 	switch (gc)

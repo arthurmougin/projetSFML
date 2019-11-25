@@ -141,9 +141,11 @@
     <ClCompile Include="OneWay.cpp" />
     <ClCompile Include="PaintableElement.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rocher.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="spike.cpp" />
+    <ClCompile Include="Switch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bouteille.h" />
@@ -158,8 +160,10 @@
     <ClInclude Include="OneWay.h" />
     <ClInclude Include="PaintableElement.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rocher.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="spike.h" />
+    <ClInclude Include="Switch.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="img\Global Sprite2.png" />

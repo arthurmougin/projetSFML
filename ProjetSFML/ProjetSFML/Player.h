@@ -13,6 +13,7 @@ public:
 	Player(Vector2f, Texture, IntRect);
 	void update();
 
+	void moveTo(Direction);
 
 };
 

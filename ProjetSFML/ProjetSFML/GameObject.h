@@ -29,9 +29,14 @@ protected:
 	Sprite sprite;
 	IntRect textureRect;
 	Texture texture;
+	int animationframes = 1;
+	Clock innerAnnimationClock;
+	float frequence = 0.5;
+	int animationStep = 0;
 public:
 	GameObject();
 	GameObject(Vector2f, Texture, IntRect);
+	GameObject(int, Vector2f, Texture, IntRect);
 	void drawMe(RenderWindow&);
 	virtual void update();
 
@@ -42,5 +47,7 @@ public:
 	void setTextureRect(IntRect);
 	Texture* getTexture();
 	void setTexture(Texture);
+	int getAnimationframes();
+	void setAnimationframes(int);
 };
 

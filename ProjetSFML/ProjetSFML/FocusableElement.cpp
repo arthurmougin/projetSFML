@@ -20,6 +20,10 @@ FocusableElement::FocusableElement( bool trav, Vector2f pos, Texture tex, IntRec
 {
 }
 
+FocusableElement::FocusableElement(bool trav, int interframe, Vector2f pos, Texture tex, IntRect rect) : GameEntity(trav, interframe, pos, tex, rect)
+{
+}
+
 bool FocusableElement::getFocused()
 {
 	return focused;

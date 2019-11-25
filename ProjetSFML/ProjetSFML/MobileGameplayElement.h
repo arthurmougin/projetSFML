@@ -17,6 +17,7 @@ public:
 	MobileGameplayElement();
 	MobileGameplayElement(bool, bool);
 	MobileGameplayElement(bool, bool, bool, double, bool, bool, bool, bool, Vector2f, Texture, IntRect);
+	MobileGameplayElement(bool, bool, bool, double, bool, bool, bool, bool, int, Vector2f, Texture, IntRect);
 
 	enum movingState getMovingState();
 	void setMovingState(enum movingState);

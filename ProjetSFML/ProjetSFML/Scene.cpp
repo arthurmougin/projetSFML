@@ -381,8 +381,8 @@ void Scene::draw(RenderWindow&e)
 	centre.y -= 450;
 
 	e.clear();
-	//cout << " player TEXTURE ->  x:" << player->getTexture()->getSize().x << "  y:" << player->getTexture()->getSize().y << endl;
 	player->drawMe(e);
+
 	
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
@@ -423,16 +423,20 @@ bool Scene::testCollide(GameObject*e , Direction D)
 #pragma endregion
 
 #pragma region entity_collision
-	Mur* MurPointer;
+	Mur* MurPtr;
 	OneWay* oneWayPtr;
 	spike* spikePtr;
+	GameEntity* gEptr;
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
+		/*
+		Cas particuliers
+		*/
 		if (!TraverseMur) {
-			MurPointer = dynamic_cast<Mur*>(gameObjects.at(i));
-			if (MurPointer) {
-				if (collisionBox.intersects(MurPointer->getSprite()->getGlobalBounds())) {
+			MurPtr = dynamic_cast<Mur*>(gameObjects.at(i));
+			if (MurPtr) {
+				if (collisionBox.intersects(MurPtr->getSprite()->getGlobalBounds())) {
 					//cout << "Colliding\n";
 					return true;
 				}
@@ -477,6 +481,21 @@ bool Scene::testCollide(GameObject*e , Direction D)
 			if (PlayerPointer && ActualBox.intersects(spikePtr->getSprite()->getGlobalBounds())) {
 				// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
 				score = 0;
+			}
+			continue;
+		}
+
+
+		/*
+		Cas général
+		*/
+		gEptr = dynamic_cast<GameEntity *>(gameObjects.at(i));
+		if (gEptr) {
+			if (!gEptr->getTraversable()) {
+				if (collisionBox.intersects(gEptr->getSprite()->getGlobalBounds())) {
+					//cout << "Colliding\n";
+					return true;
+				}
 			}
 			continue;
 		}
@@ -684,9 +703,6 @@ int Scene::update(RenderWindow& GM)
 	}
 
 
-
-
-
 	player->updatePos(9.8/12);
 #pragma endregion
 
@@ -694,7 +710,6 @@ int Scene::update(RenderWindow& GM)
 	if (score <= 0)
 		retour = sceneOutput::Restart;
 
-	cout << to_string(score) << endl;
 	ScoreString.setString(to_string(score));
 	return retour;
 }

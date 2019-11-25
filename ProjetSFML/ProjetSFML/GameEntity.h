@@ -12,6 +12,7 @@ public:
 	GameEntity();
 	GameEntity(bool);
 	GameEntity(bool, Vector2f, Texture, IntRect);
+	GameEntity(bool, int, Vector2f, Texture, IntRect);
 
 	bool getTraversable();
 	void setTraversable(bool);

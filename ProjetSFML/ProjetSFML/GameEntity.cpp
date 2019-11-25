@@ -26,6 +26,11 @@ GameEntity::GameEntity(bool t, Vector2f pos, Texture tex, IntRect rect) : GameOb
 	traversable = t;
 }
 
+GameEntity::GameEntity(bool t, int intervalFrame, Vector2f pos, Texture tex, IntRect rect) : GameObject(intervalFrame,pos, tex, rect)
+{
+	traversable = t;
+}
+
 
 void GameEntity::interact()
 {
