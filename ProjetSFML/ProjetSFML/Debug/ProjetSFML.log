@@ -16,8 +16,8 @@ D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(516,20): warning C4018: '<': s
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(524,20): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(535,20): warning C4018: '<': signed/unsigned mismatch
 D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(546,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(661,23): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(706,24): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(772,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(858,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(664,23): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(709,24): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(775,20): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(861,20): warning C4018: '<': signed/unsigned mismatch
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

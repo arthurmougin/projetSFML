@@ -556,8 +556,11 @@ bool Scene::testCollide(GameObject*e , Direction D)
 
 				//Si on cherche à tester les collisions d'un MobileGameplayElement
 				if (MobileGameplayElementPointer) {
+					cout << "MobileGamePlayElementTesting" << endl;
 					//si l'élément collider  est identique à l'element testé
-					if (moptr->getSprite()->getGlobalBounds() == collisionBox) {
+					if (moptr->getSprite()->getGlobalBounds() == ActualBox) {
+						cout << "The same" << endl;
+
 						//on passe à l'élément suivant
 						continue;
 					}
