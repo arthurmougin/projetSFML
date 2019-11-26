@@ -69,7 +69,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 	IntRect MyEntityTextRect, MyPlayerTextRect;
 	//EntityScale = ratio de proportion des entitées;
 	//ArenaScale = Dimension de la case occupée par un élément
-	Vector2f EntityScale(20,20), PlayerScale(10, 10),ArenaScale(160,160), MyPosition;
+	Vector2f EntityScale(20,20), PlayerScale(9, 9),ArenaScale(160,160), MyPosition;
 
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
@@ -360,6 +360,18 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
+					case ElementTypes::SWITCH:
+						try {
+							cout << endl << "SWITCH at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 1 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
+							Switch* swptr = new Switch(MyPosition, nonPlayerTex, MyEntityTextRect);
+							swptr->getSprite()->setScale(EntityScale);
+							switches.push_back(swptr);
+							gameObjects.push_back(swptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
 					default:
 						cout << "l'index de la case " << x << "x "<< y << "y n'est pas connu" << endl;
 				}
@@ -576,7 +588,19 @@ int Scene::update(RenderWindow& GM)
 			
 			*/
 			if (event.key.code == Keyboard::Down) {
-				cout << "discard" << endl;
+				vector <GameObject*> goptr;
+				for (int i = 0; i < switches.size(); i++)
+				{
+					goptr.push_back(switches.at(i));
+				}
+				if (walkOn(player, goptr)) {
+					cout << "switchColor" << endl;
+					switches.at(0)->interact(this);
+				}
+				else {
+					cout << "discard" << endl;
+				}
+				
 			}
 			if (event.key.code == Keyboard::RControl) {
 				cout << "Inhale/Hexale" << endl;
@@ -673,13 +697,13 @@ int Scene::update(RenderWindow& GM)
 		if (player->getHauteur() != 0) {
 			player->setHauteur(0);
 			float localY = player->getSprite()->getPosition().y,LocalDelta;
-			localY = (int(localY) % 160)+ localY- int(localY);
+			localY = (int(localY) % 160)+ localY - int(localY);
 			cout << "localy : " << localY << endl;
-			if (localY < 80) {
-				localY = -localY;
+			if (localY < (80)) {
+				localY = -localY + 32;
 			}
 			else {
-				localY = 160 - localY;
+				localY = 160 - localY -32;
 			}
 			player->getSprite()->move(Vector2f(0, localY));
 		}
@@ -687,7 +711,6 @@ int Scene::update(RenderWindow& GM)
 	else if (player->getHauteur() == 0) {
 		player->setHauteur(1);
 		
-		//if(player->getSprite()->getPosition().x)
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
@@ -762,5 +785,29 @@ Vector2f Scene::getSpawnPoint()
 void Scene::setSpawnPoint(Vector2f s)
 {
 	spawnPoint = s;
+}
+
+vector<Bouteille*> Scene::getBouteilles()
+{
+	return bouteilles;
+}
+
+void Scene::setBouteilles(vector<Bouteille*> b)
+{
+	bouteilles = b;
+}
+
+bool Scene::walkOn(GameObject* mvr, vector<GameObject*> obstcl)
+{
+	FloatRect box = mvr->getSprite()->getGlobalBounds();
+	box.top += 10;// on descend la boite pour detecter une collision avec les objets
+
+	for (int i = 0; i < obstcl.size(); i++)
+	{
+		if (box.intersects(obstcl.at(i)->getSprite()->getGlobalBounds()));
+		return true;
+	}
+
+	return false;
 }
 

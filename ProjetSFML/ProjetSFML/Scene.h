@@ -7,8 +7,10 @@
 #include "Mur.h"
 #include "Player.h"
 #include "OneWay.h"
+#include "Switch.h"
 #include "spike.h"
 #include "Bouteille.h"
+
 
 using namespace std;
 using namespace sf;
@@ -31,6 +33,7 @@ protected:
 	vector <OneWay*> oneWays;
 	vector <spike*> spikes;
 	vector <Bouteille*> bouteilles;
+	vector <Switch*> switches;
 	Player *player;
 	Vector2f spawnPoint;
 
@@ -56,5 +59,8 @@ public:
 	void setPlayer(Player);
 	Vector2f getSpawnPoint();
 	void setSpawnPoint(Vector2f);
+	vector <Bouteille*> getBouteilles();
+	void setBouteilles(vector <Bouteille*>);
+	bool walkOn(GameObject*, vector <GameObject*>);
 };
 
