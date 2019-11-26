@@ -22,7 +22,10 @@ void GameMaster::run()
 			//cout << float(MainClock.getElapsedTime().asSeconds()) << " " << float(1 / 25)  << endl;
 			//si la map est en cours de jeu
 			if (mainMap.getIsPlaying()) {
+				cout << " TEST1" << endl;
 				mainMap.update(*this);
+				cout << " TEST2" << endl;
+
 				mainMap.draw(*this);
 			}
 			else {

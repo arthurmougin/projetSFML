@@ -274,21 +274,29 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::SPAWN:
 						try {
+							cout << "a1\n";
 							cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
-							if (x + 1 < myLine.size() && myLine.at(x + 1) == ElementTypes::VIDE && y + 1 < myMatrice.size() && myMatrice.at(x).at(y + 1) == ElementTypes::VIDE && myMatrice.at(x + 1).at(y + 1) == ElementTypes::VIDE) {
+							cout << "a2\n";
+							cout << myLine.size() << " " << myMatrice.size() << endl;
+							if ((x + 1 < myLine.size()) && (myLine.at(x + 1) == ElementTypes::VIDE) && (y + 1 < myMatrice.size()) && (myMatrice.at(x).at(y + 1) == ElementTypes::VIDE) && (myMatrice.at(x + 1).at(y + 1) == ElementTypes::VIDE)) {
 								cout << "VALIDE" << endl;
 							}
 							else {
 								cout << "INVALIDE" << endl;
 							}
+							cout << "a3\n";
+
 							MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
 							MyPlayerTextRect.left = MyPlayerTextRect.width * 0;
 							MyPlayerTextRect.top = MyPlayerTextRect.height * 0;
+							cout << "a4\n";
 
 							cout << "Rectangle : x:" << MyPlayerTextRect.left << " y:" << MyPlayerTextRect.top << " width:" << MyPlayerTextRect.width << " height:" << MyPlayerTextRect.height << endl;
+							cout << "a5\n";
 
 							spawnPoint.x = MyPosition.x;
 							spawnPoint.y = MyPosition.y;
+							cout << "a6\n";
 
 							/**
 							player.setTexture(PlayerTex);
@@ -622,6 +630,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 
 int Scene::update(RenderWindow& GM)
 {
+
 	/*
 	enum sceneOutput {RienASignaler = -1,
 		QuickSave = -2,
