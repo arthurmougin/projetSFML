@@ -470,6 +470,10 @@ bool Scene::testCollide(GameObject*e , Direction D)
 
 	Player* PlayerPointer;
 	PlayerPointer = dynamic_cast<Player*>(e);
+	MobileEntity* MobileEntityptr;
+	MobileEntityptr = dynamic_cast<MobileEntity*>(e);
+	MobileGameplayElement* MobileGameplayElementPointer = dynamic_cast<MobileGameplayElement*>(e);
+
 	if (PlayerPointer) {
 		collisionBox = PlayerPointer->getUpdatedFantome(D).getGlobalBounds();
 		ActualBox = PlayerPointer->getSprite()->getGlobalBounds();
@@ -477,6 +481,14 @@ bool Scene::testCollide(GameObject*e , Direction D)
 		TraverseMur = PlayerPointer->getTraverseMur();
 		MarcheSurBlock = PlayerPointer->getMarcheSurBlock();
 		hauteur = PlayerPointer->getHauteur();
+	}
+	else if (MobileEntityptr) {
+		collisionBox = MobileEntityptr->getUpdatedFantome(D).getGlobalBounds();
+		ActualBox = MobileEntityptr->getSprite()->getGlobalBounds();
+		TraverseBlock = MobileEntityptr->getTraverseBlock();
+		TraverseMur = MobileEntityptr->getTraverseMur();
+		MarcheSurBlock = MobileEntityptr->getMarcheSurBlock();
+		hauteur = MobileEntityptr->getHauteur();
 	}
 	// A CODER : ROCHER, BLOC, BLOC_VIVANT, ANIMAL
 	else {
@@ -534,28 +546,38 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	for (int i = 0; i < grabbablesETInhalables.size(); i++) {
 		mgeptr = dynamic_cast<MobileGameplayElement*>(grabbablesETInhalables.at(i));
 
-		if (mgeptr) {//cas des éléments héritant de MobileGameplauElement
+		if (mgeptr) {//cas des éléments héritant de MobileGameplayElement
+
+
+
 			fEptr = mgeptr; //On teste leur heritage en focusable Element pour savoir s'ils sont traversable
-			if (fEptr->getTraversable()) {
+			if (!fEptr->getTraversable()) {
 				moptr = mgeptr;//On les convertie en MobileEntity pour leur sprite
+
+				//Si on cherche à tester les collisions d'un MobileGameplayElement
+				if (MobileGameplayElementPointer) {
+					//si l'élément collider  est identique à l'element testé
+					if (moptr->getSprite()->getGlobalBounds() == collisionBox) {
+						//on passe à l'élément suivant
+						continue;
+					}
+				}
 				if (collisionBox.intersects(moptr->getSprite()->getGlobalBounds())) {
 					return true;
 				}
 			}
-			continue;
 		}
-
-		//cas du rocher
-		fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
-		if (fEptr) {
+		else { // cas opposé
+			fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
 			if (!fEptr->getTraversable()) {
 				if (collisionBox.intersects(fEptr->getSprite()->getGlobalBounds())) {
-					//cout << "Colliding\n";
 					return true;
 				}
 			}
-			continue;
 		}
+
+		//cas de Bouteille
+		
 
 	}
 
@@ -661,6 +683,16 @@ int Scene::update(RenderWindow& GM)
 						cout << "entity" << endl;
 						grabbablesETInhalables.push_back(player->getBringElement());
 						player->setBringElement(NULL);
+						/*
+							Dans le cas d'un depot d'objet dynamique,
+							on le met a jour pour qu'il puisse reprendre conscience de sa position
+						*/
+
+						MobileEntity* mEptr = dynamic_cast<MobileEntity*>(grabbablesETInhalables.at( 
+							grabbablesETInhalables.size() - 1
+						));
+						if (mEptr)
+							mEptr->update(this);
 
 					}
 					else {
@@ -736,6 +768,20 @@ int Scene::update(RenderWindow& GM)
 
 	player->update(this);
 
+	//Mise a jour de tout les éléments dynamiques
+	for (int i = 0; i < grabbablesETInhalables.size(); i++)
+	{
+		//si ils héritent de MobileGameplayElement
+		MobileGameplayElement* mgeptr = dynamic_cast<MobileGameplayElement*>(grabbablesETInhalables.at(i));
+		if (mgeptr) {
+			if (mgeptr->getMovingState() != IDLE) {
+				//On les caste en MobileEntity pour eviter les soucis d'heritage sur update (hérité de gameObject)
+				MobileEntity* mEptr = mgeptr;
+				mEptr->update(this);
+			}
+			continue;
+		}
+	}
 
 	if (score <= 0)
 		retour = sceneOutput::Restart;

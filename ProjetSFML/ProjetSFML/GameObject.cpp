@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Scene.h"
 
 GameObject::GameObject()
 {
@@ -35,7 +36,7 @@ void GameObject::drawMe(RenderWindow &R)
 	R.draw(sprite);
 }
 
-void GameObject::update()
+void GameObject::update(Scene *)
 {
 }
 

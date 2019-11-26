@@ -158,7 +158,6 @@ GameObject* Player::getBringElement()
 
 void Player::setBringElement(GameObject* be)
 {
-	cout << "yoollloooo"<< endl;
 	if (be != NULL)
 	{
 		bringElement = be;
@@ -177,7 +176,6 @@ void Player::setBringElement(GameObject* be)
 		bringSomething = false;
 		textureRect.top = 0 * 2 * textureRect.height;
 	}
-
 }
 
 GameColor Player::getBringColor()
@@ -200,7 +198,7 @@ void Player::placeBringElement()
 	Vector2f newPos = sprite.getPosition();
 	FloatRect gb = sprite.getGlobalBounds();
 	//on regarde le type de texture sur le joueur (si c'est la texture droite ou la texture gauche)
-	newPos.y = gb.top + (gb.height / 2);
+	newPos.y = gb.top + (gb.height / 4);
 	if (sprite.getTextureRect().top == this->textureRect.top) {
 		// right
 		newPos.x = gb.left + gb.width;
@@ -210,4 +208,6 @@ void Player::placeBringElement()
 		newPos.x = gb.left - bringElement->getSprite()->getGlobalBounds().width;
 	}
 	bringElement->getSprite()->setPosition(newPos);
+
+
 }

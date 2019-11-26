@@ -2,40 +2,44 @@
 
 MobileGameplayElement::MobileGameplayElement():MobileEntity(),FocusableElement()
 {
-	MovingState = IDLE;
+	movingState = IDLE;
 	HateWalls = true;
 	heavy = false;
 }
 
 MobileGameplayElement::MobileGameplayElement(bool hw, bool hv) :MobileEntity(), FocusableElement()
 {
-	MovingState = IDLE;
+	movingState = IDLE;
 	HateWalls = hw;
 	heavy = hv;
 }
 
-MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, Vector2f position, Texture texture, IntRect textrect):FocusableElement(traversable),MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, position, texture, textrect)
+MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, Vector2f position, Texture texture, IntRect textrect)
+	:FocusableElement(traversable),MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, position, texture, textrect)
 {
-	MovingState = IDLE;
+	cout << "traversable" << traversable << endl;
+	movingState = IDLE;
 	HateWalls = hateW;
 	heavy = heavii;
 }
 
-MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, int intervalframe, Vector2f position, Texture texture, IntRect textrect) :FocusableElement(traversable),MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, intervalframe, position, texture, textrect)
+MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, int intervalframe, Vector2f position, Texture texture, IntRect textrect) 
+	:FocusableElement(traversable),MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, intervalframe, position, texture, textrect)
 {
-	MovingState = IDLE;
+	cout << "traversable" << traversable << endl;
+	movingState = IDLE;
 	HateWalls = hateW;
 	heavy = heavii;
 }
 
-enum movingState MobileGameplayElement::getMovingState()
+enum MovingState MobileGameplayElement::getMovingState()
 {
-	return MovingState;
+	return movingState;
 }
 
-void MobileGameplayElement::setMovingState(enum movingState m)
+void MobileGameplayElement::setMovingState(enum MovingState m)
 {
-	MovingState = m;
+	movingState = m;
 }
 
 bool MobileGameplayElement::getHateWalls()

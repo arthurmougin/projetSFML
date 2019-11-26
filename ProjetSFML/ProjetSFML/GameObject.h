@@ -22,7 +22,7 @@ Color getColorFromEnum(GameColor);
 
 GameColor getEnumFromColor(Color);
 
-
+class Scene;
 class GameObject
 {
 protected:
@@ -38,7 +38,7 @@ public:
 	GameObject(Vector2f, Texture, IntRect);
 	GameObject(int, Vector2f, Texture, IntRect);
 	void drawMe(RenderWindow&);
-	virtual void update();
+	virtual void update(Scene *);
 
 
 	Sprite* getSprite();
