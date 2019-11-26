@@ -61,7 +61,7 @@ void Player::update(Scene*scene)
 		setAcceleration(Vector2f(0, 0));
 		float localY = getSprite()->getPosition().y, LocalDelta;
 		localY = (int(localY) % 160) + localY - int(localY);
-		//cout << "localy : " << localY << endl;
+		cout << "localy : " << localY << endl;
 		if (localY < 80) {
 			localY = -localY;
 		}

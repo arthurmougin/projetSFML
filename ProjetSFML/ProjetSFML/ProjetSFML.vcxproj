@@ -166,25 +166,8 @@
     <ClInclude Include="Switch.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="img\Global Sprite2.png" />
-    <Image Include="img\Global Sprites.png" />
     <Image Include="img\NonPlayer.png" />
-    <Image Include="img\NonPlayerBleu.png" />
     <Image Include="img\Player.png" />
-    <Image Include="img\PlayerBleu.png" />
-    <Image Include="img\Player_left_animal.png" />
-    <Image Include="img\Player_left_block.png" />
-    <Image Include="img\Player_left_normal.png" />
-    <Image Include="img\Player_left_rocher.png" />
-    <Image Include="img\Player_right_animal.png" />
-    <Image Include="img\Player_right_block.png" />
-    <Image Include="img\Player_right_normal.png" />
-    <Image Include="img\Player_right_rocher.png" />
-    <Image Include="img\test.png" />
-    <Image Include="img\test2.png" />
-    <Image Include="sprites\NonPlayerBleu.png" />
-    <Image Include="sprites\Player.png" />
-    <Image Include="sprites\PlayerBleu.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="PressStart2P-Regular.ttf" />

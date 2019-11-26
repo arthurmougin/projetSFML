@@ -504,7 +504,6 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	for (int i = 0; i < oneWays.size(); i++) {
 		oneWayPtr = oneWays.at(i);
 		if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
-			//cout << "Colliding\n";
 			return true;
 		}
 	}
