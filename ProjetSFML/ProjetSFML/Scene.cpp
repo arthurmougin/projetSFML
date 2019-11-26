@@ -323,6 +323,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
+							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -442,9 +443,9 @@ void Scene::draw(RenderWindow&e)
 		spikes[i]->drawMe(e);
 	}
 
-	for (int i = 0; i < spikes.size(); i++)
+	for (int i = 0; i < switches.size(); i++)
 	{
-		spikes[i]->drawMe(e);
+		switches[i]->drawMe(e);
 	}
 
 	for (int i = 0; i < grabbablesETInhalables.size(); i++)
@@ -516,6 +517,14 @@ bool Scene::testCollide(GameObject*e , Direction D)
 				score = 0;
 			else
 				return true;
+		}
+	}
+
+	Switch* swtchptr;
+	for (int i = 0; i < switches.size(); i++) {
+		swtchptr = switches.at(i);
+		if (collisionBox.intersects(swtchptr->getSprite()->getGlobalBounds())) {
+			return true;
 		}
 	}
 
@@ -669,8 +678,13 @@ int Scene::update(RenderWindow& GM)
 							cout << "found something to inhale" << endl;
 							Bouteille* btptr = dynamic_cast <Bouteille* >(grabbablesETInhalables.at(i));
 							if (btptr) {
-								cout << "Pick Color" << endl;
-								player->setBringColor(btptr->getColor());
+								if (btptr->getInhalable()) {
+									cout << "Pick Color" << endl;
+									player->setBringColor(btptr->getColor());
+								}
+								else {
+									cout << "bouteille vivante" << endl;
+								}
 							}
 							else {
 								cout << "Pick Entity" << endl;
