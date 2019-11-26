@@ -118,6 +118,7 @@ void MobileEntity::moveTo(Direction d)
 		if (Hauteur == 0) {
 			if (!flying) {
 				Hauteur = 1;
+				
 				acceleration.y = -30;
 			}
 			direction.y = -1;

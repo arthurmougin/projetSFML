@@ -74,7 +74,7 @@ void Player::update(Scene*scene)
 			setHauteur(0);
 			float localY = getSprite()->getPosition().y, LocalDelta;
 			localY = (int(localY) % 160) + localY - int(localY);
-			cout << "localy : " << localY << endl;
+			//cout << "localy : " << localY << endl;
 			if (localY < (80)) {
 				localY = -localY + 32;
 			}
@@ -107,10 +107,13 @@ FloatRect Player::getInteractionBox()
 {
 	FloatRect gb = sprite.getGlobalBounds();
 	interactionBox.top = gb.top - ((interactionBox.height - gb.height)/2);
+	//on regarde le type de texture sur le joueur (si c'est la texture droite ou la texture gauche)
 	if (sprite.getTextureRect().top == this->textureRect.top) {
+		// right
 		interactionBox.left = gb.left + gb.width;
 	}
 	else {
+		//left
 		interactionBox.left = gb.left - interactionBox.width;
 	}
 	return interactionBox;
@@ -137,9 +140,11 @@ bool Player::getBringSomething()
 void Player::setBringSomething(bool b)
 {
 	bringSomething = b;
+	/**
 	bringElement = NULL;
 	bringColor = NOCOLOR;
 	sprite.setColor(getColorFromEnum(bringColor));
+	/**/
 }
 
 GameObject* Player::getBringElement()
@@ -149,8 +154,26 @@ GameObject* Player::getBringElement()
 
 void Player::setBringElement(GameObject* be)
 {
-	bringElement = be;
-	bringSomething = true;
+	cout << "yoollloooo"<< endl;
+	if (be != NULL)
+	{
+		bringElement = be;
+		bringSomething = true;
+		bringColor = NOCOLOR;
+
+		if (dynamic_cast<Rocher*>(bringElement)) {
+			textureRect.top = 3 * 2 * textureRect.height;
+		}
+	}
+	else {
+		if (bringElement != NULL) {// Si il y a un élément, on le replace dans la scene
+			placeBringElement();
+		}
+		bringElement = be;
+		bringSomething = false;
+		textureRect.top = 0 * 2 * textureRect.height;
+	}
+
 }
 
 GameColor Player::getBringColor()
@@ -166,4 +189,21 @@ void Player::setBringColor(GameColor b)
 		bringSomething = false;
 	else
 		bringSomething = true;
+}
+
+void Player::placeBringElement()
+{
+	Vector2f newPos = sprite.getPosition();
+	FloatRect gb = sprite.getGlobalBounds();
+	//on regarde le type de texture sur le joueur (si c'est la texture droite ou la texture gauche)
+	newPos.y = gb.top + (gb.height / 2);
+	if (sprite.getTextureRect().top == this->textureRect.top) {
+		// right
+		newPos.x = gb.left + gb.width;
+	}
+	else {
+		// 
+		newPos.x = gb.left - bringElement->getSprite()->getGlobalBounds().width;
+	}
+	bringElement->getSprite()->setPosition(newPos);
 }

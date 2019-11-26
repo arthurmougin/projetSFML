@@ -6,7 +6,7 @@ GameEntity::GameEntity():GameObject()
 }
 
 
-GameEntity::GameEntity(bool t):GameObject()
+GameEntity::GameEntity(bool t)
 {
 	traversable = t;
 }

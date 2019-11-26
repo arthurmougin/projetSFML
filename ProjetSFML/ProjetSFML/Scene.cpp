@@ -377,6 +377,32 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
+					case ElementTypes::ROCHER:
+						try {
+							cout << endl << "ROCHER at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 3 * MyEntityTextRect.width;
+							Rocher* rchptr = new Rocher(MyPosition, nonPlayerTex, MyEntityTextRect);
+
+							/*
+							Comme Rocher Hérite de GameObject par 
+							MobileEntity et FocusableElement par le biais de MobileGameplayElement,
+
+							Le cast et l'accès aux fonctions de GameObject sont ambigues.
+
+							Pour résoudre l'ambiguité, on force le caste par MobileEntity.
+
+							Le choix de MobileEntity est lié à la structure du constructeur de Rocher.
+							Celuici favorise MobileEntity pour la création de la sprite.
+							
+							*/
+							GameObject* goptr = dynamic_cast<MobileEntity*>(rchptr);
+							goptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(goptr);
+							gameObjects.push_back(goptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
 					default:
 						cout << "l'index de la case " << x << "x "<< y << "y n'est pas connu" << endl;
 				}
@@ -398,13 +424,35 @@ void Scene::draw(RenderWindow&e)
 	centre.y -= 450;
 
 	e.clear();
-	player->drawMe(e);
+	
 
 	
-	for (int i = 0; i < gameObjects.size(); i++)
+	for (int i = 0; i < murs.size(); i++)
 	{
-		gameObjects[i]->drawMe(e);
+		murs[i]->drawMe(e);
 	}
+
+	for (int i = 0; i < oneWays.size(); i++)
+	{
+		oneWays[i]->drawMe(e);
+	}
+
+	for (int i = 0; i < spikes.size(); i++)
+	{
+		spikes[i]->drawMe(e);
+	}
+
+	for (int i = 0; i < spikes.size(); i++)
+	{
+		spikes[i]->drawMe(e);
+	}
+
+	for (int i = 0; i < grabbablesETInhalables.size(); i++)
+	{
+		grabbablesETInhalables[i]->drawMe(e);
+	}
+
+	player->drawMe(e);
 	
 	ScoreString.setPosition(centre);
 	e.draw(ScoreString);
@@ -440,106 +488,92 @@ bool Scene::testCollide(GameObject*e , Direction D)
 #pragma endregion
 
 #pragma region entity_collision
-	Mur* MurPtr;
-	OneWay* oneWayPtr;
-	spike* spikePtr;
-	GameEntity* gEptr;
-
-	for (int i = 0; i < gameObjects.size(); i++)
-	{
-		/*
-		Cas particuliers
-		*/
-		if (!TraverseMur) {
-			MurPtr = dynamic_cast<Mur*>(gameObjects.at(i));
-			if (MurPtr) {
-				if (collisionBox.intersects(MurPtr->getSprite()->getGlobalBounds())) {
-					//cout << "Colliding\n";
-					return true;
-				}
-				continue;
-			}
-			
-		}
-
-		oneWayPtr = dynamic_cast<OneWay*>(gameObjects.at(i));
-		if(oneWayPtr)
-		{ 
-			/*if (D == Direction::DROITE)
-				cout << "DROITE : \n";
-			if (D == Direction::HAUT)
-				cout << "HAUT : \n";
-			if (D == Direction::BAS)
-				cout << "BAS : \n";
-			if (D == Direction::GAUCHE)
-				cout << "GAUCHE : \n";
-			cout << "sprite Collide = " << (ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()));
-			cout << "fantome Collide = " << collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds());
-			cout << "blocdirection = direction : " << (D == oneWayPtr->getBlockDirection()) << "true:" << true << endl;*/
-			if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
-				/*
-				Conditions : 
-					1 = C'est un OneWay
-					2 = l'entité n'est pas actuellement dans la zone de colision
-					3 = la direction est la bonne
-					4 = le fantome est dans la zone de colision
-			
-				*/
-				cout << "Colliding\n";
-
+	if (!TraverseMur) {
+		Mur* MurPtr;
+		for (int i = 0; i < murs.size(); i++) {
+			MurPtr = murs.at(i);
+			if (collisionBox.intersects(MurPtr->getSprite()->getGlobalBounds())) {
+				//cout << "Colliding\n";
 				return true;
 			}
-			
-			continue;
 		}
+	}
 
-		spikePtr = dynamic_cast<spike*>(gameObjects.at(i));
-		if (spikePtr) {
-			if (PlayerPointer && ActualBox.intersects(spikePtr->getSprite()->getGlobalBounds())) {
-				// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
+	OneWay* oneWayPtr;
+	for (int i = 0; i < oneWays.size(); i++) {
+		oneWayPtr = oneWays.at(i);
+		if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
+			//cout << "Colliding\n";
+			return true;
+		}
+	}
+
+	spike* spikePtr;
+	for (int i = 0; i < spikes.size(); i++) {
+		spikePtr = spikes.at(i);
+		if (ActualBox.intersects(spikePtr->getSprite()->getGlobalBounds())) {
+			if (PlayerPointer)// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
 				score = 0;
+			else
+				return true;
+		}
+	}
+
+	MobileGameplayElement* mgeptr;
+	MobileEntity* moptr;
+	FocusableElement* fEptr;
+
+	for (int i = 0; i < grabbablesETInhalables.size(); i++) {
+		mgeptr = dynamic_cast<MobileGameplayElement*>(grabbablesETInhalables.at(i));
+
+		if (mgeptr) {//cas des éléments héritant de MobileGameplauElement
+			fEptr = mgeptr; //On teste leur heritage en focusable Element pour savoir s'ils sont traversable
+			if (fEptr->getTraversable()) {
+				moptr = mgeptr;//On les convertie en MobileEntity pour leur sprite
+				if (collisionBox.intersects(moptr->getSprite()->getGlobalBounds())) {
+					return true;
+				}
 			}
 			continue;
 		}
 
-
-		/*
-		Cas général
-		*/
-		gEptr = dynamic_cast<GameEntity *>(gameObjects.at(i));
-		if (gEptr) {
-			if (!gEptr->getTraversable()) {
-				if (collisionBox.intersects(gEptr->getSprite()->getGlobalBounds())) {
+		//cas du rocher
+		fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
+		if (fEptr) {
+			if (!fEptr->getTraversable()) {
+				if (collisionBox.intersects(fEptr->getSprite()->getGlobalBounds())) {
 					//cout << "Colliding\n";
 					return true;
 				}
 			}
 			continue;
 		}
-		/*
-		case PIQUE:
-			break;
-		case SWITCH:
-			break;
-		case GOAL:
-			break;
-		case ROCHER:
-			break;
-		case BOUTEILLE:
-			break;
-		case BOUTEILLE_VIVANTE:
-			break;
-		case BLOC:
-			break;
-		case BLOC_VIVANT:
-			break;
-		case ANIMAL:
-			break;/*
-		default:
-			break;
-		}
-		*/
+
 	}
+
+	/*
+	case PIQUE:
+		break;
+	case SWITCH:
+		break;
+	case GOAL:
+		break;
+	case BOUTEILLE:
+		break;
+	case BOUTEILLE_VIVANTE:
+		break;
+	case BLOC:
+		break;
+	case BLOC_VIVANT:
+		break;
+	case ANIMAL:
+		break;/*
+	default:
+		break;
+	}
+	*/
+
+
 
 	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
 	if (PlayerPointer == NULL && collisionBox.intersects(player->getSprite()->getGlobalBounds())) {
@@ -614,6 +648,16 @@ int Scene::update(RenderWindow& GM)
 				cout << "Inhale/Hexale" << endl;
 				if (player->getBringSomething()) {
 					cout << "hexaling" << endl;
+
+					if(player->getBringColor() == NOCOLOR){
+						cout << "entity" << endl;
+						grabbablesETInhalables.push_back(player->getBringElement());
+						player->setBringElement(NULL);
+
+					}
+					else {
+						cout << "color" << endl;
+					}
 				}
 				else {
 					cout << "Inhaling" << endl;
@@ -627,7 +671,6 @@ int Scene::update(RenderWindow& GM)
 							if (btptr) {
 								cout << "Pick Color" << endl;
 								player->setBringColor(btptr->getColor());
-
 							}
 							else {
 								cout << "Pick Entity" << endl;
@@ -755,7 +798,7 @@ bool Scene::walkOn(GameObject* mvr, vector<GameObject*> obstcl)
 
 	for (int i = 0; i < obstcl.size(); i++)
 	{
-		cout << "test walkingOn" << i << endl;
+		//cout << "test walkingOn " << i << endl;
 		if (box.intersects(obstcl.at(i)->getSprite()->getGlobalBounds()))
 		return true;
 	}

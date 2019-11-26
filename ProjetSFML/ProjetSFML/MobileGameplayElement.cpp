@@ -14,14 +14,14 @@ MobileGameplayElement::MobileGameplayElement(bool hw, bool hv) :MobileEntity(), 
 	heavy = hv;
 }
 
-MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, Vector2f position, Texture texture, IntRect textrect):MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, position, texture, textrect),FocusableElement(traversable)
+MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, Vector2f position, Texture texture, IntRect textrect):FocusableElement(traversable),MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, position, texture, textrect)
 {
 	MovingState = IDLE;
 	HateWalls = hateW;
 	heavy = heavii;
 }
 
-MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, int intervalframe, Vector2f position, Texture texture, IntRect textrect) :MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, intervalframe, position, texture, textrect), FocusableElement(traversable)
+MobileGameplayElement::MobileGameplayElement(bool hateW, bool heavii, bool fly, double Speed, bool TraverseBlock, bool TraverseMur, bool MarcheSurBlock, bool traversable, int intervalframe, Vector2f position, Texture texture, IntRect textrect) :FocusableElement(traversable),MobileEntity(fly, Speed, TraverseBlock, TraverseMur, MarcheSurBlock, intervalframe, position, texture, textrect)
 {
 	MovingState = IDLE;
 	HateWalls = hateW;

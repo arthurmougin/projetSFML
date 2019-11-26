@@ -10,6 +10,7 @@
 #include "Switch.h"
 #include "spike.h"
 #include "Bouteille.h"
+#include "Rocher.h"
 
 
 using namespace std;

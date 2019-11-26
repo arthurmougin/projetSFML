@@ -11,8 +11,6 @@ class Switch:public GameEntity
 public:
 	Switch();
 	Switch(Vector2f, Texture, IntRect);
-
 	void interact(Scene *);
-
 };
 

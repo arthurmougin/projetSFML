@@ -23,6 +23,7 @@ public:
 	void setBringElement(GameObject*);
 	GameColor getBringColor();
 	void setBringColor(GameColor);
+	void placeBringElement();
 	
 };
 
