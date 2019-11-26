@@ -28,6 +28,7 @@ public:
 
 	void moveTo(Direction);
 	void updatePos(double);//Gravity
+	void initDirection();
 
 	Sprite getUpdatedFantome(Direction);
 

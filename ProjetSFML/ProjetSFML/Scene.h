@@ -29,11 +29,14 @@ protected:
 	int score;
 	Text ScoreString;
 	vector <GameObject *> gameObjects;
+	vector <GameObject *> grabbablesETInhalables;
+	vector <GameObject *> paintables;
 	vector <Mur*> murs;
 	vector <OneWay*> oneWays;
 	vector <spike*> spikes;
 	vector <Bouteille*> bouteilles;
 	vector <Switch*> switches;
+
 	Player *player;
 	Vector2f spawnPoint;
 
@@ -48,6 +51,7 @@ public:
 	void draw(RenderWindow&);
 	bool testCollide(GameObject*, Direction);
 	int update(RenderWindow&);
+	bool walkOn(GameObject*, vector <GameObject*>);
 
 	int getScore();
 	void setScore(int);
@@ -59,8 +63,10 @@ public:
 	void setPlayer(Player);
 	Vector2f getSpawnPoint();
 	void setSpawnPoint(Vector2f);
+
 	vector <Bouteille*> getBouteilles();
 	void setBouteilles(vector <Bouteille*>);
-	bool walkOn(GameObject*, vector <GameObject*>);
+
+	
 };
 

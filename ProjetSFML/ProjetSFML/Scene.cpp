@@ -309,7 +309,9 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Bouteille* btllptr = new Bouteille(true, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
-							gameObjects.push_back(btllptr);						}
+							gameObjects.push_back(btllptr);			
+							grabbablesETInhalables.push_back(btllptr);
+						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
 					case ElementTypes::BOUTEILLE_VIVANTE:
@@ -333,6 +335,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
+							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;					
@@ -345,6 +348,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
+							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -357,6 +361,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
+							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -599,11 +604,41 @@ int Scene::update(RenderWindow& GM)
 				}
 				else {
 					cout << "discard" << endl;
+					if (player->getBringColor() != NOCOLOR) {
+						player->setBringColor(NOCOLOR);
+					}
 				}
 				
 			}
 			if (event.key.code == Keyboard::RControl) {
 				cout << "Inhale/Hexale" << endl;
+				if (player->getBringSomething()) {
+					cout << "hexaling" << endl;
+				}
+				else {
+					cout << "Inhaling" << endl;
+					FloatRect interactionBox = player->getInteractionBox();
+
+					for (int i = 0; i < grabbablesETInhalables.size() && !player->getBringSomething(); i++)
+					{
+						if (interactionBox.intersects(grabbablesETInhalables.at(i)->getSprite()->getGlobalBounds())) {
+							cout << "found something to inhale" << endl;
+							Bouteille* btptr = dynamic_cast <Bouteille* >(grabbablesETInhalables.at(i));
+							if (btptr) {
+								cout << "Pick Color" << endl;
+								player->setBringColor(btptr->getColor());
+
+							}
+							else {
+								cout << "Pick Entity" << endl;
+								player->setBringElement(grabbablesETInhalables.at(i));
+								grabbablesETInhalables.erase(grabbablesETInhalables.begin() + i);
+								grabbablesETInhalables.shrink_to_fit();
+							}
+
+						}
+					}
+				}
 			}
 			if (event.key.code == Keyboard::S || event.key.code == Keyboard::Numpad1) {
 				cout << "Select" << endl;
@@ -642,94 +677,10 @@ int Scene::update(RenderWindow& GM)
 		}
 	}
 
-#pragma region playerMove
-	//cout << endl;
-	/*
-	setup original :
-		--
-			if keyboard Haut && !TestCollide Haut 
-				moveto Up
 
-			if keyboard Bas && !TestCollide Bas 
-				moveto Down
-
-			if playerhauteur!=0 &&é && TestCollide Haut
-				Kill velocity
-
-			if playerhauteur!=0 && TestCollide Bas
-				Faire attérir le personnage
-
-			if playerhauteur==0 && !TestCollide Bas
-				Faire tomber le personnage
-		--
-		avantages = propreté
-		defaut = TestCollide est Très gourmand
-
-		La nouvelle architecture peut paraitre bordellique, mais elle a l'avantage de limiter les calls de TestCollide
-	
-	*/
-
-	//Input dans les 4 directions
-	bool testcollhaut,testcollbas;
-	testcollhaut = testCollide(player, Direction::HAUT);
-	if (player->getHauteur() == 0 && Keyboard::isKeyPressed(Keyboard::Up) && !testcollhaut) {
-		//cout << "Up" << endl;
-		score -= 3;
-		player->moveTo(Direction::HAUT);
-	}	
-	//si la hauteur du personnage est superieur à 0, on vérifie s'il ne s'est pas cogné la tete
-	if (player->getHauteur() != 0 && testcollhaut) {
-		player->setAcceleration(Vector2f(0, 0));
-		float localY = player->getSprite()->getPosition().y, LocalDelta;
-		localY = (int(localY) % 160) + localY - int(localY);
-		//cout << "localy : " << localY << endl;
-		if (localY < 80) {
-			localY = -localY;
-		}
-		else {
-			localY = 160 - localY;
-		}
-		player->getSprite()->move(Vector2f(0, localY));
-	}
-	testcollbas = testCollide(player, Direction::BAS);
-
-	if (testcollbas) {
-		if (player->getHauteur() != 0) {
-			player->setHauteur(0);
-			float localY = player->getSprite()->getPosition().y,LocalDelta;
-			localY = (int(localY) % 160)+ localY - int(localY);
-			cout << "localy : " << localY << endl;
-			if (localY < (80)) {
-				localY = -localY + 32;
-			}
-			else {
-				localY = 160 - localY -32;
-			}
-			player->getSprite()->move(Vector2f(0, localY));
-		}
-	}
-	else if (player->getHauteur() == 0) {
-		player->setHauteur(1);
-		
-	}
-
-	if (Keyboard::isKeyPressed(Keyboard::Left) && !testCollide(player, Direction::GAUCHE)) {
-		score -= 1;
-		//cout << "Left" << endl;
-		player->moveTo(Direction::GAUCHE);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Right) && !testCollide(player, Direction::DROITE))
-	{
-		score -= 1;
-		//cout << "Right" << endl;
-		player->moveTo(Direction::DROITE);
-	}
+	player->update(this);
 
 
-	player->updatePos(9.8/12);
-#pragma endregion
-
-	//cout << endl;
 	if (score <= 0)
 		retour = sceneOutput::Restart;
 
@@ -804,7 +755,8 @@ bool Scene::walkOn(GameObject* mvr, vector<GameObject*> obstcl)
 
 	for (int i = 0; i < obstcl.size(); i++)
 	{
-		if (box.intersects(obstcl.at(i)->getSprite()->getGlobalBounds()));
+		cout << "test walkingOn" << i << endl;
+		if (box.intersects(obstcl.at(i)->getSprite()->getGlobalBounds()))
 		return true;
 	}
 

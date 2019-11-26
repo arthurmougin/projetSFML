@@ -1,16 +1,4 @@
-﻿  Scene.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(81,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(83,21): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(99,22): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(125,23): warning C4018: '>=': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(132,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(278,18): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(278,85): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(399,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(443,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(592,23): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(683,56): warning C4101: 'LocalDelta': unreferenced local variable
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(699,56): warning C4101: 'LocalDelta': unreferenced local variable
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(805,20): warning C4018: '<': signed/unsigned mismatch
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Scene.cpp(807,68): warning C4390: ';': empty controlled statement found; is this the intent?
+﻿  Player.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(59,48): warning C4101: 'LocalDelta': unreferenced local variable
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(75,49): warning C4101: 'LocalDelta': unreferenced local variable
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

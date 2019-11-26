@@ -150,6 +150,11 @@ void MobileEntity::updatePos(double G)
 	//cout << "x:" << sprite.getPosition().x << " y:" << sprite.getPosition().y;
 	//cout << "dy:" << direction.y << " ay:" << acceleration.y << "tot:" << (direction.y * speed) + acceleration.y << "h" << Hauteur << endl;
 	sprite.move((direction.x * speed) + acceleration.x, (direction.y * speed) + acceleration.y);
+	
+}
+
+void MobileEntity::initDirection()
+{
 	direction = Vector2f(0, 0);
 }
 
