@@ -284,10 +284,8 @@ Fonctions dupliquées et adaptées de MobileEntity
 
 void MobileGameplayElement::moveTo(Direction d)
 {
-	cout << "moveto ";
 	switch (d) {
 	case Direction::HAUT:
-		cout << "HAUT" << endl;
 
 		if (Hauteur == 0) {
 			if (!flying) {
@@ -299,21 +297,15 @@ void MobileGameplayElement::moveTo(Direction d)
 		}
 		break;
 	case Direction::BAS:
-
-		cout << "BAS" << endl;
 		direction.y = 1;
 		break;
 	case Direction::GAUCHE:
-		cout << "GAUCHE" << endl;
 		direction.x = -1;
 		break;
 	case Direction::DROITE:
-
-		cout << "DROITE" << endl;
 		direction.x = 1;
 		break;
 	default:
-		cout << "direction inconnue" << endl;
 		break;
 	}
 }

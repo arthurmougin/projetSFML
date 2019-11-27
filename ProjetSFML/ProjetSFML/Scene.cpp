@@ -489,8 +489,8 @@ void Scene::draw(RenderWindow&e)
 	centre.x = centerBox.left + (centerBox.width / 2);
 	v.setCenter(centre);
 	e.setView(v);
-	centre.x -= 550;
-	centre.y -= 450;
+	centre.x -= 660;
+	centre.y -= 550;
 
 	e.clear();
 	
@@ -903,10 +903,7 @@ int Scene::update(RenderWindow& GM)
 		//si ils héritent de MobileGameplayElement
 		MobileGameplayElement* mgeptr = dynamic_cast<MobileGameplayElement*>(grabbablesETInhalables.at(i));
 		if (mgeptr) {
-			if (mgeptr->getMovingState() != IDLE) {
-				//On les caste en MobileEntity pour eviter les soucis d'heritage sur update (hérité de gameObject)
-				mgeptr->update(this);
-			}
+			mgeptr->update(this);
 			continue;
 		}
 	}

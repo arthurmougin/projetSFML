@@ -83,7 +83,7 @@ void Block::setVivant(bool v)
 
 void Block::update(Scene*scene)
 {
-
+	initDirection();
 	bool playererGoingLeft = scene->getPlayer().goingLeft();
 	bool switchMovement = false;
 
@@ -96,6 +96,7 @@ void Block::update(Scene*scene)
 	switch (movingState)
 	{
 	case IDLE:
+		cout << "IDLE ->";
 			switch (color)
 			{
 			case NOCOLOR:
@@ -103,20 +104,25 @@ void Block::update(Scene*scene)
 				break;
 			case ROUGE:
 				//change de direction
-				movingState = MOVING_UP;
+				setMovingState(MOVING_UP);
+				SwitchMouvementClock.restart();
+
 			case BLEU:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_LEFT;
+					setMovingState(MOVING_LEFT);
 				else
-					movingState = MOVING_RIGHT;
+					setMovingState(MOVING_RIGHT);
+
+				SwitchMouvementClock.restart();
 				break;
 			case JAUNE:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_UP_LEFT;
+					setMovingState(MOVING_UP_LEFT);
 				else
-					movingState = MOVING_UP_RIGHT;
+					setMovingState(MOVING_UP_RIGHT);
+				SwitchMouvementClock.restart();
 				break;
 			default:
 				//do nothing
@@ -124,28 +130,29 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_LEFT:
+		cout << "MOVING_LEFT ->";
 			switch (color)
 			{
 			case NOCOLOR:
 				//change de direction
-				movingState = IDLE;
+				setMovingState(IDLE);
 				break;
 			case ROUGE:
 				//change de direction
-				movingState = MOVING_UP;
+				setMovingState(MOVING_UP);
 			case BLEU:
 
 				if (!switchMovement)
-					movingState = MOVING_LEFT;
+					setMovingState(MOVING_LEFT);
 				else
-					movingState = MOVING_RIGHT;
+					setMovingState(MOVING_RIGHT);
 				break;
 			case JAUNE:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_UP_LEFT;
+					setMovingState(MOVING_UP_LEFT);
 				else
-					movingState = MOVING_UP_RIGHT;
+					setMovingState(MOVING_UP_RIGHT);
 				break;
 			default:
 				//do nothing
@@ -153,28 +160,28 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_RIGHT:
+		cout << "MOVING_RIGHT ->";
 			switch (color)
 			{
 			case NOCOLOR:
 				//change de direction
-				movingState = IDLE;
+				setMovingState(IDLE);
 				break;
 			case ROUGE:
 				//change de direction
-				movingState = MOVING_UP;
+				setMovingState(MOVING_UP);
 			case BLEU:
-				cout << "testCHangeing" << endl;
 				if (switchMovement)
-					movingState = MOVING_LEFT;
+					setMovingState(MOVING_LEFT);
 				else
-					movingState = MOVING_RIGHT;
+					setMovingState(MOVING_RIGHT);
 				break;
 			case JAUNE:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_UP_LEFT;
+					setMovingState(MOVING_UP_LEFT);
 				else
-					movingState = MOVING_UP_RIGHT;
+					setMovingState(MOVING_UP_RIGHT);
 				break;
 			default:
 				//do nothing
@@ -182,31 +189,32 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_UP:
+		cout << "MOVING_UP ->";
 			switch (color)
 			{
 			case NOCOLOR:
 				//change de direction
-				movingState = IDLE;
+				setMovingState(IDLE);
 				break;
 			case ROUGE:
 				if(!switchMovement)
-					movingState = MOVING_UP;
+					setMovingState(MOVING_UP);
 				else
-					movingState = MOVING_DOWN;
+					setMovingState(MOVING_DOWN);
 				break;
 			case BLEU:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_LEFT;
+					setMovingState(MOVING_LEFT);
 				else
-					movingState = MOVING_RIGHT;
+					setMovingState(MOVING_RIGHT);
 				break;
 			case JAUNE:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_UP_LEFT;
+					setMovingState(MOVING_UP_LEFT);
 				else
-					movingState = MOVING_UP_RIGHT;
+					setMovingState(MOVING_UP_RIGHT);
 				break;
 			default:
 				//do nothing
@@ -214,31 +222,32 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_DOWN:
+		cout << "MOVING_DOWN ->";
 			switch (color)
 			{
 			case NOCOLOR:
 				//change de direction
-				movingState = IDLE;
+				setMovingState(IDLE);
 				break;
 			case ROUGE:
 				if (switchMovement)
-					movingState = MOVING_UP;
+					setMovingState(MOVING_UP);
 				else
-					movingState = MOVING_DOWN;
+					setMovingState(MOVING_DOWN);
 				break;
 			case BLEU:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_LEFT;
+					setMovingState(MOVING_LEFT);
 				else
-					movingState = MOVING_RIGHT;
+					setMovingState(MOVING_RIGHT);
 				break;
 			case JAUNE:
 				//change de direction
 				if (playererGoingLeft)
-					movingState = MOVING_UP_LEFT;
+					setMovingState(MOVING_UP_LEFT);
 				else
-					movingState = MOVING_UP_RIGHT;
+					setMovingState(MOVING_UP_RIGHT);
 				break;
 			default:
 				//do nothing
@@ -246,6 +255,7 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_UP_LEFT:
+		cout << "MOVING_UP_LEFT ->";
 			switch (color)
 			{
 			case NOCOLOR:
@@ -274,6 +284,7 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_UP_RIGHT:
+		cout << "MOVING_UP_RIGHT ->";
 			switch (color)
 			{
 			case NOCOLOR:
@@ -302,6 +313,7 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_DOWN_LEFT:
+		cout << "MOVING_DOWN_LEFT ->";
 			switch (color)
 			{
 			case NOCOLOR:
@@ -330,6 +342,7 @@ void Block::update(Scene*scene)
 			}
 		break;
 	case MOVING_DOWN_RIGHT:
+		cout << "MOVING_DOWN_RIGHT ->";
 			switch (color)
 			{
 			case NOCOLOR:
@@ -357,54 +370,99 @@ void Block::update(Scene*scene)
 				break;
 			}
 		break;
+	default:
+		cout << "default ->";
+		movingState = IDLE;
+		break;
 	}
+
+
 
 	/**/
 	//mise a jour du deplacement en fonction de l'etat de deplacement
 	switch (movingState)
 	{
 	case IDLE:
+		cout << " IDLE" << endl;
 		break;
 	case MOVING_LEFT:
+		cout << " MOVING_LEFT" << endl;
 		moveTo(Direction::GAUCHE);
 
 		break;
 	case MOVING_RIGHT:
+		cout << " MOVING_RIGHT" << endl;
 		moveTo(Direction::DROITE);
 
 		break;
 	case MOVING_UP:
+		cout << " MOVING_UP" << endl;
 		moveTo(Direction::HAUT);
 
 		break;
 	case MOVING_DOWN:
+		cout << " MOVING_DOWN" << endl;
 		moveTo(Direction::BAS);
 
 		break;
 	case MOVING_UP_LEFT:
+		cout << " MOVING_UP_LEFT" << endl;
 		moveTo(Direction::HAUT);
 		moveTo(Direction::GAUCHE);
 
 		break;
 	case MOVING_UP_RIGHT:
+		cout << " MOVING_UP_RIGHT" << endl;
 		moveTo(Direction::HAUT);
 		moveTo(Direction::DROITE);
 
 		break;
 	case MOVING_DOWN_LEFT:
+		cout << " MOVING_DOWN_LEFT" << endl;
 		moveTo(Direction::BAS);
 		moveTo(Direction::GAUCHE);
 
 		break;
 	case MOVING_DOWN_RIGHT:
+		cout << " MOVING_DOWN_RIGHT" << endl;
 		moveTo(Direction::BAS);
 		moveTo(Direction::DROITE);
 
 		break;
 	default:
+		cout << " default" << endl;
 		break;
 	}
 	updatePos(9.8 / 12);
+
+	//ProtectWalkingOnEntity
+
+	if (color == JAUNE) {
+		GameObject* walker = scene->testCollide(this, Direction::HAUT);
+		if (walker) {
+			cout << "colliding walker" << endl;
+			MobileGameplayElement* dynamicWalker = dynamic_cast<MobileGameplayElement*>(walker);
+			if (dynamicWalker) {
+				cout << "colliding dynamicWalker walker" << endl;
+				FloatRect blockBounds = this->getSprite()->getGlobalBounds();
+				FloatRect localGB = dynamicWalker->getSprite()->getGlobalBounds();
+				float LocalDelta = (blockBounds.top - localGB.height) - localGB.top;
+				dynamicWalker->getSprite()->move(Vector2f(0, LocalDelta));
+			}
+			else {
+				Player* dynamicplayingWalker = dynamic_cast<Player*>(walker);
+				if (dynamicplayingWalker) {
+					cout << "colliding dynamicplayingWalker walker" << endl;
+					FloatRect blockBounds = this->getSprite()->getGlobalBounds();
+					FloatRect localGB = dynamicplayingWalker->getSprite()->getGlobalBounds();
+					float LocalDelta = (blockBounds.top - localGB.height) - localGB.top;
+					dynamicplayingWalker->getSprite()->move(Vector2f(0, LocalDelta));
+				}
+			}
+		}
+	
+	}
+
 	/**/
 	MobileGameplayElement::update(scene);
 }

@@ -9,7 +9,7 @@ enum MovingState {
 class MobileGameplayElement: public PaintableElement
 {
 protected:
-	enum MovingState movingState;
+	enum MovingState movingState = IDLE;
 	bool HateWalls;
 	bool heavy;
 
