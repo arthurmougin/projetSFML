@@ -46,7 +46,7 @@ void Player::update(Scene*scene)
 
 	//Input dans les 4 directions
 	initDirection();
-	bool testcollhaut, testcollbas;
+	GameObject* testcollhaut, *testcollbas;
 
 	testcollhaut = scene->testCollide(this, Direction::HAUT);
 
@@ -55,7 +55,7 @@ void Player::update(Scene*scene)
 		scene->setScore(scene->getScore() -3);
 		moveTo(Direction::HAUT);
 	}
-	//si la hauteur du personnage est superieur à 0, on vérifie s'il ne s'est pas cogné la tete
+	//si la hauteur du personnage est superieur à 0 et qu'il monte, on vérifie s'il ne s'est pas cogné la tete
 	//Attention, il faut etre sur que son mouvement est montant
 	if (getHauteur() != 0 && acceleration.y < 0 && testcollhaut) {
 		setAcceleration(Vector2f(0, 0));
@@ -72,20 +72,16 @@ void Player::update(Scene*scene)
 	}
 
 	testcollbas = scene->testCollide(this, Direction::BAS);
-
-	if (testcollbas) {
-		if (getHauteur() != 0) {
+	if (testcollbas) {//s'il descendais, et qu'il est entré en collision avec le sol, 
+		//alors on le colle au dessus de l'élément collidé
+		if (getHauteur() != 0 && acceleration.y > 0) {
+			cout << "snapping" << endl;
 			setHauteur(0);
-			float localY = getSprite()->getPosition().y, LocalDelta;
-			localY = (int(localY) % 160) + localY - int(localY);
-			//cout << "localy : " << localY << endl;
-			if (localY < (80)) {
-				localY = -localY + 32;
-			}
-			else {
-				localY = 160 - localY - 32;
-			}
-			getSprite()->move(Vector2f(0, localY));
+			FloatRect colliderGB = testcollbas->getSprite()->getGlobalBounds();
+			FloatRect localGB = sprite.getGlobalBounds();
+
+			float LocalDelta = (colliderGB.top - localGB.height) - localGB.top;
+			sprite.move(Vector2f(0, LocalDelta));
 		}
 	}
 	else if (getHauteur() == 0) {

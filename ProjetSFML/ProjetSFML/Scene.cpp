@@ -274,9 +274,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::SPAWN:
 						try {
-							cout << "a1\n";
 							cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
-							cout << "a2\n";
 							cout << myLine.size() << " " << myMatrice.size() << endl;
 							if ((x + 1 < myLine.size()) && (myLine.at(x + 1) == ElementTypes::VIDE) && (y + 1 < myMatrice.size()) && (myMatrice.at(x).at(y + 1) == ElementTypes::VIDE) && (myMatrice.at(x + 1).at(y + 1) == ElementTypes::VIDE)) {
 								cout << "VALIDE" << endl;
@@ -284,19 +282,15 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							else {
 								cout << "INVALIDE" << endl;
 							}
-							cout << "a3\n";
 
 							MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
 							MyPlayerTextRect.left = MyPlayerTextRect.width * 0;
 							MyPlayerTextRect.top = MyPlayerTextRect.height * 0;
-							cout << "a4\n";
 
 							cout << "Rectangle : x:" << MyPlayerTextRect.left << " y:" << MyPlayerTextRect.top << " width:" << MyPlayerTextRect.width << " height:" << MyPlayerTextRect.height << endl;
-							cout << "a5\n";
-
+							
 							spawnPoint.x = MyPosition.x;
 							spawnPoint.y = MyPosition.y;
-							cout << "a6\n";
 
 							/**
 							player.setTexture(PlayerTex);
@@ -470,7 +464,7 @@ void Scene::draw(RenderWindow&e)
 
 }
 
-bool Scene::testCollide(GameObject*e , Direction D)
+GameObject* Scene::testCollide(GameObject*e , Direction D)
 {
 	FloatRect collisionBox,ActualBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
@@ -515,7 +509,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 			MurPtr = murs.at(i);
 			if (collisionBox.intersects(MurPtr->getSprite()->getGlobalBounds())) {
 				//cout << "Colliding\n";
-				return true;
+				return MurPtr;
 			}
 		}
 	}
@@ -524,7 +518,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	for (int i = 0; i < oneWays.size(); i++) {
 		oneWayPtr = oneWays.at(i);
 		if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
-			return true;
+			return oneWayPtr;
 		}
 	}
 
@@ -535,7 +529,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 			if (PlayerPointer)// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
 				score = 0;
 			else
-				return true;
+				return spikePtr;
 		}
 	}
 
@@ -543,7 +537,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	for (int i = 0; i < switches.size(); i++) {
 		swtchptr = switches.at(i);
 		if (collisionBox.intersects(swtchptr->getSprite()->getGlobalBounds())) {
-			return true;
+			return swtchptr;
 		}
 	}
 
@@ -574,7 +568,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 					}
 				}
 				if (collisionBox.intersects(moptr->getSprite()->getGlobalBounds())) {
-					return true;
+					return moptr;
 				}
 			}
 		}
@@ -582,7 +576,7 @@ bool Scene::testCollide(GameObject*e , Direction D)
 			fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
 			if (!fEptr->getTraversable()) {
 				if (collisionBox.intersects(fEptr->getSprite()->getGlobalBounds())) {
-					return true;
+					return fEptr;
 				}
 			}
 		}
@@ -620,12 +614,12 @@ bool Scene::testCollide(GameObject*e , Direction D)
 	if (PlayerPointer == NULL && collisionBox.intersects(player->getSprite()->getGlobalBounds())) {
 		//cout << "Colliding\n";
 
-		return true;
+		return player;
 	}
 	//cout << "Not Colliding\n";
 #pragma endregion 
 
-	return false;
+	return NULL;
 }
 
 int Scene::update(RenderWindow& GM)

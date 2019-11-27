@@ -50,7 +50,7 @@ public:
 
 	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);
-	bool testCollide(GameObject*, Direction);
+	GameObject* testCollide(GameObject*, Direction);
 	int update(RenderWindow&);
 	bool walkOn(GameObject*, vector <GameObject*>);
 
