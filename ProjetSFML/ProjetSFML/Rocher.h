@@ -7,6 +7,6 @@ public:
 	Rocher();
 	Rocher(Vector2f, Texture, IntRect);
 
-	void update(Scene*);
+	
 };
 

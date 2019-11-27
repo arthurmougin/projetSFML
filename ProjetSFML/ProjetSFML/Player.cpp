@@ -9,7 +9,7 @@ Player::Player() :MobileEntity()
 	bringColor = GameColor::NOCOLOR;
 }
 
-Player::Player(Vector2f pos, Texture tex, IntRect rect) :MobileEntity( 2, pos, tex, rect)
+Player::Player(Vector2f pos, Texture tex, IntRect rect) :MobileEntity(false, 15, true, false, true, 2, pos, tex, rect)
 {
 	bringSomething = false;
 	bringElement = NULL;
@@ -75,11 +75,9 @@ void Player::update(Scene*scene)
 	if (testcollbas) {//s'il descendais, et qu'il est entré en collision avec le sol, 
 		//alors on le colle au dessus de l'élément collidé
 		if (getHauteur() != 0 && acceleration.y > 0) {
-			cout << "snapping" << endl;
 			setHauteur(0);
 			FloatRect colliderGB = testcollbas->getSprite()->getGlobalBounds();
 			FloatRect localGB = sprite.getGlobalBounds();
-
 			float LocalDelta = (colliderGB.top - localGB.height) - localGB.top;
 			sprite.move(Vector2f(0, LocalDelta));
 		}
@@ -162,6 +160,9 @@ void Player::setBringElement(GameObject* be)
 
 		if (dynamic_cast<Rocher*>(bringElement)) {
 			textureRect.top = 3 * 2 * textureRect.height;
+		}
+		if (dynamic_cast<Block*>(bringElement)) {
+			textureRect.top = 2 * 2 * textureRect.height;
 		}
 	}
 	else {

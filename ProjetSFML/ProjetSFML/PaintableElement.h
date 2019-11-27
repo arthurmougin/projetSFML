@@ -10,6 +10,8 @@ protected:
 public:
 	PaintableElement();
 	PaintableElement(bool, bool);
+	PaintableElement(bool, bool, bool);
+	PaintableElement(bool, bool, bool, GameColor);
 	PaintableElement(bool, bool, bool, Vector2f, Texture, IntRect);
 	PaintableElement(bool, bool, bool, int, Vector2f, Texture, IntRect);
 	PaintableElement(bool, bool, GameColor);

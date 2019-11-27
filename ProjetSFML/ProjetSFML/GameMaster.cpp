@@ -22,16 +22,14 @@ void GameMaster::run()
 			//cout << float(MainClock.getElapsedTime().asSeconds()) << " " << float(1 / 25)  << endl;
 			//si la map est en cours de jeu
 			if (mainMap.getIsPlaying()) {
-				cout << " TEST1" << endl;
 				mainMap.update(*this);
-				cout << " TEST2" << endl;
-
 				mainMap.draw(*this);
 			}
 			else {
 				//si la map viens d'etre finis, on la réinitialise et on passe à la map suivante
 				cout << "switch map" << endl;
 				mainMap.setIsPlaying(true);
+				
 				selectedMapIndex = (selectedMapIndex + 1) % maps.size();
 
 				mainMap = maps.at(selectedMapIndex);

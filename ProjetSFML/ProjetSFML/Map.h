@@ -29,6 +29,7 @@ public:
 	void loadSave();
 	void update(RenderWindow&);
 	void draw(RenderWindow &);
+	void restart();
 
 	int getInitialScore();
 	void setInitialScore(int);

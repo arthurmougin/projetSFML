@@ -1,3 +1,17 @@
-﻿  Player.cpp
-D:\GIT\projetSFML\ProjetSFML\ProjetSFML\Player.cpp(62,48): warning C4101: 'LocalDelta': unreferenced local variable
+﻿  MobileGameplayElement.cpp
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(211,24): warning C4018: '<': signed/unsigned mismatch
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(317,22): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(317,22): warning C4244:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(317,22): warning C4244:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(317,22): warning C4244:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(317,22): warning C4244:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(324,76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(324,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(370,31): warning C4305: '-=': truncation from 'double' to 'T'
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(370,31): warning C4305:         with
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(370,31): warning C4305:         [
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(370,31): warning C4305:             T=float
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(370,31): warning C4305:         ]
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(376,83): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\GIT\projetSFML\ProjetSFML\ProjetSFML\MobileGameplayElement.cpp(376,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   ProjetSFML.vcxproj -> D:\GIT\projetSFML\ProjetSFML\Debug\ProjetSFML.exe

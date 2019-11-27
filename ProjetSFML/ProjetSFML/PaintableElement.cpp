@@ -4,39 +4,72 @@ PaintableElement::PaintableElement():FocusableElement()
 {
 }
 
-PaintableElement::PaintableElement(bool paintbl, bool inhalabl):FocusableElement()
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl
+):FocusableElement()
 {
 	paintable = paintbl;
 	inhalable = inhalabl;
 }
 
-PaintableElement::PaintableElement(bool paintbl, bool inhalabl, bool trav, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, pos, tex, rect)
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, bool trav
+) :FocusableElement(trav)
 {
 	paintable = paintbl;
 	inhalable = inhalabl;
 }
 
-PaintableElement::PaintableElement(bool paintbl, bool inhalabl, bool trav, int intervalFramce, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, intervalFramce, pos, tex, rect)
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, bool trav, GameColor gc
+) :FocusableElement(trav)
+{
+	paintable = paintbl;
+	inhalable = inhalabl;
+	setColor(gc);
+}
+
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, bool trav, Vector2f pos, Texture tex, 
+	IntRect rect
+) : FocusableElement(trav, pos, tex, rect)
 {
 	paintable = paintbl;
 	inhalable = inhalabl;
 }
 
-PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor)
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, bool trav, int intervalFramce, 
+	Vector2f pos, Texture tex, IntRect rect
+) : FocusableElement(trav, intervalFramce, pos, tex, rect)
+{
+	paintable = paintbl;
+	inhalable = inhalabl;
+}
+
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, GameColor gcolor
+)
 {
 	paintable = paintbl;
 	inhalable = inhalabl;
 	setColor(gcolor);
 }
 
-PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor, bool trav, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, pos, tex, rect)
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, GameColor gcolor, bool trav, 
+	Vector2f pos, Texture tex, IntRect rect
+) : FocusableElement(trav, pos, tex, rect)
 {
 	paintable = paintbl;
 	inhalable = inhalabl;
 	setColor(gcolor);
 }
 
-PaintableElement::PaintableElement(bool paintbl, bool inhalabl, GameColor gcolor, bool trav, int intervalFramce, Vector2f pos, Texture tex, IntRect rect) : FocusableElement(trav, intervalFramce, pos, tex, rect)
+PaintableElement::PaintableElement(
+	bool paintbl, bool inhalabl, GameColor gcolor, bool trav, 
+	int intervalFrame, Vector2f pos, Texture tex, IntRect rect
+) : FocusableElement(trav, intervalFrame, pos, tex, rect)
 {
 	paintable = paintbl;
 	inhalable = inhalabl;

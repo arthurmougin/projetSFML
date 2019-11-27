@@ -129,11 +129,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Bouteille.cpp" />
     <ClCompile Include="FocusableElement.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameMaster.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MobileEntity.cpp" />
     <ClCompile Include="MobileGameplayElement.cpp" />
@@ -148,11 +150,13 @@
     <ClCompile Include="Switch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Bouteille.h" />
     <ClInclude Include="FocusableElement.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameMaster.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MobileEntity.h" />
     <ClInclude Include="MobileGameplayElement.h" />

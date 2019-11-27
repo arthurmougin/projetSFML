@@ -133,21 +133,28 @@ void Map::update(RenderWindow& window)
 		break;
 	case sceneOutput::Restart:
 		cout << "Restart" << endl;
-		sauvegardes.push_back(generate());
-		loadSave();
-
+		restart();
 		break;
 	default:
 		cout << "score = " << output << endl;
+		if (output > highScore) {
+			highScore = output;
+			cout << "new high score : " << output << endl;
+		}
+		isPlaying = false;
 		break;
 	}
-	
-	
 }
 
 void Map::draw(RenderWindow&R)
 {
 	sauvegardes[0].draw(R);
+}
+
+void Map::restart()
+{
+	sauvegardes.push_back(generate());
+	loadSave();
 }
 
 int Map::getInitialScore()
@@ -198,5 +205,8 @@ bool Map::getIsPlaying()
 void Map::setIsPlaying(bool b)
 {
 	isPlaying = b;
+
+	if (isPlaying == true)
+		restart();
 }
 

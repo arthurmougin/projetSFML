@@ -9,7 +9,9 @@ MobileEntity::MobileEntity():GameObject()
 	Hauteur = 0;
 }
 
-MobileEntity::MobileEntity(Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+MobileEntity::MobileEntity(
+	Vector2f pos, Texture tex, IntRect rect
+) :GameObject(pos, tex, rect)
 {
 	flying = TraverseBlock = false;
 	speed = 15;
@@ -21,7 +23,9 @@ MobileEntity::MobileEntity(Vector2f pos, Texture tex, IntRect rect) :GameObject(
 	Fantome.setTextureRect(rect);
 }
 
-MobileEntity::MobileEntity(int intervalframe, Vector2f pos, Texture tex, IntRect rect) :GameObject(intervalframe, pos, tex, rect)
+MobileEntity::MobileEntity(
+	int intervalframe, Vector2f pos, Texture tex, IntRect rect
+) :GameObject(intervalframe, pos, tex, rect)
 {
 	flying = TraverseBlock = false;
 	speed = 15;
@@ -33,7 +37,10 @@ MobileEntity::MobileEntity(int intervalframe, Vector2f pos, Texture tex, IntRect
 	Fantome.setTextureRect(rect);
 }
 
-MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB):GameObject()
+MobileEntity::MobileEntity(
+	bool fly, double Speed, bool TraverseB, bool TraverseM, 
+	bool MarcheSurB
+):GameObject()
 {
 	flying = fly;
 	TraverseBlock = TraverseB;
@@ -45,7 +52,10 @@ MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool Traverse
 
 }
 
-MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB, Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+MobileEntity::MobileEntity(
+	bool fly, double Speed, bool TraverseB, bool TraverseM, 
+	bool MarcheSurB, Vector2f pos, Texture tex, IntRect rect
+) :GameObject(pos, tex, rect)
 {
 	flying = fly;
 	TraverseBlock = TraverseB;
@@ -58,7 +68,11 @@ MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool Traverse
 	Fantome.setTextureRect(rect);
 }
 
-MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool TraverseM, bool MarcheSurB, int intervalFrame, Vector2f pos, Texture tex, IntRect rect) :GameObject(intervalFrame, pos, tex, rect)
+MobileEntity::MobileEntity(
+	bool fly, double Speed, bool TraverseB, bool TraverseM, 
+	bool MarcheSurB, int intervalFrame, Vector2f pos, 
+	Texture tex, IntRect rect
+) :GameObject(intervalFrame, pos, tex, rect)
 {
 	flying = fly;
 	TraverseBlock = TraverseB;
@@ -71,7 +85,11 @@ MobileEntity::MobileEntity(bool fly, double Speed, bool TraverseB, bool Traverse
 	Fantome.setTextureRect(rect);
 }
 
-MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight):GameObject()
+MobileEntity::MobileEntity(
+	bool fly, double myspeed, Vector2f myAcceleration, 
+	Vector2f myDirection, bool TravB, bool TravM, bool MarchB, 
+	double Hight
+):GameObject()
 {
 	flying = fly;
 	speed = myspeed;
@@ -83,7 +101,11 @@ MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Ve
 	Hauteur = Hight;
 }
 
-MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight, Vector2f pos, Texture tex, IntRect rect) :GameObject(pos, tex, rect)
+MobileEntity::MobileEntity(
+	bool fly, double myspeed, Vector2f myAcceleration, 
+	Vector2f myDirection, bool TravB, bool TravM, bool MarchB, 
+	double Hight, Vector2f pos, Texture tex, IntRect rect
+) :GameObject(pos, tex, rect)
 {
 	flying = fly;
 	speed = myspeed;
@@ -97,7 +119,12 @@ MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Ve
 	Fantome.setTextureRect(rect);
 }
 
-MobileEntity::MobileEntity(bool fly, double myspeed, Vector2f myAcceleration, Vector2f myDirection, bool TravB, bool TravM, bool MarchB, double Hight, int intervalFrame, Vector2f pos, Texture tex, IntRect rect) :GameObject(intervalFrame, pos, tex, rect)
+MobileEntity::MobileEntity(
+	bool fly, double myspeed, Vector2f myAcceleration, 
+	Vector2f myDirection, bool TravB, bool TravM, bool MarchB, 
+	double Hight, int intervalFrame, Vector2f pos, Texture tex, 
+	IntRect rect
+) :GameObject(intervalFrame, pos, tex, rect)
 {
 	flying = fly;
 	speed = myspeed;

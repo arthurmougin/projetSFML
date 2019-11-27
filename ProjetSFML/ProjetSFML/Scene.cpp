@@ -50,6 +50,10 @@ Scene::Scene(Scene*S2)
 
 }
 
+
+
+
+
 void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 {
 
@@ -334,7 +338,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							cout << endl << "BOUTEILLE_COULEUR1 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
-							Bouteille* btllptr = new Bouteille(true, GameColor::ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
+							Bouteille* btllptr = new Bouteille(true, ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
@@ -347,7 +351,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							cout << endl << "BOUTEILLE_COULEUR2 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
-							Bouteille* btllptr = new Bouteille(true, GameColor::BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
+							Bouteille* btllptr = new Bouteille(true, BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
@@ -360,7 +364,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							cout << endl << "BOUTEILLE_COULEUR3 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
-							Bouteille* btllptr = new Bouteille(true, GameColor::JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
+							Bouteille* btllptr = new Bouteille(true, JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
 							gameObjects.push_back(btllptr);
@@ -386,23 +390,85 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 3 * MyEntityTextRect.width;
 							Rocher* rchptr = new Rocher(MyPosition, nonPlayerTex, MyEntityTextRect);
+							rchptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(rchptr);
+							gameObjects.push_back(rchptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
+					case ElementTypes::GOAL:
+						try {
+							cout << endl << "GOAL at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 1 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
+							Goal* goalptr = new Goal(MyPosition, nonPlayerTex, MyEntityTextRect);
 
-							/*
-							Comme Rocher Hérite de GameObject par 
-							MobileEntity et FocusableElement par le biais de MobileGameplayElement,
+							goalptr->getSprite()->setScale(EntityScale);
+							goals.push_back(goalptr);
+							gameObjects.push_back(goalptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
 
-							Le cast et l'accès aux fonctions de GameObject sont ambigues.
 
-							Pour résoudre l'ambiguité, on force le caste par MobileEntity.
 
-							Le choix de MobileEntity est lié à la structure du constructeur de Rocher.
-							Celuici favorise MobileEntity pour la création de la sprite.
-							
-							*/
-							GameObject* goptr = dynamic_cast<MobileEntity*>(rchptr);
-							goptr->getSprite()->setScale(EntityScale);
-							grabbablesETInhalables.push_back(goptr);
-							gameObjects.push_back(goptr);
+					case ElementTypes::BLOC:
+						try {
+							cout << endl << "BLOC at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
+							Block* blptr = new Block(NOCOLOR,MyPosition, nonPlayerTex, MyEntityTextRect);
+							blptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(blptr);
+							gameObjects.push_back(blptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
+					case ElementTypes::BLOC_VIVANT:
+						try {
+							cout << endl << "BLOC_VIVANT at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 3 * MyEntityTextRect.width;
+							Block* blptr = new Block(true, NOCOLOR, MyPosition, nonPlayerTex, MyEntityTextRect);
+							blptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(blptr);
+							gameObjects.push_back(blptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
+					case ElementTypes::BLOC_COULEUR1:
+						try {
+							cout << endl << "BLOC_COULEUR1 at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
+							Block* blptr = new Block(ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
+							blptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(blptr);
+							gameObjects.push_back(blptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
+					case ElementTypes::BLOC_COULEUR2:
+						try {
+							cout << endl << "BLOC_COULEUR2 at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
+							Block* blptr = new Block(BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
+							blptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(blptr);
+							gameObjects.push_back(blptr);
+						}
+						catch (exception & e) { cout << "Exception: " << e.what(); }
+						break;
+					case ElementTypes::BLOC_COULEUR3:
+						try {
+							cout << endl << "BLOC_COULEUR3 at " << x << "x - " << y << "y : ";
+							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
+							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
+							Block* blptr = new Block(JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
+							blptr->getSprite()->setScale(EntityScale);
+							grabbablesETInhalables.push_back(blptr);
+							gameObjects.push_back(blptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -455,6 +521,11 @@ void Scene::draw(RenderWindow&e)
 		grabbablesETInhalables[i]->drawMe(e);
 	}
 
+	for (int i = 0; i < goals.size(); i++)
+	{
+		goals[i]->drawMe(e);
+	}
+
 	player->drawMe(e);
 	
 	ScoreString.setPosition(centre);
@@ -476,6 +547,7 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 	MobileEntityptr = dynamic_cast<MobileEntity*>(e);
 	MobileGameplayElement* MobileGameplayElementPointer = dynamic_cast<MobileGameplayElement*>(e);
 
+
 	if (PlayerPointer) {
 		collisionBox = PlayerPointer->getUpdatedFantome(D).getGlobalBounds();
 		ActualBox = PlayerPointer->getSprite()->getGlobalBounds();
@@ -491,6 +563,14 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 		TraverseMur = MobileEntityptr->getTraverseMur();
 		MarcheSurBlock = MobileEntityptr->getMarcheSurBlock();
 		hauteur = MobileEntityptr->getHauteur();
+	}
+	else if (MobileGameplayElementPointer) {
+		collisionBox = MobileGameplayElementPointer->getUpdatedFantome(D).getGlobalBounds();
+		ActualBox = MobileGameplayElementPointer->getSprite()->getGlobalBounds();
+		TraverseBlock = MobileGameplayElementPointer->getTraverseBlock();
+		TraverseMur = MobileGameplayElementPointer->getTraverseMur();
+		MarcheSurBlock = MobileGameplayElementPointer->getMarcheSurBlock();
+		hauteur = MobileGameplayElementPointer->getHauteur();
 	}
 	// A CODER : ROCHER, BLOC, BLOC_VIVANT, ANIMAL
 	else {
@@ -542,37 +622,43 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 	}
 
 	MobileGameplayElement* mgeptr;
-	MobileEntity* moptr;
 	FocusableElement* fEptr;
-
+	Block* blptr;
 	for (int i = 0; i < grabbablesETInhalables.size(); i++) {
 		mgeptr = dynamic_cast<MobileGameplayElement*>(grabbablesETInhalables.at(i));
 
 		if (mgeptr) {//cas des éléments héritant de MobileGameplayElement
-
-
-
+			
 			fEptr = mgeptr; //On teste leur heritage en focusable Element pour savoir s'ils sont traversable
 			if (!fEptr->getTraversable()) {
-				moptr = mgeptr;//On les convertie en MobileEntity pour leur sprite
-
 				//Si on cherche à tester les collisions d'un MobileGameplayElement
 				if (MobileGameplayElementPointer) {
-					cout << "MobileGamePlayElementTesting" << endl;
 					//si l'élément collider  est identique à l'element testé
-					if (moptr->getSprite()->getGlobalBounds() == ActualBox) {
-						cout << "The same" << endl;
-
+					if (mgeptr->getSprite()->getGlobalBounds() == ActualBox) {
 						//on passe à l'élément suivant
 						continue;
 					}
 				}
-				if (collisionBox.intersects(moptr->getSprite()->getGlobalBounds())) {
-					return moptr;
+
+				//Dans le cas d'un Block
+				blptr = dynamic_cast<Block*>(mgeptr);
+				if (blptr) {
+					//Si on ne traverse pas les blocks
+					//Ou que l'on marche sur les blocks et que l'on test une collision vers le bas
+					if (!TraverseBlock || (D == Direction::BAS && MarcheSurBlock)) {
+						if (collisionBox.intersects(blptr->getSprite()->getGlobalBounds())) {
+							return blptr;
+						}
+					}
+					continue;
+				}
+				else if (collisionBox.intersects(mgeptr->getSprite()->getGlobalBounds())) {
+
+					return mgeptr;
 				}
 			}
 		}
-		else { // cas opposé
+		else { // cas opposé (Bouteilles)
 			fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
 			if (!fEptr->getTraversable()) {
 				if (collisionBox.intersects(fEptr->getSprite()->getGlobalBounds())) {
@@ -586,6 +672,18 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 
 	}
 
+	Goal* goalptr;
+	for (int i = 0; i < goals.size(); i++)
+	{
+		//si on entre en collision avec un objectif, on le supprime du tableau de goals
+		goalptr = goals.at(i);
+		if (ActualBox.intersects(goalptr->getSprite()->getGlobalBounds())) {
+
+			goals.erase(goals.begin() + i);
+			goals.shrink_to_fit();
+
+		}
+	}
 	/*
 	case PIQUE:
 		break;
@@ -703,6 +801,18 @@ int Scene::update(RenderWindow& GM)
 					}
 					else {
 						cout << "color" << endl;
+						FloatRect interactionBox = player->getInteractionBox();
+						for (int i = 0; i < grabbablesETInhalables.size() && player->getBringSomething(); i++)
+						{
+							if (interactionBox.intersects(grabbablesETInhalables.at(i)->getSprite()->getGlobalBounds())) {
+								cout << "found Element Neer Mee" << endl;
+								MobileGameplayElement* mpptr = dynamic_cast <MobileGameplayElement*>(grabbablesETInhalables.at(i));
+								if (mpptr && mpptr->getColor() == NOCOLOR) {
+									mpptr->setColor(player->getBringColor());
+									player->setBringColor(NOCOLOR);
+								}
+							}
+						}
 					}
 				}
 				else {
@@ -724,12 +834,25 @@ int Scene::update(RenderWindow& GM)
 								}
 							}
 							else {
-								cout << "Pick Entity" << endl;
-								player->setBringElement(grabbablesETInhalables.at(i));
-								grabbablesETInhalables.erase(grabbablesETInhalables.begin() + i);
-								grabbablesETInhalables.shrink_to_fit();
+								Block * blptr = dynamic_cast <Block*>(grabbablesETInhalables.at(i));
+								if (blptr && blptr->getVivant()) {
+									cout << "block vivant" << endl;
+								}
+								else {
+									MobileGameplayElement* mpptr = dynamic_cast <MobileGameplayElement*>(grabbablesETInhalables.at(i));
+									if (mpptr->getColor() != NOCOLOR) {
+										cout << "Pick Entity's color" << endl;
+										player->setBringColor(mpptr->getColor());
+										mpptr->setColor(NOCOLOR);
+									}
+									else {
+										cout << "Pick Entity" << endl;
+										player->setBringElement(mpptr);
+										grabbablesETInhalables.erase(grabbablesETInhalables.begin() + i);
+										grabbablesETInhalables.shrink_to_fit();
+									}
+								}
 							}
-
 						}
 					}
 				}
@@ -782,8 +905,7 @@ int Scene::update(RenderWindow& GM)
 		if (mgeptr) {
 			if (mgeptr->getMovingState() != IDLE) {
 				//On les caste en MobileEntity pour eviter les soucis d'heritage sur update (hérité de gameObject)
-				MobileEntity* mEptr = mgeptr;
-				mEptr->update(this);
+				mgeptr->update(this);
 			}
 			continue;
 		}
@@ -792,9 +914,16 @@ int Scene::update(RenderWindow& GM)
 	if (score <= 0)
 		retour = sceneOutput::Restart;
 
+	if (goals.size() == 0)
+		retour = score;
+
 	ScoreString.setString(to_string(score));
 	return retour;
 }
+
+
+
+
 
 int Scene::getScore()
 {
@@ -814,6 +943,16 @@ Text Scene::getScoreString()
 void Scene::setScoreString(Text t)
 {
 	ScoreString = t;
+}
+
+vector<GameObject*> Scene::getGrabbablesETInhalables()
+{
+	return grabbablesETInhalables;
+}
+
+void Scene::setGrabbablesETInhalables(vector<GameObject*>g)
+{
+	grabbablesETInhalables = g;
 }
 
 vector <GameObject*> Scene::getGameObjects()

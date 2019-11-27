@@ -11,6 +11,8 @@
 #include "spike.h"
 #include "Bouteille.h"
 #include "Rocher.h"
+#include "Goal.h"
+#include "Block.h"
 
 
 using namespace std;
@@ -37,6 +39,7 @@ protected:
 	vector <spike*> spikes;
 	vector <Bouteille*> bouteilles;
 	vector <Switch*> switches;
+	vector <Goal*> goals;
 
 	Player *player;
 	Vector2f spawnPoint;
@@ -58,6 +61,8 @@ public:
 	void setScore(int);
 	Text getScoreString();
 	void setScoreString(Text);
+	vector <GameObject*> getGrabbablesETInhalables();
+	void setGrabbablesETInhalables(vector <GameObject*>);
 	vector <GameObject*> getGameObjects();
 	void setGameObjects(vector <GameObject*>);
 	Player getPlayer();
