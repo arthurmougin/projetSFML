@@ -24,6 +24,6 @@ public:
 	GameColor getBringColor();
 	void setBringColor(GameColor);
 	void placeBringElement();
-	
+	bool goingLeft();
 };
 

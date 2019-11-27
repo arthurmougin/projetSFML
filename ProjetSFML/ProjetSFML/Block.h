@@ -18,6 +18,6 @@ public:
 
 	bool getVivant();
 	void setVivant(bool);
-
+	void update(Scene*);
 };
 

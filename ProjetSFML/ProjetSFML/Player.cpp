@@ -105,8 +105,8 @@ FloatRect Player::getInteractionBox()
 {
 	FloatRect gb = sprite.getGlobalBounds();
 	interactionBox.top = gb.top - ((interactionBox.height - gb.height)/2);
-	//on regarde le type de texture sur le joueur (si c'est la texture droite ou la texture gauche)
-	if (sprite.getTextureRect().top == this->textureRect.top) {
+	
+	if (!goingLeft()) {
 		// right
 		interactionBox.left = gb.left + gb.width;
 	}
@@ -196,7 +196,7 @@ void Player::placeBringElement()
 	FloatRect gb = sprite.getGlobalBounds();
 	//on regarde le type de texture sur le joueur (si c'est la texture droite ou la texture gauche)
 	newPos.y = gb.top + (gb.height / 4);
-	if (sprite.getTextureRect().top == this->textureRect.top) {
+	if (!goingLeft()) {
 		// right
 		newPos.x = gb.left + gb.width;
 	}
@@ -207,4 +207,10 @@ void Player::placeBringElement()
 	bringElement->getSprite()->setPosition(newPos);
 
 
+}
+
+bool Player::goingLeft()
+{
+	//on regarde le type de texture sur le joueur (si c'est la texture droite ou la texture gauche)
+	return sprite.getTextureRect().top != this->textureRect.top;
 }

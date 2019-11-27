@@ -2,7 +2,8 @@
 #include "PaintableElement.h"
 
 enum MovingState {
-	IDLE,MOVING_LEFT,MOVING_RIGHT,JUMPING,FALLING
+	IDLE,MOVING_LEFT,MOVING_RIGHT, MOVING_UP, MOVING_DOWN,
+	JUMPING,FALLING, MOVING_UP_LEFT, MOVING_UP_RIGHT, MOVING_DOWN_LEFT, MOVING_DOWN_RIGHT,
 };
 
 class MobileGameplayElement: public PaintableElement
@@ -11,6 +12,9 @@ protected:
 	enum MovingState movingState;
 	bool HateWalls;
 	bool heavy;
+
+	Clock SwitchMouvementClock;
+	double SwitchMouvementDelay = 2; //in seconds
 
 	/*
 
@@ -27,6 +31,8 @@ protected:
 	bool MarcheSurBlock;// le personnage en mode Rocher tombe au travers des blocks
 	double Hauteur;// 0 au sol, 1++ quand on est en air
 	Sprite Fantome;
+
+
 
 public:
 	MobileGameplayElement();
