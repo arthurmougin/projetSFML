@@ -50,10 +50,6 @@ Scene::Scene(Scene*S2)
 
 }
 
-
-
-
-
 void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 {
 
@@ -534,6 +530,24 @@ void Scene::draw(RenderWindow&e)
 
 GameObject* Scene::testCollide(GameObject*e , Direction D)
 {
+	Direction OpposeD = Direction::HAUT;
+	switch (D)
+	{
+	case Direction::HAUT:
+		OpposeD = Direction::BAS;
+		break;
+	case Direction::BAS:
+		OpposeD = Direction::HAUT;
+		break;
+	case Direction::GAUCHE:
+		OpposeD = Direction::DROITE;
+		break;
+	case Direction::DROITE:
+		OpposeD = Direction::GAUCHE;
+		break;
+	default:
+		break;
+	}
 	FloatRect collisionBox,ActualBox;
 	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
 	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
@@ -574,17 +588,18 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 		cout << "Mauvais collisionneur " << endl;
 	}
 
-#pragma region boundery_collision
-	/* TODO */
+	//Ajustement des zones de collision
+	collisionBox = getInnerBounds(D, collisionBox);
+	ActualBox = getInnerBounds(D, ActualBox);
 
-#pragma endregion
+
 
 #pragma region entity_collision
 	if (!TraverseMur) {
 		Mur* MurPtr;
 		for (int i = 0; i < murs.size(); i++) {
 			MurPtr = murs.at(i);
-			if (collisionBox.intersects(MurPtr->getSprite()->getGlobalBounds())) {
+			if (collisionBox.intersects(getInnerBounds(OpposeD,MurPtr->getSprite()->getGlobalBounds()))) {
 				//cout << "Colliding\n";
 				return MurPtr;
 			}
@@ -594,7 +609,7 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 	OneWay* oneWayPtr;
 	for (int i = 0; i < oneWays.size(); i++) {
 		oneWayPtr = oneWays.at(i);
-		if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(oneWayPtr->getSprite()->getGlobalBounds())) {
+		if (!ActualBox.intersects( oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(getInnerBounds(OpposeD, oneWayPtr->getSprite()->getGlobalBounds()))) {
 			return oneWayPtr;
 		}
 	}
@@ -631,7 +646,7 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 				//Si on cherche à tester les collisions d'un MobileGameplayElement
 				if (MobileGameplayElementPointer) {
 					//si l'élément collider  est identique à l'element testé
-					if (mgeptr->getSprite()->getGlobalBounds() == ActualBox) {
+					if (getInnerBounds(D, mgeptr->getSprite()->getGlobalBounds()) == ActualBox) {
 						//on passe à l'élément suivant
 						continue;
 					}
@@ -643,13 +658,13 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 					//Si on ne traverse pas les blocks
 					//Ou que l'on marche sur les blocks et que l'on test une collision vers le bas
 					if (!TraverseBlock || (D == Direction::BAS && MarcheSurBlock)) {
-						if (collisionBox.intersects(blptr->getSprite()->getGlobalBounds())) {
+						if (collisionBox.intersects(getInnerBounds(OpposeD, blptr->getSprite()->getGlobalBounds()))) {
 							return blptr;
 						}
 					}
 					continue;
 				}
-				else if (collisionBox.intersects(mgeptr->getSprite()->getGlobalBounds())) {
+				else if (collisionBox.intersects(getInnerBounds(OpposeD, mgeptr->getSprite()->getGlobalBounds()))) {
 
 					return mgeptr;
 				}
@@ -658,7 +673,7 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 		else { // cas opposé (Bouteilles)
 			fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
 			if (!fEptr->getTraversable()) {
-				if (collisionBox.intersects(fEptr->getSprite()->getGlobalBounds())) {
+				if (collisionBox.intersects(getInnerBounds(OpposeD, fEptr->getSprite()->getGlobalBounds()))) {
 					return fEptr;
 				}
 			}
@@ -706,7 +721,7 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 
 
 	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
-	if (PlayerPointer == NULL && collisionBox.intersects(player->getSprite()->getGlobalBounds())) {
+	if (PlayerPointer == NULL && collisionBox.intersects(getInnerBounds(OpposeD, player->getSprite()->getGlobalBounds()))) {
 		//cout << "Colliding\n";
 
 		return player;
@@ -716,6 +731,214 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 
 	return NULL;
 }
+
+GameObject* Scene::testEncounter(GameObject*e, Direction D, int margin)
+{
+	Direction OpposeD = Direction::HAUT;
+	switch (D)
+	{
+	case Direction::HAUT:
+		OpposeD = Direction::BAS;
+		break;
+	case Direction::BAS:
+		OpposeD = Direction::HAUT;
+		break;
+	case Direction::GAUCHE:
+		OpposeD = Direction::DROITE;
+		break;
+	case Direction::DROITE:
+		OpposeD = Direction::GAUCHE;
+		break;
+	default:
+		break;
+	}
+	FloatRect collisionBox, ActualBox;
+	bool TraverseBlock, TraverseMur, MarcheSurBlock, hauteur;
+	TraverseBlock = TraverseMur = MarcheSurBlock = hauteur = false;
+
+	Player* PlayerPointer;
+	PlayerPointer = dynamic_cast<Player*>(e);
+	MobileEntity* MobileEntityptr;
+	MobileEntityptr = dynamic_cast<MobileEntity*>(e);
+	MobileGameplayElement* MobileGameplayElementPointer = dynamic_cast<MobileGameplayElement*>(e);
+
+
+	if (PlayerPointer) {
+		collisionBox = PlayerPointer->getUpdatedFantome(D).getGlobalBounds();
+		ActualBox = PlayerPointer->getSprite()->getGlobalBounds();
+		TraverseBlock = PlayerPointer->getTraverseBlock();
+		TraverseMur = PlayerPointer->getTraverseMur();
+		MarcheSurBlock = PlayerPointer->getMarcheSurBlock();
+		hauteur = PlayerPointer->getHauteur();
+	}
+	else if (MobileEntityptr) {
+		collisionBox = MobileEntityptr->getUpdatedFantome(D).getGlobalBounds();
+		ActualBox = MobileEntityptr->getSprite()->getGlobalBounds();
+		TraverseBlock = MobileEntityptr->getTraverseBlock();
+		TraverseMur = MobileEntityptr->getTraverseMur();
+		MarcheSurBlock = MobileEntityptr->getMarcheSurBlock();
+		hauteur = MobileEntityptr->getHauteur();
+	}
+	else if (MobileGameplayElementPointer) {
+		collisionBox = MobileGameplayElementPointer->getUpdatedFantome(D).getGlobalBounds();
+		ActualBox = MobileGameplayElementPointer->getSprite()->getGlobalBounds();
+		TraverseBlock = MobileGameplayElementPointer->getTraverseBlock();
+		TraverseMur = MobileGameplayElementPointer->getTraverseMur();
+		MarcheSurBlock = MobileGameplayElementPointer->getMarcheSurBlock();
+		hauteur = MobileGameplayElementPointer->getHauteur();
+	}
+	// A CODER : ROCHER, BLOC, BLOC_VIVANT, ANIMAL
+	else {
+		cout << "Mauvais collisionneur " << endl;
+	}
+
+	//Ajustement des zones de collision
+	collisionBox = getOuterBounds(D, collisionBox, margin);
+	ActualBox = getOuterBounds(D, ActualBox, margin);
+
+#pragma region boundery_collision
+	/* TODO */
+
+#pragma endregion
+
+#pragma region entity_collision
+	if (!TraverseMur) {
+		Mur* MurPtr;
+		for (int i = 0; i < murs.size(); i++) {
+			MurPtr = murs.at(i);
+			if (collisionBox.intersects(getInnerBounds(OpposeD, MurPtr->getSprite()->getGlobalBounds()))) {
+				//cout << "Colliding\n";
+				return MurPtr;
+			}
+		}
+	}
+
+	OneWay* oneWayPtr;
+	for (int i = 0; i < oneWays.size(); i++) {
+		oneWayPtr = oneWays.at(i);
+		if (!ActualBox.intersects(oneWayPtr->getSprite()->getGlobalBounds()) && D == oneWayPtr->getBlockDirection() && collisionBox.intersects(getInnerBounds(OpposeD, oneWayPtr->getSprite()->getGlobalBounds()))) {
+			return oneWayPtr;
+		}
+	}
+
+	spike* spikePtr;
+	for (int i = 0; i < spikes.size(); i++) {
+		spikePtr = spikes.at(i);
+		if (ActualBox.intersects(spikePtr->getSprite()->getGlobalBounds())) {
+			if (PlayerPointer)// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
+				score = 0;
+			else
+				return spikePtr;
+		}
+	}
+
+	Switch* swtchptr;
+	for (int i = 0; i < switches.size(); i++) {
+		swtchptr = switches.at(i);
+		if (collisionBox.intersects(swtchptr->getSprite()->getGlobalBounds())) {
+			return swtchptr;
+		}
+	}
+
+	MobileGameplayElement* mgeptr;
+	FocusableElement* fEptr;
+	Block* blptr;
+	for (int i = 0; i < grabbablesETInhalables.size(); i++) {
+		mgeptr = dynamic_cast<MobileGameplayElement*>(grabbablesETInhalables.at(i));
+
+		if (mgeptr) {//cas des éléments héritant de MobileGameplayElement
+
+			fEptr = mgeptr; //On teste leur heritage en focusable Element pour savoir s'ils sont traversable
+			if (!fEptr->getTraversable()) {
+				//Si on cherche à tester les collisions d'un MobileGameplayElement
+				if (MobileGameplayElementPointer) {
+					//si l'élément collider  est identique à l'element testé
+					if (getInnerBounds(D, mgeptr->getSprite()->getGlobalBounds()) == ActualBox) {
+						//on passe à l'élément suivant
+						continue;
+					}
+				}
+
+				//Dans le cas d'un Block
+				blptr = dynamic_cast<Block*>(mgeptr);
+				if (blptr) {
+					//Si on ne traverse pas les blocks
+					//Ou que l'on marche sur les blocks et que l'on test une collision vers le bas
+					if (!TraverseBlock || (D == Direction::BAS && MarcheSurBlock)) {
+						if (collisionBox.intersects(getInnerBounds(OpposeD, blptr->getSprite()->getGlobalBounds()))) {
+							return blptr;
+						}
+					}
+					continue;
+				}
+				else if (collisionBox.intersects(getInnerBounds(OpposeD, mgeptr->getSprite()->getGlobalBounds()))) {
+
+					return mgeptr;
+				}
+			}
+		}
+		else { // cas opposé (Bouteilles)
+			fEptr = dynamic_cast<FocusableElement*>(grabbablesETInhalables.at(i));
+			if (!fEptr->getTraversable()) {
+				if (collisionBox.intersects(getInnerBounds(OpposeD, fEptr->getSprite()->getGlobalBounds()))) {
+					return fEptr;
+				}
+			}
+		}
+
+		//cas de Bouteille
+
+
+	}
+
+	Goal* goalptr;
+	for (int i = 0; i < goals.size(); i++)
+	{
+		//si on entre en collision avec un objectif, on le supprime du tableau de goals
+		goalptr = goals.at(i);
+		if (ActualBox.intersects(goalptr->getSprite()->getGlobalBounds())) {
+
+			goals.erase(goals.begin() + i);
+			goals.shrink_to_fit();
+
+		}
+	}
+	/*
+	case PIQUE:
+		break;
+	case SWITCH:
+		break;
+	case GOAL:
+		break;
+	case BOUTEILLE:
+		break;
+	case BOUTEILLE_VIVANTE:
+		break;
+	case BLOC:
+		break;
+	case BLOC_VIVANT:
+		break;
+	case ANIMAL:
+		break;/*
+	default:
+		break;
+	}
+	*/
+
+
+
+	// si l'element pour lequel on teste les collisions n'est pas un joueur, alors on doit tester cette option
+	if (PlayerPointer == NULL && collisionBox.intersects(getInnerBounds(OpposeD, player->getSprite()->getGlobalBounds()))) {
+		//cout << "Colliding\n";
+
+		return player;
+	}
+	//cout << "Not Colliding\n";
+#pragma endregion 
+
+	return NULL;
+}
+
 
 int Scene::update(RenderWindow& GM)
 {

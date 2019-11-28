@@ -28,6 +28,11 @@ enum GameColor { //	Les couleurs disponible (NOCOLOR = blanc, ROUGE, BLEU et JAU
 Color getColorFromEnum(GameColor);
 GameColor getEnumFromColor(Color);
 
+//Fonctions utilitaires pour obtenir une zone de collision plus adaptée en fonction des cas
+FloatRect getInnerBounds(Direction, FloatRect );
+//Fonctions utilitaires pour obtenir une zone de collision plus adaptée en fonction des cas
+FloatRect getOuterBounds(Direction, FloatRect, int);
+
 class Scene;
 
 class GameObject

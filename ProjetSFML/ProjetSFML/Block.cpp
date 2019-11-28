@@ -93,26 +93,6 @@ void Block::update(Scene*scene)
 	}
 
 	//Detection de l'état et mise à jour de ce dernier
-	/**
-	switch (color)
-	{
-	case NOCOLOR:
-		cout << "NOCOLOR : ";
-		break;
-	case ROUGE:
-		cout << "ROUGE : ";
-		break;
-	case BLEU:
-		cout << "BLEU : ";
-		break;
-	case JAUNE:
-		cout << "JAUNE : ";
-		break;
-	default:
-		cout << "default : " ;
-		break;
-	}
-	/**/
 	switch (movingState)
 	{
 	case IDLE:
@@ -465,7 +445,9 @@ void Block::update(Scene*scene)
 
 
 	if (movingState != IDLE) {
-		GameObject* walker = scene->testCollide(this, Direction::HAUT);
+
+		GameObject* walker = scene->testEncounter(this, Direction::HAUT,20);
+
 		if (walker) {
 			cout << "colliding walker" << endl;
 			MobileGameplayElement* dynamicWalker = dynamic_cast<MobileGameplayElement*>(walker);

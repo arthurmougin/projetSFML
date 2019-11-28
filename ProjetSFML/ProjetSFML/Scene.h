@@ -56,6 +56,8 @@ public:
 	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);
 	GameObject* testCollide(GameObject*, Direction);
+	GameObject* testEncounter(GameObject*, Direction,int);
+
 	int update(RenderWindow&);
 	bool walkOn(GameObject*, vector <GameObject*>);
 

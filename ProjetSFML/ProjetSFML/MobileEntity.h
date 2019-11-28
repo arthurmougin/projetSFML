@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 
-
 class MobileEntity:public GameObject //désigne tout élément qui se déplace de manière autonome
 {
 protected:

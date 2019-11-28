@@ -118,3 +118,54 @@ GameColor getEnumFromColor(Color C) {
 		return GameColor::NOCOLOR;
 	}
 }
+
+FloatRect getInnerBounds(Direction D, FloatRect Original) {
+	int margin = 30;
+	FloatRect retour = Original;
+	switch (D)
+	{
+	case Direction::HAUT:
+		retour.height = margin;
+		break;
+	case Direction::BAS:
+		retour.top = retour.top + retour.height - margin;
+		retour.height = margin;
+		break;
+	case Direction::GAUCHE:
+		retour.width = margin;
+		break;
+	case Direction::DROITE:
+		retour.left = retour.left + retour.width - margin;
+		retour.width = margin;
+		break;
+	default:
+		break;
+	}
+	return retour;
+}
+
+FloatRect getOuterBounds(Direction D, FloatRect Original, int margin) {
+	FloatRect retour = Original;
+	switch (D)
+	{
+	case Direction::HAUT:
+		retour.top = retour.top - margin;
+		retour.height = margin;
+		break;
+	case Direction::BAS:
+		retour.top = retour.top + retour.height;
+		retour.height = margin;
+		break;
+	case Direction::GAUCHE:
+		retour.left = retour.left - margin;
+		retour.width = margin;
+		break;
+	case Direction::DROITE:
+		retour.left = retour.left + retour.width;
+		retour.width = margin;
+		break;
+	default:
+		break;
+	}
+	return retour;
+}
