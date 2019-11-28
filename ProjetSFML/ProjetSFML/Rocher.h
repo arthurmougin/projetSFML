@@ -4,8 +4,9 @@ class Scene;
 class Rocher : public MobileGameplayElement
 {
 public:
-	Rocher();
-	Rocher(Vector2f, Texture, IntRect);
+	/* CONSTRUCTEURS */
+	Rocher();//Constructeur standard
+	Rocher(Vector2f, Texture, IntRect);//Constructeur utilisé dans la génération de la scene 
 
 	
 };

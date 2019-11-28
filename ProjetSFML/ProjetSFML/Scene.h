@@ -46,17 +46,20 @@ protected:
 
 
 public:
-	Scene();
+	/* CONSTRUCTEURS */
+	Scene();//Constructeur standard
 	Scene(int, vector <vector <enum ElementTypes>>);
 	Scene(int, vector <GameObject*>, Vector2f , Player);
 	Scene(Scene*);
 
+	/* FONCTIONS MEMBRES DE LA CLASSE */
 	void generate(vector <vector <enum ElementTypes>>);
 	void draw(RenderWindow&);
 	GameObject* testCollide(GameObject*, Direction);
 	int update(RenderWindow&);
 	bool walkOn(GameObject*, vector <GameObject*>);
 
+	/* GETER SETER */
 	int getScore();
 	void setScore(int);
 	Text getScoreString();

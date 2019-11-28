@@ -3,9 +3,11 @@
 class Mur:public GameObject
 {
 public:
-	Mur();
+	/* CONSTRUCTEURS */
+	Mur();//Constructeur standard
+	Mur(Vector2f, Texture, IntRect);//Constructeur utilisé dans la génération de la scene  
+	/* Constructeurs alternatifs */
 	Mur(Vector2f);
-	Mur(Vector2f, Texture, IntRect);
 	//void update();
 };
 

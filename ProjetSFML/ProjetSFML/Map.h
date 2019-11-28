@@ -18,11 +18,13 @@ protected:
 	bool isPlaying;
 
 public:
-	Map();
+	/* CONSTRUCTEURS */
+	Map();//Constructeur standard
 	Map(vector <vector<enum ElementTypes>>);
 	Map(int, vector <vector<enum ElementTypes>>);
 	Map(int, double, vector <vector<enum ElementTypes>>, vector <Scene>);
 
+	/* FONCTIONS MEMBRES DE LA CLASSE */
 	void finish();
 	Scene generate();
 	void quickSave();
@@ -31,6 +33,7 @@ public:
 	void draw(RenderWindow &);
 	void restart();
 
+	/* GETER SETER */
 	int getInitialScore();
 	void setInitialScore(int);
 	double getGravity();

@@ -3,11 +3,13 @@
 class Bouteille:public PaintableElement
 {
 public:
-	Bouteille();
+	/* CONSTRUCTEURS */
+	Bouteille();//Constructeur standard
+	Bouteille(bool, Vector2f, Texture, IntRect);//Constructeur utilisable dans la génération de la scene
+	Bouteille(bool, GameColor, Vector2f, Texture, IntRect);//Constructeur utilisable dans la génération de la scene
+	/* Constructeurs alternatifs */
 	Bouteille(GameColor);
 	Bouteille(bool);
 	Bouteille(bool, GameColor);
-	Bouteille(bool, Vector2f, Texture, IntRect);
-	Bouteille(bool, GameColor, Vector2f, Texture, IntRect);
 };
 

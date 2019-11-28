@@ -9,20 +9,23 @@ using namespace std;
 using namespace sf;
 
 
-class GameMaster:public RenderWindow
+class GameMaster:public RenderWindow //Classe du jeu
 {
 protected:
-	vector <Map> maps;
-	int selectedMapIndex;
-	//RenderWindow window;
-	Font *font;
-	double framerate;
-	Clock MainClock;
+	vector <Map> maps; //Stock de cartes
+	int selectedMapIndex; //index de la carte en cours
+	Font *font; //police stockée globalement
+	double framerate; //fréquence de jeu
+	Clock MainClock; //Horloge pour définir la fréquence de jeu
 
 public:
+	/* CONSTRUCTEURS */
 	GameMaster();
+
+	/* FONCTIONS MEMBRES DE LA CLASSE */
 	void run();
 
+	/* GETER SETER */
 	vector <Map> getMaps();
 	void setMaps(vector <Map>);
 	void addMap(Map);

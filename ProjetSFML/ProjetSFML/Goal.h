@@ -5,6 +5,8 @@ class Goal :public GameEntity
 {
 
 public:
-	Goal(Vector2f, Texture, IntRect);
+	/* CONSTRUCTEURS */
+	Goal();//Constructeur standard
+	Goal(Vector2f, Texture, IntRect);//Constructeur utilisé dans la génération de la scene 
 };
 

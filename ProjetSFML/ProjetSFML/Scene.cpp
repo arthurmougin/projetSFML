@@ -398,7 +398,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::GOAL:
 						try {
-							cout << endl << "GOAL at " << x << "x - " << y << "y : ";
+							//cout << endl << "GOAL at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 1 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Goal* goalptr = new Goal(MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -807,10 +807,16 @@ int Scene::update(RenderWindow& GM)
 							if (interactionBox.intersects(grabbablesETInhalables.at(i)->getSprite()->getGlobalBounds())) {
 								cout << "found Element Neer Mee" << endl;
 								MobileGameplayElement* mpptr = dynamic_cast <MobileGameplayElement*>(grabbablesETInhalables.at(i));
-								if (mpptr && mpptr->getColor() == NOCOLOR) {
+								if (mpptr && mpptr->getColor() == NOCOLOR && mpptr->getPaintable()) {
+									cout << "Transfert possible "<< endl;
 									mpptr->setColor(player->getBringColor());
 									player->setBringColor(NOCOLOR);
 								}
+								else {
+									cout << "Transfert impossible " << endl;
+								}
+								
+
 							}
 						}
 					}
@@ -917,9 +923,6 @@ int Scene::update(RenderWindow& GM)
 	ScoreString.setString(to_string(score));
 	return retour;
 }
-
-
-
 
 
 int Scene::getScore()

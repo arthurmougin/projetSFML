@@ -2,9 +2,11 @@
 #include "GameEntity.h"
 
 
-class spike :public GameEntity
+class spike :public GameEntity//element qui tue le joueur s'il le touche
 {
 public:
-	spike(Vector2f, Texture, IntRect);
+	/* CONSTRUCTEURS */
+	spike();//Constructeur standard
+	spike(Vector2f, Texture, IntRect);//Constructeur utilisé dans la génération de la scene 
 };
 

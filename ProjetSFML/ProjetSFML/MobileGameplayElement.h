@@ -1,10 +1,6 @@
 #pragma once
 #include "PaintableElement.h"
 
-enum MovingState {
-	IDLE,MOVING_LEFT,MOVING_RIGHT, MOVING_UP, MOVING_DOWN,
-	JUMPING,FALLING, MOVING_UP_LEFT, MOVING_UP_RIGHT, MOVING_DOWN_LEFT, MOVING_DOWN_RIGHT,
-};
 
 class MobileGameplayElement: public PaintableElement
 {
@@ -35,7 +31,11 @@ protected:
 
 
 public:
-	MobileGameplayElement();
+	/* CONSTRUCTEURS */
+	MobileGameplayElement();//Constructeur standard
+	/*
+		Les constructeurs suivant servent pour etre intégrés dans la construction de classes filles
+	*/
 	MobileGameplayElement(bool, bool, GameColor);
 	MobileGameplayElement(bool, bool, bool, bool, GameColor);
 	MobileGameplayElement(bool, bool, bool, bool, bool, double, bool, bool, bool, GameColor);
@@ -44,8 +44,10 @@ public:
 	MobileGameplayElement(bool, bool, bool, double, bool, bool, bool, bool, int, Vector2f, Texture, IntRect, GameColor);
 	MobileGameplayElement(bool, bool, bool, double, bool, bool, bool, bool, int, Vector2f, Texture, IntRect, bool, bool, GameColor);
 
+	/* FONCTIONS MEMBRES DE LA CLASSE */
 	void update(Scene*);
 
+	/* GETER SETER */
 	enum MovingState getMovingState();
 	void setMovingState(enum MovingState);
 	bool getHateWalls();
@@ -61,12 +63,13 @@ public:
 	
 	*/
 
+	/* FONCTIONS MEMBRES DE LA CLASSE */
 	void moveTo(Direction);
 	void updatePos(double);//Gravity
 	void initDirection();
-
 	Sprite getUpdatedFantome(Direction);
 
+	/* GETER SETER */
 	bool getFlying();
 	void setFlying(bool);
 
