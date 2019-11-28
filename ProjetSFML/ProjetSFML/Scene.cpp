@@ -1142,7 +1142,6 @@ int Scene::update(RenderWindow& GM)
 	return retour;
 }
 
-
 int Scene::getScore()
 {
 	return score;
