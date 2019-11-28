@@ -24,7 +24,7 @@ enum GameColor { //	Les couleurs disponible (NOCOLOR = blanc, ROUGE, BLEU et JAU
 	NOCOLOR,ROUGE,BLEU,JAUNE
 };
 
-//Classes utilitaires pour convertir les enums gamecolor en couleur
+//Fonctions utilitaires pour convertir les enums gamecolor en couleur
 Color getColorFromEnum(GameColor);
 GameColor getEnumFromColor(Color);
 

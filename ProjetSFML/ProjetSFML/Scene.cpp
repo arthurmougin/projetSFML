@@ -409,9 +409,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
-
-
-
 					case ElementTypes::BLOC:
 						try {
 							cout << endl << "BLOC at " << x << "x - " << y << "y : ";
@@ -805,7 +802,7 @@ int Scene::update(RenderWindow& GM)
 						for (int i = 0; i < grabbablesETInhalables.size() && player->getBringSomething(); i++)
 						{
 							if (interactionBox.intersects(grabbablesETInhalables.at(i)->getSprite()->getGlobalBounds())) {
-								cout << "found Element Neer Mee" << endl;
+								
 								MobileGameplayElement* mpptr = dynamic_cast <MobileGameplayElement*>(grabbablesETInhalables.at(i));
 								if (mpptr && mpptr->getColor() == NOCOLOR && mpptr->getPaintable()) {
 									cout << "Transfert possible "<< endl;
@@ -815,8 +812,6 @@ int Scene::update(RenderWindow& GM)
 								else {
 									cout << "Transfert impossible " << endl;
 								}
-								
-
 							}
 						}
 					}

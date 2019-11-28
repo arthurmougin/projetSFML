@@ -2,6 +2,8 @@
 
 PaintableElement::PaintableElement():FocusableElement()
 {
+	paintable = false;
+	inhalable = false;
 }
 
 PaintableElement::PaintableElement(
