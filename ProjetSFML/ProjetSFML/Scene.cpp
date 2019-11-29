@@ -14,7 +14,7 @@ Scene::Scene()
 
 Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 {
-	cout << "Generation" << endl;
+	//cout << "Generation" << endl;
 	score = s;
 	generate(m);
 	ScoreString.setString(to_string(score));
@@ -64,8 +64,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 	{
 		cout << "failToLoad PlayerTex" << endl;
 	}
-	else
-		cout << PlayerTex.getSize().x << " " << PlayerTex.getSize().y << endl;
 	IntRect MyEntityTextRect, MyPlayerTextRect;
 	//EntityScale = ratio de proportion des entitées;
 	//ArenaScale = Dimension de la case occupée par un élément
@@ -176,7 +174,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::ONEWAY:
 						try {
-							cout << "OneWay (defaut  = Haut) at " << x << "x - " << y << "y : " << endl;
+							//cout << "OneWay (defaut  = Haut) at " << x << "x - " << y << "y : " << endl;
 
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
@@ -192,7 +190,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::ONEWAY_HAUT:
 						try {
-							cout << "OneWay Haut at " << x << "x - " << y << "y : "<< endl;
+							//cout << "OneWay Haut at " << x << "x - " << y << "y : "<< endl;
 						
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
@@ -208,7 +206,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::ONEWAY_BAS:
 						try {
-							cout << "OneWay Bas at " << x << "x - " << y << "y : "<< endl;
+							//cout << "OneWay Bas at " << x << "x - " << y << "y : "<< endl;
 
 							MyEntityTextRect.top = 3 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
@@ -225,7 +223,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::ONEWAY_GAUCHE:
 						try {
-							cout << "OneWay Gauche at " << x << "x - " << y << "y : " << endl;
+							//cout << "OneWay Gauche at " << x << "x - " << y << "y : " << endl;
 
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
@@ -242,7 +240,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::ONEWAY_DROITE:
 						try {
-							cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
+							//cout << "OneWay Droite at " << x << "x - " << y << "y : " << endl;
 
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 1 * MyEntityTextRect.width;
@@ -258,7 +256,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::PIQUE:
 						try {
-							cout << "spike at " << x << "x - " << y << "y : " << endl;
+							//cout << "spike at " << x << "x - " << y << "y : " << endl;
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
 							/*
@@ -274,6 +272,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::SPAWN:
 						try {
+							/**
 							cout << endl << "SpawnPoint at " << x << "x - " << y << "y : ";
 							cout << myLine.size() << " " << myMatrice.size() << endl;
 							if ((x + 1 < myLine.size()) && (myLine.at(x + 1) == ElementTypes::VIDE) && (y + 1 < myMatrice.size()) && (myMatrice.at(x).at(y + 1) == ElementTypes::VIDE) && (myMatrice.at(x + 1).at(y + 1) == ElementTypes::VIDE)) {
@@ -282,12 +281,12 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							else {
 								cout << "INVALIDE" << endl;
 							}
-
+							/**/
 							MyPlayerTextRect.width = MyPlayerTextRect.height = 32;
 							MyPlayerTextRect.left = MyPlayerTextRect.width * 0;
 							MyPlayerTextRect.top = MyPlayerTextRect.height * 0;
 
-							cout << "Rectangle : x:" << MyPlayerTextRect.left << " y:" << MyPlayerTextRect.top << " width:" << MyPlayerTextRect.width << " height:" << MyPlayerTextRect.height << endl;
+							//cout << "Rectangle : x:" << MyPlayerTextRect.left << " y:" << MyPlayerTextRect.top << " width:" << MyPlayerTextRect.width << " height:" << MyPlayerTextRect.height << endl;
 							
 							spawnPoint.x = MyPosition.x;
 							spawnPoint.y = MyPosition.y;
@@ -305,7 +304,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BOUTEILLE:
 						try {
-							cout << endl << "BOUTEILLE at " << x << "x - " << y << "y : ";
+							//cout << endl << "BOUTEILLE at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Bouteille* btllptr = new Bouteille(true, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -318,7 +317,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BOUTEILLE_VIVANTE:
 						try {
-							cout << endl << "BOUTEILLE_VIVANTE at " << x << "x - " << y << "y : ";
+							//cout << endl << "BOUTEILLE_VIVANTE at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 3 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Bouteille* btllptr = new Bouteille(false, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -331,7 +330,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BOUTEILLE_COULEUR1:
 						try {
-							cout << endl << "BOUTEILLE_COULEUR1 at " << x << "x - " << y << "y : ";
+							//cout << endl << "BOUTEILLE_COULEUR1 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Bouteille* btllptr = new Bouteille(true, ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -344,7 +343,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;					
 					case ElementTypes::BOUTEILLE_COULEUR2:
 						try {
-							cout << endl << "BOUTEILLE_COULEUR2 at " << x << "x - " << y << "y : ";
+							//cout << endl << "BOUTEILLE_COULEUR2 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Bouteille* btllptr = new Bouteille(true, BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -357,7 +356,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BOUTEILLE_COULEUR3:
 						try {
-							cout << endl << "BOUTEILLE_COULEUR3 at " << x << "x - " << y << "y : ";
+							//cout << endl << "BOUTEILLE_COULEUR3 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Bouteille* btllptr = new Bouteille(true, JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -370,7 +369,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::SWITCH:
 						try {
-							cout << endl << "SWITCH at " << x << "x - " << y << "y : ";
+							//cout << endl << "SWITCH at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 1 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 0 * MyEntityTextRect.width;
 							Switch* swptr = new Switch(MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -382,7 +381,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::ROCHER:
 						try {
-							cout << endl << "ROCHER at " << x << "x - " << y << "y : ";
+							//cout << endl << "ROCHER at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 2 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 3 * MyEntityTextRect.width;
 							Rocher* rchptr = new Rocher(MyPosition, nonPlayerTex, MyEntityTextRect);

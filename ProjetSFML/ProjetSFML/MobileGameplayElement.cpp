@@ -15,6 +15,7 @@ MobileGameplayElement::MobileGameplayElement(): PaintableElement(false, false,fa
 	acceleration = direction = Vector2f(0, 0);
 	MarcheSurBlock = TraverseMur = false;
 	Hauteur = 0;
+	////cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -33,6 +34,7 @@ MobileGameplayElement::MobileGameplayElement(
 	acceleration = direction = Vector2f(0, 0);
 	MarcheSurBlock = TraverseMur = false;
 	Hauteur = 0;
+	//cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -51,6 +53,7 @@ MobileGameplayElement::MobileGameplayElement(
 	acceleration = direction = Vector2f(0, 0);
 	MarcheSurBlock = TraverseMur = false;
 	Hauteur = 0;
+	//cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -72,6 +75,7 @@ MobileGameplayElement::MobileGameplayElement(
 	MarcheSurBlock = MarcheSurB;
 	TraverseMur = TraverseM;
 	Hauteur = 0;
+	//cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -80,7 +84,7 @@ MobileGameplayElement::MobileGameplayElement(
 	Texture texture, IntRect textrect, GameColor gc
 ):PaintableElement(false,false, gc,traversable, position, texture, textrect)
 {
-	cout << "traversable" << traversable << endl;
+	//cout << "traversable" << traversable << endl;
 	movingState = FALLING;
 	HateWalls = hateW;
 	heavy = heavii;
@@ -98,6 +102,7 @@ MobileGameplayElement::MobileGameplayElement(
 	Hauteur = 0;
 	Fantome.setTexture(texture);
 	Fantome.setTextureRect(textrect);
+	//cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -106,7 +111,7 @@ MobileGameplayElement::MobileGameplayElement(
 	Texture texture, IntRect textrect, bool paintbl, bool inhalabl, GameColor gc
 ):PaintableElement(paintbl, inhalabl, gc, traversable, position, texture, textrect)
 {
-	cout << "traversable" << traversable << endl;
+	//cout << "traversable" << traversable << endl;
 	movingState = FALLING;
 	HateWalls = hateW;
 	heavy = heavii;
@@ -124,6 +129,7 @@ MobileGameplayElement::MobileGameplayElement(
 	Hauteur = 0;
 	Fantome.setTexture(texture);
 	Fantome.setTextureRect(textrect);
+	////cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -133,7 +139,7 @@ MobileGameplayElement::MobileGameplayElement(
 ) :PaintableElement(false, false,  gc, traversable,
 	intervalframe, position, texture, textrect)
 {
-	cout << "traversable " << traversable << endl;
+	//cout << "traversable " << traversable << endl;
 
 	movingState = FALLING;
 	HateWalls = hateW;
@@ -151,6 +157,7 @@ MobileGameplayElement::MobileGameplayElement(
 	Hauteur = 0;
 	Fantome.setTexture(texture);
 	Fantome.setTextureRect(textrect);
+	////cout << "speed:" << speed << endl;
 }
 
 MobileGameplayElement::MobileGameplayElement(
@@ -161,7 +168,7 @@ MobileGameplayElement::MobileGameplayElement(
 ):PaintableElement(paintbl,inhalabl,gc, traversable,
 	intervalframe, position, texture, textrect)
 {
-	cout << "traversable" << traversable << endl;
+	//cout << "traversable" << traversable << endl;
 	movingState = FALLING;
 	HateWalls = hateW;
 	heavy = heavii;
@@ -179,6 +186,7 @@ MobileGameplayElement::MobileGameplayElement(
 	Hauteur = 0;
 	Fantome.setTexture(texture);
 	Fantome.setTextureRect(textrect);
+	//cout <<"speed:"<< speed << endl;
 }
 
 void MobileGameplayElement::update(Scene* scene)
@@ -312,7 +320,6 @@ void MobileGameplayElement::moveTo(Direction d)
 
 void MobileGameplayElement::updatePos(double G)
 {
-
 	if (Hauteur != 0 && !flying) {
 		acceleration.y += G;
 	}

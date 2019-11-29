@@ -1,29 +1,31 @@
 #include "Block.h"
 #include "Scene.h"
 
-Block::Block():MobileGameplayElement(false, false, true, true, true, 15, true, true, false, NOCOLOR)
+Block::Block():MobileGameplayElement(false, false, true, true, true, 4, true, true, false, NOCOLOR)
 {
 	//cout << traversable;
 
 }
 
-Block::Block(GameColor gc) : MobileGameplayElement(false, false, true, true, true, 15, true, true, false, gc)
+Block::Block(GameColor gc) : MobileGameplayElement(false, false, true, true, true, 4, true, true, false, gc)
 {
 	//cout << traversable;
 }
 
 Block::Block(
 	bool paramvivant
-):MobileGameplayElement(false, false, !paramvivant, !paramvivant, true, 15, true, true, false, NOCOLOR)
+):MobileGameplayElement(false, false, !paramvivant, !paramvivant, true, 4, true, true, false, NOCOLOR)
 {
+	//cout <<"1speed:"<< speed << endl;
 	vivant = paramvivant;
 	//cout << traversable;
 }
 
 Block::Block(
 	bool paramvivant, GameColor gc
-) : MobileGameplayElement(false, false, !paramvivant, !paramvivant, true, 15, true, true, false, gc)
+) : MobileGameplayElement(false, false, !paramvivant, !paramvivant, true, 4, true, true, false, gc)
 {
+	//cout <<"2speed:"<< speed << endl;
 	vivant = paramvivant;
 	//cout << traversable;
 }
@@ -31,8 +33,9 @@ Block::Block(
 Block::Block(
 	Vector2f position, Texture texture, IntRect textrect
 )
-	:MobileGameplayElement( false, false, true, true, true, 15, true, true, false, position, texture, textrect, true, true, NOCOLOR)
+	:MobileGameplayElement( false, false, true, true, true, 4, true, true, false, position, texture, textrect, true, true, NOCOLOR)
 {
+	//cout <<"3speed:"<< speed << endl;
 	traversable = false;
 }
 
@@ -40,10 +43,11 @@ Block::Block(
 	bool paramvivant, Vector2f position, Texture texture, 
 	IntRect textrect
 )
-	: MobileGameplayElement(false, false, !paramvivant, 15, true, true, false, false, 1, position, texture, textrect, true, true, NOCOLOR)
+	: MobileGameplayElement(false, false, !paramvivant, 6, true, true, false, false, 1, position, texture, textrect, true, true, NOCOLOR)
 	//bool hateW, bool heavii, bool fly, double Speed, bool TraverseB,bool TraverseM, bool MarcheSurB, bool traversable, int intervalframe,Vector2f position, Texture texture, IntRect textrect, GameColor gc)
 {
 	vivant = paramvivant;
+	//cout <<"4speed:"<< speed << endl;
 	traversable = false;
 }
 
@@ -51,9 +55,10 @@ Block::Block(
 	GameColor gc, Vector2f position, Texture texture, 
 	IntRect textrect
 )
-	: MobileGameplayElement(false, false, true, true, true, 15, true, true, false, position, texture, textrect, true, true, gc)
+	: MobileGameplayElement(false, false, true, 6, true, true, true, true, 1, position, texture, textrect, true, true, gc)
 {
 	//cout << traversable;
+	//cout <<"5speed:"<< speed << endl;
 	traversable = false;
 }
 
@@ -61,8 +66,10 @@ Block::Block(
 	bool paramvivant, GameColor gc, Vector2f position, 
 	Texture texture, IntRect textrect
 )
-	: MobileGameplayElement(false, false, !paramvivant, !paramvivant, true, 15, true, true, false, position, texture, textrect, gc)
+	: MobileGameplayElement(false, false, true, 6, true, true, false, true, 1, position, texture, textrect, !paramvivant, !paramvivant, gc)
 {
+
+	//cout <<"6speed:"<< speed << endl;
 	vivant = paramvivant;
 	traversable = false;
 
@@ -472,7 +479,7 @@ void Block::update(Scene*scene)
 	} 
 
 
-	updatePos(9.8 / 12);
+	//updatePos(9.8 / 12);
 
 
 
