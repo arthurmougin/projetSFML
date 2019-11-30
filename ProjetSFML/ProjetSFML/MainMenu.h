@@ -11,10 +11,13 @@ protected:
 	int SelectedItemIndex = 0;
 	vector <Text> elements;
 	bool opened = false;
+	Text titre;
 
 public:
 	MainMenu(int, int, Font*);
-	MainMenu(int, int,Font*,vector<String>);
+	MainMenu(int, int, Font*,String);
+	MainMenu(int, int, Font*, vector<String>);
+	MainMenu(int, int,Font*,vector<String>, String);
 
 	void drawMe(RenderWindow& GM);
 	void MoveUp();
@@ -22,6 +25,7 @@ public:
 	bool getOpened();
 	void setOpened(bool);
 	int getSelectedItemIndex();
+
 
 };
 

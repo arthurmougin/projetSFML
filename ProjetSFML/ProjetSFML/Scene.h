@@ -31,9 +31,7 @@ class Scene
 protected:
 	int score;
 	Text ScoreString;
-	vector <GameObject *> gameObjects;
 	vector <GameObject *> grabbablesETInhalables;
-	vector <GameObject *> paintables;
 	vector <Mur*> murs;
 	vector <OneWay*> oneWays;
 	vector <spike*> spikes;
@@ -49,7 +47,6 @@ public:
 	/* CONSTRUCTEURS */
 	Scene();//Constructeur standard
 	Scene(int, vector <vector <enum ElementTypes>>);
-	Scene(int, vector <GameObject*>, Vector2f , Player);
 	Scene(Scene*);
 
 	/* FONCTIONS MEMBRES DE LA CLASSE */
@@ -64,20 +61,37 @@ public:
 	/* GETER SETER */
 	int getScore();
 	void setScore(int);
+
 	Text getScoreString();
 	void setScoreString(Text);
-	vector <GameObject*> getGrabbablesETInhalables();
-	void setGrabbablesETInhalables(vector <GameObject*>);
-	vector <GameObject*> getGameObjects();
-	void setGameObjects(vector <GameObject*>);
+
 	Player getPlayer();
 	void setPlayer(Player);
+
 	Vector2f getSpawnPoint();
 	void setSpawnPoint(Vector2f);
 
+	vector <GameObject*> getGrabbablesETInhalables();
+	void setGrabbablesETInhalables(vector <GameObject*>);
+
 	vector <Bouteille*> getBouteilles();
 	void setBouteilles(vector <Bouteille*>);
-
 	
+	vector <spike*> getSpikes();
+	void setSpikes(vector <spike*>);
+
+	vector <Switch*> getSwiches();
+	void setSwiches(vector <Switch*>);
+
+	vector <Mur*> getMurs();
+	void setMurs(vector <Mur*>);
+
+	vector <OneWay*> getOneWays();
+	void setOneWays(vector <OneWay*>);
+
+
+	vector <Goal*> getGoals();
+	void setGoals(vector <Goal*>);
+
 };
 

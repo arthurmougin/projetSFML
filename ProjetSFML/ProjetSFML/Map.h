@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "MainMenu.h"
+
 
 class Map
 {
@@ -16,7 +18,6 @@ protected:
 	vector <vector<enum ElementTypes>> matrice;
 	vector <Scene> sauvegardes;
 	bool isPlaying;
-
 public:
 	/* CONSTRUCTEURS */
 	Map();//Constructeur standard

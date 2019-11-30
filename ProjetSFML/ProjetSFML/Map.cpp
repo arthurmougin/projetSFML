@@ -9,6 +9,7 @@ Map::Map()
 		{VIDE}
 	};
 	sauvegardes.push_back(generate());
+	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	isPlaying = true;
 }
 
@@ -19,6 +20,7 @@ Map::Map(vector<vector<enum ElementTypes>> M)
 	gravity = 9.8;
 	matrice = M;
 	sauvegardes.push_back(generate());
+	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	isPlaying = true;
 
 }
@@ -30,6 +32,7 @@ Map::Map(int i, vector<vector<enum ElementTypes>> M)
 	gravity = 9.8;
 	matrice = M;
 	sauvegardes.push_back(generate());
+	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	isPlaying = true;
 
 }
@@ -47,6 +50,7 @@ Map::Map(int i, double g, vector<vector<enum ElementTypes>> M,  vector<Scene> sv
 
 void Map::finish()
 {
+	cout << "finish" << endl;
 	if (sauvegardes.size() != 0) {
 		//on recupere le meilleur score
 		highScore = sauvegardes.at(0).getScore();
@@ -57,6 +61,7 @@ void Map::finish()
 			sauvegardes.pop_back();
 		}
 		sauvegardes.push_back(generate());
+		cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 		isPlaying = false;
 	}
 	else {
@@ -72,11 +77,16 @@ Scene Map::generate()
 
 void Map::quickSave()
 {
+	cout << "quickSave" << endl;
+
 	int penalty = 20;
 
 	if (sauvegardes.size() != 0) {
-		Scene actuel = sauvegardes.at(0);
-		sauvegardes.push_back(Scene(actuel.getScore() - penalty, actuel.getGameObjects(), actuel.getSpawnPoint(), actuel.getPlayer()));
+		cout << "copying" << endl;
+		Scene duplique  = Scene(&sauvegardes.at(0));
+		duplique.setScore(duplique.getScore() - penalty);
+		sauvegardes.push_back(duplique);
+		cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	}
 	else {
 		cout << "Pas de quickSave sans sauvegardes existantes" << endl;
@@ -86,13 +96,15 @@ void Map::quickSave()
 
 void Map::loadSave()
 {
+	cout << "loadSave" << endl;
+
 	if (sauvegardes.size() > 1) {
 		//Transfert du texte
 		sauvegardes.at(1).setScoreString(sauvegardes.at(0).getScoreString());
 		sauvegardes.erase(sauvegardes.begin());
 		sauvegardes.shrink_to_fit();
 		
-		cout << "sauvegarde size = " << sauvegardes.size();
+		cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	}
 	else {
 		cout << "Pas assez de sauvegardes" << endl;
@@ -153,7 +165,10 @@ void Map::draw(RenderWindow&R)
 
 void Map::restart()
 {
+	cout << "restart" << endl;
+
 	sauvegardes.push_back(generate());
+	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	loadSave();
 }
 

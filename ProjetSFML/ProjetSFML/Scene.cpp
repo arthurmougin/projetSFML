@@ -24,35 +24,170 @@ Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 
 }
 
-Scene::Scene(int s, vector <GameObject*> v, Vector2f sp, Player p)
-{
-	score = s;
-	gameObjects = v;
-	spawnPoint = sp;
-	player = &p;
-	ScoreString.setString(to_string(score));
-	ScoreString.setCharacterSize(60);
-	ScoreString.setStyle(Text::Regular);
-	ScoreString.setOutlineThickness(20);
-
-}
-
 Scene::Scene(Scene*S2)
 {
+	cout << "Cpy" << endl;
+	//setup des valeurs simples a copier
 	score = S2->getScore();
-	gameObjects = S2->getGameObjects();
-	player = &S2->getPlayer();
 	spawnPoint = S2->getSpawnPoint();
 	ScoreString.setString(to_string(score));
 	ScoreString.setCharacterSize(60);
 	ScoreString.setStyle(Text::Regular);
 	ScoreString.setOutlineThickness(20);
 
+	//copie des entitées
+#pragma region copyEntities
+
+	vector <GameObject*> oldgrabbablesETInhalables = S2->getGrabbablesETInhalables();
+	Bouteille* bo;
+	Rocher* r;
+	Block* bl;
+	for (int i = 0; i < oldgrabbablesETInhalables.size(); i++)
+	{
+		bo = dynamic_cast<Bouteille*>(oldgrabbablesETInhalables.at(i));
+		if (bo) {
+			
+			Vector2f EntityScale = bo->getSprite()->getScale();
+			bool inhalab = bo->getInhalable();
+			Vector2f MyPosition = bo->getSprite()->getPosition();
+			Texture nonPlayerTex = *bo->getTexture();
+			IntRect MyEntityTextRect = *bo->getTextureRect();
+			Bouteille* btllptr = new Bouteille(inhalab, MyPosition, nonPlayerTex, MyEntityTextRect);
+			btllptr->getSprite()->setScale(EntityScale);
+			bouteilles.push_back(btllptr);
+			grabbablesETInhalables.push_back(btllptr);
+			continue;
+		}
+
+		r = dynamic_cast<Rocher*>(oldgrabbablesETInhalables.at(i));
+		if (r) {
+			Vector2f EntityScale = r->getSprite()->getScale();
+			Vector2f MyPosition = r->getSprite()->getPosition();
+			Texture nonPlayerTex = *r->getTexture();
+			IntRect MyEntityTextRect = *r->getTextureRect();
+			Rocher* rchptr = new Rocher(MyPosition, nonPlayerTex, MyEntityTextRect);
+			rchptr->getSprite()->setScale(EntityScale);
+			grabbablesETInhalables.push_back(rchptr);
+			continue;
+		}
+
+		bl = dynamic_cast<Block*>(oldgrabbablesETInhalables.at(i));
+		if (bl) {
+			GameColor mycolor = bl->getColor();
+			bool vivant = bl->getVivant();
+			Vector2f EntityScale = bl->getSprite()->getScale();
+			Vector2f MyPosition = bl->getSprite()->getPosition();
+			Texture nonPlayerTex = *bl->getTexture();
+			IntRect MyEntityTextRect = *bl->getTextureRect();
+			Block* blptr = new Block(vivant, mycolor, MyPosition, nonPlayerTex, MyEntityTextRect);
+			blptr->getSprite()->setScale(EntityScale);
+			grabbablesETInhalables.push_back(blptr);
+			continue;
+		}
+
+	}
+
+	vector <Goal*> oldGoals = S2->getGoals();
+	Goal* g;
+	for (int i = 0; i < oldGoals.size(); i++)
+	{
+		g = dynamic_cast<Goal*>(oldGoals.at(i));
+		if (g) {
+			Vector2f EntityScale = g->getSprite()->getScale();
+			Vector2f MyPosition = g->getSprite()->getPosition();
+			Texture nonPlayerTex = *g->getTexture();
+			IntRect MyEntityTextRect = *g->getTextureRect();
+
+			Goal* goalptr = new Goal(MyPosition, nonPlayerTex, MyEntityTextRect);
+			goalptr->getSprite()->setScale(EntityScale);
+			goals.push_back(goalptr);
+		}
+	}
+	
+	vector <Switch*> oldSwitches = S2->getSwiches();
+	Switch* s;
+	for (int i = 0; i < oldSwitches.size(); i++)
+	{
+		s = dynamic_cast<Switch*>(oldSwitches.at(i));
+		if (s) {
+			Vector2f EntityScale = s->getSprite()->getScale();
+			Vector2f MyPosition = s->getSprite()->getPosition();
+			Texture nonPlayerTex = *s->getTexture();
+			IntRect MyEntityTextRect = *s->getTextureRect();
+
+			Switch* swptr = new Switch(MyPosition, nonPlayerTex, MyEntityTextRect);
+			swptr->getSprite()->setScale(EntityScale);
+			switches.push_back(swptr);
+		}
+	}
+
+	vector <spike*> oldSpikes = S2->getSpikes();
+	spike* sp;
+	for (int i = 0; i < oldSpikes.size(); i++)
+	{
+		sp = dynamic_cast<spike*>(oldSpikes.at(i));
+		if (sp) {
+			Vector2f EntityScale = sp->getSprite()->getScale();
+			Vector2f MyPosition = sp->getSprite()->getPosition();
+			Texture nonPlayerTex = *sp->getTexture();
+			IntRect MyEntityTextRect = *sp->getTextureRect();
+
+			spike* spptr = new spike(MyPosition, nonPlayerTex, MyEntityTextRect);
+			spptr->getSprite()->setScale(EntityScale);
+			spikes.push_back(spptr);
+		}
+	}
+
+	vector <OneWay*> oldOneWays = S2->getOneWays();
+	OneWay* ow;
+	for (int i = 0; i < oldOneWays.size(); i++)
+	{
+		ow = dynamic_cast<OneWay*>(oldOneWays.at(i));
+		if (ow) {
+			Vector2f EntityScale = ow->getSprite()->getScale();
+			Vector2f MyPosition = ow->getSprite()->getPosition();
+			Texture nonPlayerTex = *ow->getTexture();
+			IntRect MyEntityTextRect = *ow->getTextureRect();
+			Direction dir = ow->getBlockDirection();
+
+			OneWay* owptr = new OneWay(dir, MyPosition, nonPlayerTex, MyEntityTextRect);
+			owptr->getSprite()->setScale(EntityScale);
+			oneWays.push_back(owptr);
+		}
+	}
+
+	vector <Mur*> oldmurs = S2->getMurs();
+	Mur* m;
+	for (int i = 0; i < oldmurs.size(); i++)
+	{
+		m = dynamic_cast<Mur*>(oldmurs.at(i));
+		if (m) {
+			Vector2f EntityScale = m->getSprite()->getScale();
+			Vector2f MyPosition = m->getSprite()->getPosition();
+			Texture nonPlayerTex = *m->getTexture();
+			IntRect MyEntityTextRect = *m->getTextureRect();
+			Mur* Murptr = new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);
+			Murptr->getSprite()->setScale(EntityScale);
+			murs.push_back(Murptr);
+		}
+	}
+
+	Player* p = &S2->getPlayer();
+	if (p){
+		Vector2f PlayerScale = p->getSprite()->getScale();
+		Texture PlayerTex = *p->getTexture();
+		IntRect MyPlayerTextRect = *p->getTextureRect();
+		Vector2f MyPosition = p->getSprite()->getPosition();
+		Player* pptr = new Player(MyPosition, PlayerTex, MyPlayerTextRect);
+		pptr->getSprite()->setScale(PlayerScale);
+		player = pptr;
+	}
+#pragma endregion 
 }
 
 void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 {
-
+#pragma region GenerationSetup
 	Texture nonPlayerTex;
 	Texture PlayerTex;
 	if (!nonPlayerTex.loadFromFile("img/NonPlayer.png"))
@@ -68,7 +203,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 	//EntityScale = ratio de proportion des entitées;
 	//ArenaScale = Dimension de la case occupée par un élément
 	Vector2f EntityScale(20,20), PlayerScale(9, 9),ArenaScale(160,160), MyPosition;
-
+#pragma endregion
 	/*
 	enum ElementTypes {VIDE, MUR, ONEWAY, ONEWAY_HAUT, ONEWAY_BAS, ONEWAY_GAUCHE, ONEWAY_DROITE,
 	PIQUE, SWITCH, GOAL, ROCHER, BOUTEILLE, BOUTEILLE_VIVANTE, BOUTEILLE_COULEUR1, BOUTEILLE_COULEUR2,
@@ -166,9 +301,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							
 							Mur* Murptr =  new Mur(MyPosition, nonPlayerTex, MyEntityTextRect);							
 							Murptr->getSprite()->setScale(EntityScale);
-							/*gameObjects.push_back(GameObjectPtr);*/
 							murs.push_back(Murptr);
-							gameObjects.push_back(Murptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -184,7 +317,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							OneWay* owptr = new OneWay(Direction::BAS, MyPosition, nonPlayerTex, MyEntityTextRect);
 							owptr->getSprite()->setScale(EntityScale);
 							oneWays.push_back(owptr);
-							gameObjects.push_back(owptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -200,7 +332,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							OneWay* owptr = new OneWay(Direction::BAS, MyPosition, nonPlayerTex, MyEntityTextRect);
 							owptr->getSprite()->setScale(EntityScale);
 							oneWays.push_back(owptr);
-							gameObjects.push_back(owptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -217,7 +348,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							OneWay* owptr = new OneWay(Direction::HAUT, MyPosition, nonPlayerTex, MyEntityTextRect);
 							owptr->getSprite()->setScale(EntityScale);
 							oneWays.push_back(owptr);
-							gameObjects.push_back(owptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -234,7 +364,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							OneWay* owptr = new OneWay(Direction::DROITE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							owptr->getSprite()->setScale(EntityScale);
 							oneWays.push_back(owptr);
-							gameObjects.push_back(owptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -250,7 +379,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							OneWay* owptr = new OneWay(Direction::GAUCHE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							owptr->getSprite()->setScale(EntityScale);
 							oneWays.push_back(owptr);
-							gameObjects.push_back(owptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -265,7 +393,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							spike* spptr = new spike(MyPosition, nonPlayerTex, MyEntityTextRect);
 							spptr->getSprite()->setScale(EntityScale);
 							spikes.push_back(spptr);
-							gameObjects.push_back(spptr);
 
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
@@ -309,8 +436,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
 							Bouteille* btllptr = new Bouteille(true, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
-							bouteilles.push_back(btllptr);
-							gameObjects.push_back(btllptr);			
+							bouteilles.push_back(btllptr);		
 							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
@@ -323,7 +449,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Bouteille* btllptr = new Bouteille(false, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
-							gameObjects.push_back(btllptr);
 							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
@@ -336,7 +461,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Bouteille* btllptr = new Bouteille(true, ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
-							gameObjects.push_back(btllptr);
 							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
@@ -349,7 +473,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Bouteille* btllptr = new Bouteille(true, BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
-							gameObjects.push_back(btllptr);
 							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
@@ -362,7 +485,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Bouteille* btllptr = new Bouteille(true, JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							btllptr->getSprite()->setScale(EntityScale);
 							bouteilles.push_back(btllptr);
-							gameObjects.push_back(btllptr);
 							grabbablesETInhalables.push_back(btllptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
@@ -375,7 +497,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Switch* swptr = new Switch(MyPosition, nonPlayerTex, MyEntityTextRect);
 							swptr->getSprite()->setScale(EntityScale);
 							switches.push_back(swptr);
-							gameObjects.push_back(swptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -387,7 +508,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Rocher* rchptr = new Rocher(MyPosition, nonPlayerTex, MyEntityTextRect);
 							rchptr->getSprite()->setScale(EntityScale);
 							grabbablesETInhalables.push_back(rchptr);
-							gameObjects.push_back(rchptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -396,11 +516,10 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							//cout << endl << "GOAL at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 1 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 4 * MyEntityTextRect.width;
-							Goal* goalptr = new Goal(MyPosition, nonPlayerTex, MyEntityTextRect);
 
+							Goal* goalptr = new Goal(MyPosition, nonPlayerTex, MyEntityTextRect);
 							goalptr->getSprite()->setScale(EntityScale);
 							goals.push_back(goalptr);
-							gameObjects.push_back(goalptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -412,7 +531,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Block* blptr = new Block(NOCOLOR,MyPosition, nonPlayerTex, MyEntityTextRect);
 							blptr->getSprite()->setScale(EntityScale);
 							grabbablesETInhalables.push_back(blptr);
-							gameObjects.push_back(blptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -424,7 +542,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Block* blptr = new Block(true, NOCOLOR, MyPosition, nonPlayerTex, MyEntityTextRect);
 							blptr->getSprite()->setScale(EntityScale);
 							grabbablesETInhalables.push_back(blptr);
-							gameObjects.push_back(blptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -436,7 +553,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Block* blptr = new Block(ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							blptr->getSprite()->setScale(EntityScale);
 							grabbablesETInhalables.push_back(blptr);
-							gameObjects.push_back(blptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -448,7 +564,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Block* blptr = new Block(BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
 							blptr->getSprite()->setScale(EntityScale);
 							grabbablesETInhalables.push_back(blptr);
-							gameObjects.push_back(blptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -460,7 +575,6 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 							Block* blptr = new Block(JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
 							blptr->getSprite()->setScale(EntityScale);
 							grabbablesETInhalables.push_back(blptr);
-							gameObjects.push_back(blptr);
 						}
 						catch (exception & e) { cout << "Exception: " << e.what(); }
 						break;
@@ -940,7 +1054,7 @@ GameObject* Scene::testEncounter(GameObject*e, Direction D, int margin)
 
 int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 {
-	cout << "Yolo" << endl;
+
 	/*
 	enum sceneOutput {RienASignaler = -1,
 		QuickSave = -2,
@@ -1085,26 +1199,11 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 			else if (event.key.code == Keyboard::L || event.key.code == Keyboard::Numpad4) {
 				cout << "Lock" << endl;
 			}
-			else if (event.key.code == Keyboard::N || event.key.code == Keyboard::Numpad3) {
+			else if (event.key.code == Keyboard::N || event.key.code == Keyboard::Numpad2) {
 				cout << "cancel" << endl;
 			}
-			else if (event.key.code == Keyboard::O || event.key.code == Keyboard::Numpad6) {
+			else if (event.key.code == Keyboard::O || event.key.code == Keyboard::Numpad5) {
 				cout << "confirm" << endl;
-			}
-			else if (event.key.code == Keyboard::R || event.key.code == Keyboard::Numpad5) {
-				cout << "Reload" << endl;
-				retour = sceneOutput::ReloadPrevious;
-				return retour;
-			}
-			else if (event.key.code == Keyboard::Q || event.key.code == Keyboard::Numpad2) {
-				cout << "QuickSave" << endl;
-				retour = sceneOutput::QuickSave;
-				return retour;
-			}
-			else if (event.key.code == Keyboard::T || event.key.code == Keyboard::Numpad8) {
-				cout << "Restart" << endl;
-				retour = sceneOutput::Restart;
-				return retour;
 			}
 			break;
 		default:
@@ -1169,16 +1268,6 @@ void Scene::setGrabbablesETInhalables(vector<GameObject*>g)
 	grabbablesETInhalables = g;
 }
 
-vector <GameObject*> Scene::getGameObjects()
-{
-	return gameObjects;
-}
-
-void Scene::setGameObjects(vector <GameObject*> g)
-{
-	gameObjects = g;
-}
-
 Player Scene::getPlayer()
 {
 	return *player;
@@ -1207,6 +1296,56 @@ vector<Bouteille*> Scene::getBouteilles()
 void Scene::setBouteilles(vector<Bouteille*> b)
 {
 	bouteilles = b;
+}
+
+vector<Mur*> Scene::getMurs()
+{
+	return murs;
+}
+
+void Scene::setMurs(vector<Mur*>m)
+{
+	murs = m;
+}
+
+vector<OneWay*> Scene::getOneWays()
+{
+	return oneWays;
+}
+
+void Scene::setOneWays(vector<OneWay*>w)
+{
+	oneWays = w;
+}
+
+vector<spike*> Scene::getSpikes()
+{
+	return spikes;
+}
+
+void Scene::setSpikes(vector<spike*>s)
+{
+	spikes = s;
+}
+
+vector<Switch*> Scene::getSwiches()
+{
+	return switches;
+}
+
+void Scene::setSwiches(vector<Switch*>s)
+{
+	switches = s;
+}
+
+vector<Goal*> Scene::getGoals()
+{
+	return goals;
+}
+
+void Scene::setGoals(vector<Goal*>g)
+{
+	goals = g;
 }
 
 bool Scene::walkOn(GameObject* mvr, vector<GameObject*> obstcl)
