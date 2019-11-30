@@ -161,7 +161,7 @@ void MobileEntity::moveTo(Direction d)
 			direction.x = 1;
 		break;
 	default:
-		cout << "direction inconnue" <<endl;
+		//cout << "direction inconnue" <<endl;
 		break;
 	}
 }
@@ -216,7 +216,7 @@ Sprite MobileEntity::getUpdatedFantome(Direction d)
 		myDirection.x = 1;
 		break;
 	default:
-		cout << "direction inconnue" << endl;
+		//cout << "direction inconnue" << endl;
 		break;
 	}
 #pragma endregion

@@ -456,7 +456,7 @@ void Block::update(Scene*scene)
 		GameObject* walker = scene->testEncounter(this, Direction::HAUT,20);
 
 		if (walker) {
-			cout << "colliding walker" << endl;
+			//cout << "colliding walker" << endl;
 			MobileGameplayElement* dynamicWalker = dynamic_cast<MobileGameplayElement*>(walker);
 			if (dynamicWalker) {
 				//cout << "colliding dynamicWalker walker" << endl;

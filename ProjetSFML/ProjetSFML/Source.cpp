@@ -15,7 +15,7 @@ int main(void) {
 	GameMaster MJ;
 	Font myFont;
 	if (!myFont.loadFromFile("PressStart2P-Regular.ttf")) {
-		cout << "Font failed to load" << endl;
+		//cout << "Font failed to load" << endl;
 	}
 	MJ.setFont(&myFont);
 	/*

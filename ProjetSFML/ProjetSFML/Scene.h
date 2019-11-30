@@ -23,7 +23,7 @@ enum sceneOutput {
 	QuickSave = -2,
 	ReloadPrevious = -3,
 	Exit = -4,
-	Restart = -5
+	Restart = 0
 };
 
 class Scene

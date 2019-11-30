@@ -26,7 +26,7 @@ Scene::Scene(int s, vector<vector<enum ElementTypes>> m)
 
 Scene::Scene(Scene*S2)
 {
-	cout << "Cpy" << endl;
+	// cout << "Cpy" << endl;
 	//setup des valeurs simples a copier
 	score = S2->getScore();
 	spawnPoint = S2->getSpawnPoint();
@@ -525,7 +525,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BLOC:
 						try {
-							cout << endl << "BLOC at " << x << "x - " << y << "y : ";
+							// cout << endl << "BLOC at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
 							Block* blptr = new Block(NOCOLOR,MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -536,7 +536,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BLOC_VIVANT:
 						try {
-							cout << endl << "BLOC_VIVANT at " << x << "x - " << y << "y : ";
+							// cout << endl << "BLOC_VIVANT at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 3 * MyEntityTextRect.width;
 							Block* blptr = new Block(true, NOCOLOR, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -547,7 +547,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BLOC_COULEUR1:
 						try {
-							cout << endl << "BLOC_COULEUR1 at " << x << "x - " << y << "y : ";
+							// cout << endl << "BLOC_COULEUR1 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
 							Block* blptr = new Block(ROUGE, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -558,7 +558,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BLOC_COULEUR2:
 						try {
-							cout << endl << "BLOC_COULEUR2 at " << x << "x - " << y << "y : ";
+							// cout << endl << "BLOC_COULEUR2 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
 							Block* blptr = new Block(BLEU, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -569,7 +569,7 @@ void Scene::generate(vector<vector<enum ElementTypes>>myMatrice)
 						break;
 					case ElementTypes::BLOC_COULEUR3:
 						try {
-							cout << endl << "BLOC_COULEUR3 at " << x << "x - " << y << "y : ";
+							// cout << endl << "BLOC_COULEUR3 at " << x << "x - " << y << "y : ";
 							MyEntityTextRect.top = 0 * MyEntityTextRect.height;
 							MyEntityTextRect.left = 2 * MyEntityTextRect.width;
 							Block* blptr = new Block(JAUNE, MyPosition, nonPlayerTex, MyEntityTextRect);
@@ -732,7 +732,9 @@ GameObject* Scene::testCollide(GameObject*e , Direction D)
 		spikePtr = spikes.at(i);
 		if (ActualBox.intersects(spikePtr->getSprite()->getGlobalBounds())) {
 			if (PlayerPointer)// Si c'est un joueur et qu'il touche actuellement un spike, le jeu est fini
+			{
 				score = 0;
+			}
 			else
 				return spikePtr;
 		}
@@ -1062,12 +1064,12 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 		Exit = -4,
 		Restart = -5
 	};
-	0 -> +  = score
+	i on retourne 0 ou Plus, alorS on retourne le score
 	*/
 	int retour = sceneOutput::RienASignaler;
 	Event event;
 
-	cout << EventPool.size() << endl;
+	// cout << EventPool.size() << endl;
 	while(EventPool.size() != 0)
 	{
 		event = EventPool.back();
@@ -1086,6 +1088,9 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 			Lock = L ou num4
 			cancel = N ou num3
 			confirm = O ou num6
+
+
+			//anciens paramêtres, ceux la sont présents dans le menu accessible via Echape
 			reload = R ou num5
 			Quicksave = Q ou num2
 			Exit = E ou Echape
@@ -1093,17 +1098,28 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 			
 			*/
 			if (event.key.code == Keyboard::Down) {
+				/*Si on appuis sur la fleche du bas, 
+				on doit savoir si 'lon marche sur un 
+				switch ou non.
+
+				Etape 1 : convertir les switchs en gameObject 
+				afin d'etre acceptés en paramêtre de walkon
+				*/
 				vector <GameObject*> goptr;
 				for (int i = 0; i < switches.size(); i++)
 				{
 					goptr.push_back(switches.at(i));
 				}
+				/*
+				Etape 2 : Si l'on est bien sur un switch, alors on l'active
+				sinon on vide notre couleur
+				*/
 				if (walkOn(player, goptr)) {
-					cout << "switchColor" << endl;
+					// cout << "switchColor" << endl;
 					switches.at(0)->interact(this);
 				}
 				else {
-					cout << "discard" << endl;
+					// cout << "discard" << endl;
 					if (player->getBringColor() != NOCOLOR) {
 						player->setBringColor(NOCOLOR);
 					}
@@ -1111,12 +1127,12 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 				
 			}
 			else if (event.key.code == Keyboard::RControl) {
-				cout << "Inhale/Hexale" << endl;
+				// cout << "Inhale/Hexale" << endl;
 				if (player->getBringSomething()) {
-					cout << "hexaling" << endl;
+					// cout << "hexaling" << endl;
 
 					if(player->getBringColor() == NOCOLOR){
-						cout << "entity" << endl;
+						// cout << "entity" << endl;
 						grabbablesETInhalables.push_back(player->getBringElement());
 						player->setBringElement(NULL);
 						/*
@@ -1132,7 +1148,7 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 
 					}
 					else {
-						cout << "color" << endl;
+						// cout << "color" << endl;
 						FloatRect interactionBox = player->getInteractionBox();
 						for (int i = 0; i < grabbablesETInhalables.size() && player->getBringSomething(); i++)
 						{
@@ -1140,49 +1156,49 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 								
 								MobileGameplayElement* mpptr = dynamic_cast <MobileGameplayElement*>(grabbablesETInhalables.at(i));
 								if (mpptr && mpptr->getColor() == NOCOLOR && mpptr->getPaintable()) {
-									cout << "Transfert possible "<< endl;
+									// cout << "Transfert possible "<< endl;
 									mpptr->setColor(player->getBringColor());
 									player->setBringColor(NOCOLOR);
 								}
 								else {
-									cout << "Transfert impossible " << endl;
+									// cout << "Transfert impossible " << endl;
 								}
 							}
 						}
 					}
 				}
 				else {
-					cout << "Inhaling" << endl;
+					// cout << "Inhaling" << endl;
 					FloatRect interactionBox = player->getInteractionBox();
 
 					for (int i = 0; i < grabbablesETInhalables.size() && !player->getBringSomething(); i++)
 					{
 						if (interactionBox.intersects(grabbablesETInhalables.at(i)->getSprite()->getGlobalBounds())) {
-							cout << "found something to inhale" << endl;
+							// cout << "found something to inhale" << endl;
 							Bouteille* btptr = dynamic_cast <Bouteille* >(grabbablesETInhalables.at(i));
 							if (btptr) {
 								if (btptr->getInhalable()) {
-									cout << "Pick Color" << endl;
+									// cout << "Pick Color" << endl;
 									player->setBringColor(btptr->getColor());
 								}
 								else {
-									cout << "bouteille vivante" << endl;
+									// cout << "bouteille vivante" << endl;
 								}
 							}
 							else {
 								Block * blptr = dynamic_cast <Block*>(grabbablesETInhalables.at(i));
 								if (blptr && blptr->getVivant()) {
-									cout << "block vivant" << endl;
+									// cout << "block vivant" << endl;
 								}
 								else {
 									MobileGameplayElement* mpptr = dynamic_cast <MobileGameplayElement*>(grabbablesETInhalables.at(i));
 									if (mpptr->getColor() != NOCOLOR) {
-										cout << "Pick Entity's color" << endl;
+										// cout << "Pick Entity's color" << endl;
 										player->setBringColor(mpptr->getColor());
 										mpptr->setColor(NOCOLOR);
 									}
 									else {
-										cout << "Pick Entity" << endl;
+										// cout << "Pick Entity" << endl;
 										player->setBringElement(mpptr);
 										grabbablesETInhalables.erase(grabbablesETInhalables.begin() + i);
 										grabbablesETInhalables.shrink_to_fit();
@@ -1195,15 +1211,19 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 			}
 			else if (event.key.code == Keyboard::S || event.key.code == Keyboard::Numpad1) {
 				cout << "Select" << endl;
+				//pas encore implémenté
 			}
 			else if (event.key.code == Keyboard::L || event.key.code == Keyboard::Numpad4) {
 				cout << "Lock" << endl;
+				//pas encore implémenté
 			}
 			else if (event.key.code == Keyboard::N || event.key.code == Keyboard::Numpad2) {
 				cout << "cancel" << endl;
+				//pas encore implémenté
 			}
 			else if (event.key.code == Keyboard::O || event.key.code == Keyboard::Numpad5) {
 				cout << "confirm" << endl;
+				//pas encore implémenté
 			}
 			break;
 		default:
@@ -1228,10 +1248,13 @@ int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 		}
 	}
 
-	if (score <= 0)
+	if (score <= 0)//si on meurt
+	{
 		retour = sceneOutput::Restart;
+	}
+		
 
-	if (goals.size() == 0)
+	if (goals.size() == 0)//si on gagne
 		retour = score;
 
 	ScoreString.setString(to_string(score));

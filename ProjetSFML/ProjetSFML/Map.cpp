@@ -9,7 +9,7 @@ Map::Map()
 		{VIDE}
 	};
 	sauvegardes.push_back(generate());
-	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+	// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	isPlaying = true;
 }
 
@@ -20,7 +20,7 @@ Map::Map(vector<vector<enum ElementTypes>> M)
 	gravity = 9.8;
 	matrice = M;
 	sauvegardes.push_back(generate());
-	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+	// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	isPlaying = true;
 
 }
@@ -32,7 +32,7 @@ Map::Map(int i, vector<vector<enum ElementTypes>> M)
 	gravity = 9.8;
 	matrice = M;
 	sauvegardes.push_back(generate());
-	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+	// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	isPlaying = true;
 
 }
@@ -61,11 +61,11 @@ void Map::finish()
 			sauvegardes.pop_back();
 		}
 		sauvegardes.push_back(generate());
-		cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+		// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 		isPlaying = false;
 	}
 	else {
-		cout << "Not supposed to Finish" << endl;
+		// cout << "Not supposed to Finish" << endl;
 	}
 }
 
@@ -81,12 +81,19 @@ void Map::quickSave()
 
 	int penalty = 20;
 
+	//On supprime toutes les sauvegardes pour n'en laisser que la scene en cours
+	while (sauvegardes.size() > 1)
+	{
+		sauvegardes.erase(sauvegardes.begin()+1);
+		sauvegardes.shrink_to_fit();
+	}
+
 	if (sauvegardes.size() != 0) {
-		cout << "copying" << endl;
+		// cout << "copying" << endl;
 		Scene duplique  = Scene(&sauvegardes.at(0));
 		duplique.setScore(duplique.getScore() - penalty);
 		sauvegardes.push_back(duplique);
-		cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+		// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	}
 	else {
 		cout << "Pas de quickSave sans sauvegardes existantes" << endl;
@@ -104,57 +111,31 @@ void Map::loadSave()
 		sauvegardes.erase(sauvegardes.begin());
 		sauvegardes.shrink_to_fit();
 		
-		cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+		// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
 	}
 	else {
-		cout << "Pas assez de sauvegardes" << endl;
+		// cout << "Pas assez de sauvegardes" << endl;
 	}
 }
 
 void Map::update(RenderWindow& window, vector <Event>Evts)
 {
 
-	/*
-	enum sceneOutput {RienASignaler = -1,
-		QuickSave = -2,
-		ReloadPrevious = -3,
-		Exit = -4,
-		Restart = -5
-	};
-	*/
 	int output;
 	output = sauvegardes[0].update(window, Evts);
-	/**/
-	switch (output)
-	{
-	case sceneOutput::RienASignaler:
-		break;
-	case sceneOutput::QuickSave:
-		cout << "QuickSave (not working)" << endl;
-		// ajoute une sauvegarde une 
-		// sauvegardes.push_back(Scene(sauvegardes[0]));
-		
-		break;
-	case sceneOutput::ReloadPrevious:
-		cout << "ReloadPrevious (not working)" << endl;
-		// loadSave();
 
-		break;
-	case sceneOutput::Exit:
-		cout << "Exit" << endl;
-		break;
-	case sceneOutput::Restart:
-		cout << "Restart" << endl;
-		restart();
-		break;
-	default:
+	if (output > 0) {//You Win
 		cout << "score = " << output << endl;
 		if (output > highScore) {
 			highScore = output;
 			cout << "new high score : " << output << endl;
 		}
 		isPlaying = false;
-		break;
+		return;
+	}
+	if (output == 0) {//You Died
+		cout << "restart" << endl;
+		restart();
 	}
 }
 
@@ -165,10 +146,18 @@ void Map::draw(RenderWindow&R)
 
 void Map::restart()
 {
-	cout << "restart" << endl;
+	// cout << "restart" << endl;
 
+	//On supprime toutes les sauvegardes pour n'en laisser qu'une
+	while (sauvegardes.size() > 1)
+	{
+		sauvegardes.erase(sauvegardes.begin());
+		sauvegardes.shrink_to_fit();
+	}
+	//On ajoute une sauvegarde vierge
 	sauvegardes.push_back(generate());
-	cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+	// cout << "sauvegarde size = " << sauvegardes.size() << endl ;
+	//et on la charge
 	loadSave();
 }
 

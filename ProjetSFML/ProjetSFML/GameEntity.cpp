@@ -34,6 +34,6 @@ GameEntity::GameEntity(bool t, int intervalFrame, Vector2f pos, Texture tex, Int
 
 void GameEntity::interact()
 {
-	cout << "Interaction Yeah" << endl;
+	//cout << "Interaction Yeah" << endl;
 }
 

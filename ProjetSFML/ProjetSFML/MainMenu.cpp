@@ -151,7 +151,7 @@ void MainMenu::MoveUp()
 	}
 	else
 		SelectedItemIndex = (SelectedItemIndex - 1) % elements.size();
-	cout << SelectedItemIndex << endl;
+	//cout << SelectedItemIndex << endl;
 	elements.at(SelectedItemIndex).move(100, 0);
 
 }
