@@ -12,29 +12,99 @@ void GameMaster::run()
 	View v (FloatRect(0, 0, 4800, 4000));
 	v.zoom(0.30f);
 	this->setView(v);
+
+	//Ensemble des actions disponibles dans le menu
+	vector <String> MainMenuInputs;
+	//Génération des inputs
+	for (int i = 0; i < maps.size(); i++)
+		MainMenuInputs.push_back("Play Level " + to_string(i + 1));
+	MainMenuInputs.push_back("Exit/return (Escape)");
+
+	Event event;
+	vector <Event> eventList;//sert pour envoyer les événements aux maps/scenes si ils ne concernent pas le GameMaster
+				
+	MainMenu menu(this->getSize().x, this->getSize().y, font, MainMenuInputs);//menu principale
+	menu.setOpened(true);
+
+
 	cout << "Run" << endl;
 	Map mainMap = maps.at(selectedMapIndex);
 
 	while (isOpen()) {
 
+		
+		
+
 		if (float(MainClock.getElapsedTime().asSeconds()) >= 0.016)//1 / 60 = 0.016
 		{
-			//cout << float(MainClock.getElapsedTime().asSeconds()) << " " << float(1 / 25)  << endl;
-			//si la map est en cours de jeu
-			if (mainMap.getIsPlaying()) {
-				mainMap.update(*this);
-				mainMap.draw(*this);
+			eventList.clear();
+			eventList.shrink_to_fit();
+			while (this->pollEvent(event)) {
+				switch (event.type)
+				{
+				case Event::Closed:
+					this->close();
+					break;
+				case Event::KeyPressed:
+
+					if (event.key.code == Keyboard::Escape) {
+						cout << "Exit" << endl;
+						this->close();
+					}
+
+					if (menu.getOpened()) {
+
+						if (event.key.code == Keyboard::Down) {
+							menu.MoveDown();
+						}
+						else if (event.key.code == Keyboard::Up) {
+							menu.MoveUp();
+						}
+						else if (event.key.code == Keyboard::Enter) {
+							if (menu.getSelectedItemIndex() == 5)
+								this->close();
+							else {
+								selectedMapIndex = menu.getSelectedItemIndex();
+								mainMap = maps.at(selectedMapIndex);
+								menu.setOpened(false);
+							}
+						}
+					}
+					else {
+						if (event.key.code == Keyboard::E) {
+							menu.setOpened(true);
+						}
+						else {
+							eventList.push_back(event);
+						}
+					}
+					break;
+				default:
+					eventList.push_back(event);
+					break;
+				}
+			}
+
+			if (menu.getOpened()) {
+				menu.drawMe(*this);
 			}
 			else {
-				//si la map viens d'etre finis, on la réinitialise et on passe à la map suivante
-				cout << "switch map" << endl;
-				mainMap.setIsPlaying(true);
-				
-				selectedMapIndex = (selectedMapIndex + 1) % maps.size();
+				//cout << float(MainClock.getElapsedTime().asSeconds()) << " " << float(1 / 25)  << endl;
+				//si la map est en cours de jeu
+				if (mainMap.getIsPlaying()) {
+					mainMap.update(*this, eventList);
+					mainMap.draw(*this);
+				}
+				else {
+					//si la map viens d'etre finis, on la réinitialise et on passe à la map suivante
+					cout << "switch map" << endl;
+					mainMap.setIsPlaying(true);
 
-				mainMap = maps.at(selectedMapIndex);
+					selectedMapIndex = (selectedMapIndex + 1) % maps.size();
+
+					mainMap = maps.at(selectedMapIndex);
+				}
 			}
-
 			MainClock.restart();
 		}
 	}

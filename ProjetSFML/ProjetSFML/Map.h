@@ -29,7 +29,7 @@ public:
 	Scene generate();
 	void quickSave();
 	void loadSave();
-	void update(RenderWindow&);
+	void update(RenderWindow&, vector <Event>);
 	void draw(RenderWindow &);
 	void restart();
 

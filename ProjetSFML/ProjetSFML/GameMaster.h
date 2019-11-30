@@ -5,6 +5,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "Map.h"
+#include "MainMenu.h"
 using namespace std;
 using namespace sf;
 

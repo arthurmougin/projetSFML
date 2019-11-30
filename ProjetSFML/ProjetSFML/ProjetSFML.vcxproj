@@ -137,6 +137,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MobileEntity.cpp" />
     <ClCompile Include="MobileGameplayElement.cpp" />
     <ClCompile Include="Mur.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="MobileEntity.h" />
     <ClInclude Include="MobileGameplayElement.h" />
     <ClInclude Include="Mur.h" />

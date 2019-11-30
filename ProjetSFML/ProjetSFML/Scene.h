@@ -58,7 +58,7 @@ public:
 	GameObject* testCollide(GameObject*, Direction);
 	GameObject* testEncounter(GameObject*, Direction,int);
 
-	int update(RenderWindow&);
+	int update(RenderWindow&,vector <Event>);
 	bool walkOn(GameObject*, vector <GameObject*>);
 
 	/* GETER SETER */

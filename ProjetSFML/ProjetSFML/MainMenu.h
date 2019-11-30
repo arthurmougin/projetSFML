@@ -5,18 +5,23 @@
 using namespace sf;
 using namespace std;
 
-
-int MAX_ITEMS = 5;
-
-class MainMenu
+class MainMenu//Choisir les maps a jouer
 {
 protected:
-	int SelectedItemIndex;
-	vector <Text*> elements;
+	int SelectedItemIndex = 0;
+	vector <Text> elements;
+	bool opened = false;
 
 public:
-	MainMenu(float, float);
-	void Update(RenderWindow& GM);
-	void draw(RenderWindow& GM);
+	MainMenu(int, int, Font*);
+	MainMenu(int, int,Font*,vector<String>);
+
+	void drawMe(RenderWindow& GM);
+	void MoveUp();
+	void MoveDown();
+	bool getOpened();
+	void setOpened(bool);
+	int getSelectedItemIndex();
+
 };
 

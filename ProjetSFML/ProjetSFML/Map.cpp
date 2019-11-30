@@ -99,7 +99,7 @@ void Map::loadSave()
 	}
 }
 
-void Map::update(RenderWindow& window)
+void Map::update(RenderWindow& window, vector <Event>Evts)
 {
 
 	/*
@@ -111,7 +111,7 @@ void Map::update(RenderWindow& window)
 	};
 	*/
 	int output;
-	output = sauvegardes[0].update(window);
+	output = sauvegardes[0].update(window, Evts);
 	/**/
 	switch (output)
 	{

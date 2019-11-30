@@ -938,10 +938,9 @@ GameObject* Scene::testEncounter(GameObject*e, Direction D, int margin)
 	return NULL;
 }
 
-
-int Scene::update(RenderWindow& GM)
+int Scene::update(RenderWindow& GM, vector <Event>EventPool)
 {
-
+	cout << "Yolo" << endl;
 	/*
 	enum sceneOutput {RienASignaler = -1,
 		QuickSave = -2,
@@ -953,13 +952,13 @@ int Scene::update(RenderWindow& GM)
 	*/
 	int retour = sceneOutput::RienASignaler;
 	Event event;
-	while (GM.pollEvent(event))
+
+	cout << EventPool.size() << endl;
+	while(EventPool.size() != 0)
 	{
+		event = EventPool.back();
 		switch (event.type)
 		{
-		case Event::Closed:
-			GM.close();
-			break;
 		case Event::KeyPressed:
 			/* Format d'inputs
 			Left = arrow left
@@ -997,7 +996,7 @@ int Scene::update(RenderWindow& GM)
 				}
 				
 			}
-			if (event.key.code == Keyboard::RControl) {
+			else if (event.key.code == Keyboard::RControl) {
 				cout << "Inhale/Hexale" << endl;
 				if (player->getBringSomething()) {
 					cout << "hexaling" << endl;
@@ -1080,41 +1079,40 @@ int Scene::update(RenderWindow& GM)
 					}
 				}
 			}
-			if (event.key.code == Keyboard::S || event.key.code == Keyboard::Numpad1) {
+			else if (event.key.code == Keyboard::S || event.key.code == Keyboard::Numpad1) {
 				cout << "Select" << endl;
 			}
-			if (event.key.code == Keyboard::L || event.key.code == Keyboard::Numpad4) {
+			else if (event.key.code == Keyboard::L || event.key.code == Keyboard::Numpad4) {
 				cout << "Lock" << endl;
 			}
-			if (event.key.code == Keyboard::N || event.key.code == Keyboard::Numpad3) {
+			else if (event.key.code == Keyboard::N || event.key.code == Keyboard::Numpad3) {
 				cout << "cancel" << endl;
 			}
-			if (event.key.code == Keyboard::O || event.key.code == Keyboard::Numpad6) {
+			else if (event.key.code == Keyboard::O || event.key.code == Keyboard::Numpad6) {
 				cout << "confirm" << endl;
 			}
-			if (event.key.code == Keyboard::R || event.key.code == Keyboard::Numpad5) {
+			else if (event.key.code == Keyboard::R || event.key.code == Keyboard::Numpad5) {
 				cout << "Reload" << endl;
 				retour = sceneOutput::ReloadPrevious;
 				return retour;
 			}
-			if (event.key.code == Keyboard::Q || event.key.code == Keyboard::Numpad2) {
+			else if (event.key.code == Keyboard::Q || event.key.code == Keyboard::Numpad2) {
 				cout << "QuickSave" << endl;
 				retour = sceneOutput::QuickSave;
 				return retour;
 			}
-			if (event.key.code == Keyboard::T || event.key.code == Keyboard::Numpad8) {
+			else if (event.key.code == Keyboard::T || event.key.code == Keyboard::Numpad8) {
 				cout << "Restart" << endl;
 				retour = sceneOutput::Restart;
 				return retour;
-			}
-			if (event.key.code == Keyboard::E || event.key.code == Keyboard::Escape) {
-				cout << "Exit" << endl;
-				GM.close();
 			}
 			break;
 		default:
 			break;
 		}
+		EventPool.pop_back();
+		EventPool.shrink_to_fit();
+
 	}
 
 
